@@ -1,0 +1,222 @@
+{
+  "category": {
+    "id": "workflow",
+    "name": "Workflow",
+    "description": "Blocos de status, aprovação, comentários, revisão e auditoria."
+  },
+  "blocks": [
+    {
+      "id": "workflow_status_simple",
+      "name": "Status simples",
+      "client_terms": [
+        "status",
+        "etapas",
+        "andamento",
+        "situação"
+      ],
+      "summary": "Controle simples de status de um registro, como rascunho, enviado, aprovado ou reprovado.",
+      "includes": [
+        "Status do registro",
+        "Alterar status",
+        "Histórico básico",
+        "Filtro por status"
+      ],
+      "excludes": [
+        "Aprovação com permissões",
+        "Notificação",
+        "Workflow configurável"
+      ],
+      "pages": [
+        "Detalhe com status",
+        "Filtro por status"
+      ],
+      "dependencies": [
+        "crud_simple"
+      ],
+      "usually_with": [
+        "workflow_approval"
+      ],
+      "commercial_questions": [
+        "Quais são os status?",
+        "Quem pode mudar cada status?",
+        "Precisa histórico?"
+      ],
+      "commercial_notes": [
+        "Status simples pode virar workflow completo se houver regras por etapa."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "workflow",
+      "category_name": "Workflow"
+    },
+    {
+      "id": "workflow_approval",
+      "name": "Aprovação / Revisão",
+      "client_terms": [
+        "aprovar",
+        "reprovar",
+        "fluxo de aprovação",
+        "revisão"
+      ],
+      "summary": "Fluxo para enviar um item para aprovação, aprovar, reprovar e registrar justificativa.",
+      "includes": [
+        "Enviar para aprovação",
+        "Aprovar",
+        "Reprovar",
+        "Justificativa",
+        "Histórico",
+        "Notificação",
+        "Permissões por etapa"
+      ],
+      "excludes": [
+        "Workflow configurável pelo usuário",
+        "Assinatura digital",
+        "SLA avançado"
+      ],
+      "pages": [
+        "Detalhe em revisão",
+        "Modal de aprovação",
+        "Histórico de aprovação"
+      ],
+      "dependencies": [
+        "workflow_status_simple",
+        "roles_permissions"
+      ],
+      "usually_with": [
+        "internal_notifications",
+        "comments",
+        "audit_log"
+      ],
+      "commercial_questions": [
+        "Quem aprova?",
+        "Existe mais de uma etapa?",
+        "Reprovação exige justificativa?",
+        "Precisa notificar alguém?"
+      ],
+      "commercial_notes": [
+        "Aprovação simples pode crescer muito quando há múltiplos perfis e etapas."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "workflow",
+      "category_name": "Workflow"
+    },
+    {
+      "id": "comments",
+      "name": "Comentários",
+      "client_terms": [
+        "comentários",
+        "observações",
+        "conversa no item",
+        "anotações"
+      ],
+      "summary": "Permite registrar comentários associados a um item ou processo.",
+      "includes": [
+        "Comentar",
+        "Listar comentários",
+        "Autor",
+        "Data/hora",
+        "Excluir comentário",
+        "Notificação opcional"
+      ],
+      "excludes": [
+        "Chat em tempo real",
+        "Menções",
+        "Anexos em comentário"
+      ],
+      "pages": [
+        "Área de comentários"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "workflow_approval",
+        "internal_notifications"
+      ],
+      "commercial_questions": [
+        "Comentário é interno ou visível ao cliente?",
+        "Pode excluir?",
+        "Precisa notificar?",
+        "Precisa anexar arquivo?"
+      ],
+      "commercial_notes": [
+        "Comentário simples é diferente de chat, menções ou colaboração em tempo real."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "workflow",
+      "category_name": "Workflow"
+    },
+    {
+      "id": "audit_log",
+      "name": "Histórico / Auditoria",
+      "client_terms": [
+        "histórico",
+        "log",
+        "auditoria",
+        "quem alterou"
+      ],
+      "summary": "Registro de eventos importantes do sistema, indicando ação, usuário e data/hora.",
+      "includes": [
+        "Registro de alterações",
+        "Quem alterou",
+        "Quando alterou",
+        "Evento",
+        "Filtro por evento"
+      ],
+      "excludes": [
+        "Auditoria compliance avançada",
+        "Antes/depois completo",
+        "Retenção legal"
+      ],
+      "pages": [
+        "Histórico do item",
+        "Lista de logs opcional"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "roles_permissions",
+        "workflow_approval"
+      ],
+      "commercial_questions": [
+        "Quais eventos precisam ser auditados?",
+        "Precisa ver antes/depois?",
+        "Por quanto tempo os logs ficam salvos?"
+      ],
+      "commercial_notes": [
+        "Auditoria pode ser básica ou requisito crítico de segurança/compliance."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "workflow",
+      "category_name": "Workflow"
+    }
+  ]
+}

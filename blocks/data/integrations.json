@@ -1,0 +1,159 @@
+{
+  "category": {
+    "id": "integrations",
+    "name": "Integrações",
+    "description": "Blocos de APIs externas, webhooks, sincronização e troca de dados."
+  },
+  "blocks": [
+    {
+      "id": "api_integration_simple",
+      "name": "Integração com API externa simples",
+      "client_terms": [
+        "integrar API",
+        "conectar com sistema",
+        "buscar dados externos",
+        "enviar dados"
+      ],
+      "summary": "Integração pontual com API externa para enviar ou receber dados em fluxo simples.",
+      "includes": [
+        "Configurar credenciais",
+        "Enviar dados",
+        "Receber resposta",
+        "Tratar erro",
+        "Log básico"
+      ],
+      "excludes": [
+        "Webhooks",
+        "Sincronização recorrente",
+        "Retentativas avançadas",
+        "Mapeamento complexo"
+      ],
+      "pages": [
+        "Configuração opcional",
+        "Resultado da integração"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "api_webhook"
+      ],
+      "commercial_questions": [
+        "Existe documentação da API?",
+        "A API já está disponível?",
+        "É envio, consulta ou ambos?",
+        "Quem fornece credenciais?"
+      ],
+      "commercial_notes": [
+        "Integração simples depende muito da qualidade da API externa."
+      ],
+      "disciplines": [
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "integrations",
+      "category_name": "Integrações"
+    },
+    {
+      "id": "api_integration_complex",
+      "name": "Integração com API externa complexa",
+      "client_terms": [
+        "sincronizar sistemas",
+        "integrar ERP",
+        "integração complexa",
+        "conectar legado"
+      ],
+      "summary": "Integração robusta com autenticação, webhooks, sincronização, mapeamento e tratamento de inconsistências.",
+      "includes": [
+        "Autenticação",
+        "Webhooks",
+        "Sincronização",
+        "Retentativas",
+        "Logs",
+        "Mapeamento de dados",
+        "Tratamento de inconsistência"
+      ],
+      "excludes": [
+        "Construção da API do terceiro",
+        "Correção de sistema legado",
+        "ETL corporativo completo"
+      ],
+      "pages": [
+        "Configuração",
+        "Logs de integração",
+        "Status de sincronização"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "api_webhook",
+        "audit_log"
+      ],
+      "commercial_questions": [
+        "Qual sistema será integrado?",
+        "Existe ambiente sandbox?",
+        "Existe documentação?",
+        "A integração é em tempo real ou lote?"
+      ],
+      "commercial_notes": [
+        "Integração complexa é uma das maiores fontes de risco e deve ter margem/contingência."
+      ],
+      "disciplines": [
+        "Backend",
+        "QA",
+        "DevOps",
+        "PM"
+      ],
+      "complexity": "alta",
+      "category_id": "integrations",
+      "category_name": "Integrações"
+    },
+    {
+      "id": "api_webhook",
+      "name": "Webhook",
+      "client_terms": [
+        "webhook",
+        "receber evento",
+        "notificação de API",
+        "callback"
+      ],
+      "summary": "Endpoint para receber eventos externos de outro sistema.",
+      "includes": [
+        "Criar endpoint",
+        "Validar origem",
+        "Receber evento",
+        "Processar evento",
+        "Registrar log",
+        "Retornar status"
+      ],
+      "excludes": [
+        "Fila avançada",
+        "Retentativas externas",
+        "Painel completo de integração"
+      ],
+      "pages": [
+        "Logs de webhook opcional"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "api_integration_complex"
+      ],
+      "commercial_questions": [
+        "Quais eventos serão recebidos?",
+        "A origem assina os eventos?",
+        "Precisa retry?",
+        "Precisa log visível?"
+      ],
+      "commercial_notes": [
+        "Webhook exige cuidado com segurança, idempotência e falhas."
+      ],
+      "disciplines": [
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "integrations",
+      "category_name": "Integrações"
+    }
+  ]
+}

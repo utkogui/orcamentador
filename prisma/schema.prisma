@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Complexity {
+  SIMPLE
+  MEDIUM
+  COMPLEX
+  VERY_COMPLEX
+}
+
+enum MultiplierTarget {
+  HOURS
+  COST
+}
+
+enum ModuleLayer {
+  PLATFORM
+  CAPABILITY
+  DOMAIN
+  INTEGRATION
+}
+
+model Estimate {
+  id              String   @id @default(cuid())
+  name            String
+  clientName      String?
+  description     String?
+  marginPct       Float    @default(30)
+  projectFlowJson String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  modules     EstimateModule[]
+  multipliers EstimateMultiplier[]
+  disciplines EstimateDiscipline[]
+}
+
+model Module {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  layer       ModuleLayer @default(CAPABILITY)
+  reuseGroup  String?
+  reuseFactor Float       @default(0.4)
+  tags        String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  disciplineHours ModuleDisciplineHour[]
+  estimateModules EstimateModule[]
+}
+
+model Discipline {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  hourlyRate  Float
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  moduleHours         ModuleDisciplineHour[]
+  estimateDisciplines EstimateDiscipline[]
+}
+
+model ModuleDisciplineHour {
+  id           String @id @default(cuid())
+  moduleId     String
+  disciplineId String
+  baseHours    Float
+
+  module     Module     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  discipline Discipline @relation(fields: [disciplineId], references: [id], onDelete: Cascade)
+
+  @@unique([moduleId, disciplineId])
+}
+
+model EstimateModule {
+  id            String     @id @default(cuid())
+  estimateId    String
+  moduleId      String
+  complexity    Complexity @default(MEDIUM)
+  quantity      Int        @default(1)
+  instanceLabel String?
+  instanceIndex Int        @default(1)
+
+  estimate Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  module   Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+}
+
+model Multiplier {
+  id          String           @id @default(cuid())
+  name        String           @unique
+  slug        String           @unique
+  description String?
+  factor      Float
+  target      MultiplierTarget @default(HOURS)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  estimateMultipliers EstimateMultiplier[]
+}
+
+model EstimateMultiplier {
+  id           String  @id @default(cuid())
+  estimateId   String
+  multiplierId String
+  enabled      Boolean @default(true)
+
+  estimate   Estimate   @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  multiplier Multiplier @relation(fields: [multiplierId], references: [id], onDelete: Cascade)
+
+  @@unique([estimateId, multiplierId])
+}
+
+model EstimateDiscipline {
+  id           String  @id @default(cuid())
+  estimateId   String
+  disciplineId String
+  enabled      Boolean @default(true)
+
+  estimate   Estimate   @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  discipline Discipline @relation(fields: [disciplineId], references: [id], onDelete: Cascade)
+
+  @@unique([estimateId, disciplineId])
+}

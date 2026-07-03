@@ -1,0 +1,329 @@
+{
+  "category": {
+    "id": "landing_institutional",
+    "name": "Landing Pages e Sites Institucionais",
+    "description": "Blocos de páginas públicas, conteúdo, SEO, formulários e CMS."
+  },
+  "blocks": [
+    {
+      "id": "lp_hero",
+      "name": "Hero / Chamada principal",
+      "client_terms": [
+        "hero",
+        "primeira dobra",
+        "chamada principal",
+        "banner principal"
+      ],
+      "summary": "Primeira seção da página com promessa, apoio visual e CTA.",
+      "includes": [
+        "Título principal",
+        "Subtítulo",
+        "Imagem ou vídeo",
+        "CTA",
+        "Responsividade"
+      ],
+      "excludes": [
+        "Animação complexa",
+        "Vídeo produzido",
+        "Teste A/B"
+      ],
+      "pages": [
+        "Landing Page ou Home"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "lp_benefits",
+        "lp_lead_form"
+      ],
+      "commercial_questions": [
+        "Existe copy pronta?",
+        "Existe imagem/vídeo?",
+        "Qual CTA principal?"
+      ],
+      "commercial_notes": [
+        "Hero parece simples, mas define narrativa, direção visual e conversão."
+      ],
+      "disciplines": [
+        "Estratégia",
+        "UX",
+        "UI",
+        "Frontend",
+        "Conteúdo",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "lp_benefits",
+      "name": "Seção de benefícios",
+      "client_terms": [
+        "benefícios",
+        "diferenciais",
+        "vantagens",
+        "por que escolher"
+      ],
+      "summary": "Seção com cards explicando benefícios ou diferenciais da oferta.",
+      "includes": [
+        "Cards",
+        "Ícones",
+        "Títulos",
+        "Textos curtos"
+      ],
+      "excludes": [
+        "Ilustrações customizadas",
+        "Animação avançada",
+        "Pesquisa de posicionamento"
+      ],
+      "pages": [
+        "Landing Page ou Home"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "lp_hero",
+        "lp_faq"
+      ],
+      "commercial_questions": [
+        "Os benefícios já estão definidos?",
+        "Precisa de ícones ou ilustrações?",
+        "Quantos cards?"
+      ],
+      "commercial_notes": [
+        "Depende mais de conteúdo/estratégia do que de desenvolvimento."
+      ],
+      "disciplines": [
+        "Estratégia",
+        "UX",
+        "UI",
+        "Frontend",
+        "Conteúdo"
+      ],
+      "complexity": "baixa",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "lp_lead_form",
+      "name": "Formulário de lead",
+      "client_terms": [
+        "formulário",
+        "capturar lead",
+        "contato",
+        "conversão"
+      ],
+      "summary": "Formulário público para captar interessados e enviar dados ao cliente ou CRM.",
+      "includes": [
+        "Nome",
+        "E-mail",
+        "Telefone",
+        "Empresa",
+        "Mensagem",
+        "Validação",
+        "Envio",
+        "Mensagem de sucesso"
+      ],
+      "excludes": [
+        "CRM avançado",
+        "Automação de marketing",
+        "Qualificação complexa"
+      ],
+      "pages": [
+        "Seção de formulário",
+        "Sucesso opcional"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "crm_integration_simple",
+        "recaptcha_lgpd"
+      ],
+      "commercial_questions": [
+        "Para onde o lead vai?",
+        "Precisa integrar RD/HubSpot/Pipedrive?",
+        "Precisa reCAPTCHA?",
+        "Precisa consentimento LGPD?"
+      ],
+      "commercial_notes": [
+        "Formulário sem integração é simples; formulário com CRM, LGPD e regras já vira outro escopo."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "site_home",
+      "name": "Página Home institucional",
+      "client_terms": [
+        "home",
+        "página inicial",
+        "site institucional",
+        "site da empresa"
+      ],
+      "summary": "Página inicial de site institucional com principais seções de apresentação.",
+      "includes": [
+        "Hero",
+        "Serviços",
+        "Diferenciais",
+        "Cases",
+        "Clientes",
+        "CTA",
+        "Rodapé"
+      ],
+      "excludes": [
+        "CMS",
+        "Blog",
+        "Área logada",
+        "Multiidioma"
+      ],
+      "pages": [
+        "Home"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "site_about",
+        "site_services",
+        "lp_lead_form"
+      ],
+      "commercial_questions": [
+        "Quantas seções?",
+        "Conteúdo está pronto?",
+        "Precisa CMS?",
+        "Precisa SEO avançado?"
+      ],
+      "commercial_notes": [
+        "Home institucional é composição de blocos de conteúdo, não apenas uma página visual."
+      ],
+      "disciplines": [
+        "Estratégia",
+        "UX",
+        "UI",
+        "Frontend",
+        "Conteúdo",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "cms_simple",
+      "name": "CMS simples",
+      "client_terms": [
+        "editar conteúdo",
+        "painel admin do site",
+        "CMS",
+        "gerenciar páginas"
+      ],
+      "summary": "Área administrativa básica para criar e editar conteúdos do site.",
+      "includes": [
+        "Login admin",
+        "Criar conteúdo",
+        "Editar conteúdo",
+        "Publicar/despublicar",
+        "Upload de imagem",
+        "Preview básico"
+      ],
+      "excludes": [
+        "Workflow editorial",
+        "Versionamento avançado",
+        "Permissões granulares",
+        "Page builder"
+      ],
+      "pages": [
+        "Login admin",
+        "Lista de conteúdos",
+        "Novo conteúdo",
+        "Editar conteúdo"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "blog_news"
+      ],
+      "commercial_questions": [
+        "Quais conteúdos serão editáveis?",
+        "Precisa preview?",
+        "Precisa agendamento?",
+        "Haverá perfis editoriais?"
+      ],
+      "commercial_notes": [
+        "CMS pode ir de edição simples a produto completo. Definir claramente o que será editável."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "blog_news",
+      "name": "Blog / Notícias",
+      "client_terms": [
+        "blog",
+        "notícias",
+        "artigos",
+        "conteúdo"
+      ],
+      "summary": "Estrutura pública e administrativa para publicar artigos, notícias ou conteúdos.",
+      "includes": [
+        "Lista de posts",
+        "Página de post",
+        "Categorias",
+        "Tags",
+        "Busca",
+        "SEO",
+        "CMS"
+      ],
+      "excludes": [
+        "Newsletter",
+        "Comentários públicos",
+        "Workflow editorial avançado"
+      ],
+      "pages": [
+        "Lista de posts",
+        "Post individual",
+        "Categoria",
+        "Admin de posts"
+      ],
+      "dependencies": [
+        "cms_simple"
+      ],
+      "usually_with": [
+        "seo_basic"
+      ],
+      "commercial_questions": [
+        "Quem publica?",
+        "Precisa categorias e tags?",
+        "Precisa busca?",
+        "Vai ter migração de posts antigos?"
+      ],
+      "commercial_notes": [
+        "Blog com CMS é maior que páginas estáticas. Considerar SEO, URLs, categorias e edição."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "Conteúdo",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    }
+  ]
+}

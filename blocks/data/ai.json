@@ -1,0 +1,222 @@
+{
+  "category": {
+    "id": "ai",
+    "name": "Inteligência Artificial",
+    "description": "Blocos de IA generativa, classificação, OCR com IA, chat e geração de documentos."
+  },
+  "blocks": [
+    {
+      "id": "ai_text_analysis",
+      "name": "IA: análise de texto",
+      "client_terms": [
+        "analisar texto",
+        "IA analisa",
+        "parecer automático",
+        "interpretação por IA"
+      ],
+      "summary": "Envia texto para modelo de IA e retorna análise estruturada ou explicação.",
+      "includes": [
+        "Campo de entrada",
+        "Envio para API",
+        "Prompt estruturado",
+        "Resposta formatada",
+        "Tratamento de erro",
+        "Logs básicos"
+      ],
+      "excludes": [
+        "Treinamento de modelo próprio",
+        "RAG",
+        "Chat completo",
+        "Classificação em lote"
+      ],
+      "pages": [
+        "Entrada de dados",
+        "Resultado da análise"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "ocr_document",
+        "ai_document_generation"
+      ],
+      "commercial_questions": [
+        "Qual texto será analisado?",
+        "Qual formato de saída?",
+        "A resposta precisa ser revisada por humano?",
+        "Há dados sensíveis?"
+      ],
+      "commercial_notes": [
+        "IA exige definição clara de entrada, saída, limite de erro e responsabilidade."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "ai",
+      "category_name": "Inteligência Artificial"
+    },
+    {
+      "id": "ai_classification",
+      "name": "IA: classificação automática",
+      "client_terms": [
+        "classificar automaticamente",
+        "categorizar com IA",
+        "triagem automática"
+      ],
+      "summary": "Classifica entradas em categorias predefinidas usando IA.",
+      "includes": [
+        "Entrada de dados",
+        "Prompt de classificação",
+        "Categorias",
+        "Confiança",
+        "Revisão manual",
+        "Ajuste de resultado"
+      ],
+      "excludes": [
+        "Treinamento supervisionado próprio",
+        "Modelo customizado",
+        "MLOps"
+      ],
+      "pages": [
+        "Resultado da classificação",
+        "Revisão manual"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "ai_text_analysis",
+        "workflow_approval"
+      ],
+      "commercial_questions": [
+        "Quais categorias existem?",
+        "Qual taxa de erro aceitável?",
+        "Haverá revisão humana?",
+        "A classificação altera algum processo crítico?"
+      ],
+      "commercial_notes": [
+        "Classificação automática precisa de exemplos, fallback e revisão quando o risco for alto."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "ai",
+      "category_name": "Inteligência Artificial"
+    },
+    {
+      "id": "ai_document_generation",
+      "name": "IA: geração de documento",
+      "client_terms": [
+        "gerar documento",
+        "gerar proposta",
+        "gerar relatório com IA",
+        "texto automático"
+      ],
+      "summary": "Gera textos ou documentos estruturados a partir de dados informados.",
+      "includes": [
+        "Coleta de dados",
+        "Prompt estruturado",
+        "Geração de texto",
+        "Revisão",
+        "Exportação",
+        "Versionamento opcional"
+      ],
+      "excludes": [
+        "Assinatura digital",
+        "Workflow jurídico",
+        "Editor colaborativo avançado"
+      ],
+      "pages": [
+        "Formulário de entrada",
+        "Documento gerado",
+        "Revisão/edição"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "report_pdf",
+        "ai_text_analysis"
+      ],
+      "commercial_questions": [
+        "Qual documento será gerado?",
+        "Existe modelo/base?",
+        "Precisa edição manual?",
+        "Precisa exportar em PDF/DOCX?"
+      ],
+      "commercial_notes": [
+        "Geração de documento deve diferenciar rascunho assistido e documento final aprovado."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "ai",
+      "category_name": "Inteligência Artificial"
+    },
+    {
+      "id": "ai_chat",
+      "name": "Chat com IA",
+      "client_terms": [
+        "chatbot",
+        "chat com IA",
+        "assistente",
+        "perguntar para IA"
+      ],
+      "summary": "Interface conversacional para interação com modelo de IA.",
+      "includes": [
+        "Interface de chat",
+        "Histórico",
+        "Envio de mensagens",
+        "Resposta simples ou streaming",
+        "Contexto",
+        "Limite de uso",
+        "Tratamento de erro"
+      ],
+      "excludes": [
+        "RAG com base documental",
+        "Agentes autônomos",
+        "Atendimento humano integrado"
+      ],
+      "pages": [
+        "Chat",
+        "Histórico de conversa"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "ai_text_analysis"
+      ],
+      "commercial_questions": [
+        "O chat usa quais dados?",
+        "Precisa histórico?",
+        "Precisa limitar uso?",
+        "Responde com base em documentos?"
+      ],
+      "commercial_notes": [
+        "Chat simples é diferente de chatbot treinado com base de conhecimento ou agente com ações."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "ai",
+      "category_name": "Inteligência Artificial"
+    }
+  ]
+}

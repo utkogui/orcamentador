@@ -1,0 +1,94 @@
+{
+  "version": "0.1.0",
+  "name": "Matilha Building Blocks",
+  "description": "Catálogo inicial de blocos funcionais para estimativa comercial, treinamento do time e interpretação de briefings por IA.",
+  "language": "pt-BR",
+  "intended_uses": [
+    "Interpretação de briefings",
+    "Estimativa comercial",
+    "Treinamento do time comercial",
+    "Alinhamento técnico-comercial",
+    "Geração de escopo e fora de escopo"
+  ],
+  "categories": [
+    {
+      "id": "authentication",
+      "name": "Autenticação",
+      "description": "Blocos relacionados a acesso, identidade, recuperação de senha e segurança inicial.",
+      "block_count": 5
+    },
+    {
+      "id": "users_permissions",
+      "name": "Usuários e Permissões",
+      "description": "Blocos de perfis, papéis, gestão de usuários, organizações e isolamento de dados.",
+      "block_count": 5
+    },
+    {
+      "id": "dashboard_analytics",
+      "name": "Dashboards e Analytics",
+      "description": "Blocos de painéis, indicadores, gráficos, filtros, BI e visualização de dados.",
+      "block_count": 3
+    },
+    {
+      "id": "crud_forms",
+      "name": "CRUD, Cadastros e Formulários",
+      "description": "Blocos de cadastro, listagem, detalhe, edição, filtros e formulários complexos.",
+      "block_count": 3
+    },
+    {
+      "id": "files_documents",
+      "name": "Arquivos e Documentos",
+      "description": "Blocos de upload, gestão de arquivos, OCR, documentos e visualização.",
+      "block_count": 3
+    },
+    {
+      "id": "communication",
+      "name": "Comunicação",
+      "description": "Blocos de e-mail, notificações, WhatsApp, SMS e mensagens internas.",
+      "block_count": 3
+    },
+    {
+      "id": "reports_exports",
+      "name": "Relatórios e Exportações",
+      "description": "Blocos de relatórios PDF, CSV, Excel e envio agendado.",
+      "block_count": 3
+    },
+    {
+      "id": "workflow",
+      "name": "Workflow",
+      "description": "Blocos de status, aprovação, comentários, revisão e auditoria.",
+      "block_count": 4
+    },
+    {
+      "id": "integrations",
+      "name": "Integrações",
+      "description": "Blocos de APIs externas, webhooks, sincronização e troca de dados.",
+      "block_count": 3
+    },
+    {
+      "id": "ai",
+      "name": "Inteligência Artificial",
+      "description": "Blocos de IA generativa, classificação, OCR com IA, chat e geração de documentos.",
+      "block_count": 4
+    },
+    {
+      "id": "landing_institutional",
+      "name": "Landing Pages e Sites Institucionais",
+      "description": "Blocos de páginas públicas, conteúdo, SEO, formulários e CMS.",
+      "block_count": 6
+    },
+    {
+      "id": "saas_essentials",
+      "name": "SaaS Essencial",
+      "description": "Blocos comuns a produtos SaaS, como onboarding, configurações, assinatura e conta.",
+      "block_count": 4
+    },
+    {
+      "id": "finance_payments",
+      "name": "Financeiro e Pagamentos",
+      "description": "Blocos de gateway, PIX, cartão, faturas, cupons e checkout.",
+      "block_count": 2
+    }
+  ],
+  "total_blocks": 48
+}

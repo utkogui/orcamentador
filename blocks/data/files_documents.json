@@ -1,0 +1,180 @@
+{
+  "category": {
+    "id": "files_documents",
+    "name": "Arquivos e Documentos",
+    "description": "Blocos de upload, gestão de arquivos, OCR, documentos e visualização."
+  },
+  "blocks": [
+    {
+      "id": "file_upload_simple",
+      "name": "Upload simples de arquivo",
+      "client_terms": [
+        "upload",
+        "anexar arquivo",
+        "enviar documento",
+        "mandar imagem"
+      ],
+      "summary": "Permite selecionar, validar, enviar e baixar arquivos.",
+      "includes": [
+        "Selecionar arquivo",
+        "Validar tipo",
+        "Validar tamanho",
+        "Enviar arquivo",
+        "Mostrar progresso",
+        "Salvar referência",
+        "Download"
+      ],
+      "excludes": [
+        "OCR",
+        "Preview avançado",
+        "Versionamento",
+        "Assinatura digital"
+      ],
+      "pages": [
+        "Componente de upload",
+        "Lista ou detalhe com arquivo"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "document_management"
+      ],
+      "commercial_questions": [
+        "Quais tipos de arquivo?",
+        "Qual tamanho máximo?",
+        "Arquivos precisam ser privados?",
+        "Precisa visualizar no navegador?"
+      ],
+      "commercial_notes": [
+        "Upload simples ainda exige storage, validação, segurança e regras de acesso."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "files_documents",
+      "category_name": "Arquivos e Documentos"
+    },
+    {
+      "id": "document_management",
+      "name": "Gestão de documentos",
+      "client_terms": [
+        "documentos",
+        "arquivos",
+        "biblioteca de documentos",
+        "gestão documental"
+      ],
+      "summary": "Área para listar, categorizar, visualizar, baixar e administrar documentos.",
+      "includes": [
+        "Lista de documentos",
+        "Upload",
+        "Download",
+        "Preview",
+        "Excluir",
+        "Categorizar",
+        "Histórico",
+        "Permissões"
+      ],
+      "excludes": [
+        "OCR",
+        "Versionamento avançado",
+        "Assinatura digital",
+        "GED corporativo"
+      ],
+      "pages": [
+        "Lista de documentos",
+        "Detalhe do documento",
+        "Upload de documento"
+      ],
+      "dependencies": [
+        "file_upload_simple"
+      ],
+      "usually_with": [
+        "roles_permissions",
+        "audit_log"
+      ],
+      "commercial_questions": [
+        "Documentos são públicos ou privados?",
+        "Precisa categorizar?",
+        "Precisa histórico?",
+        "Quem pode excluir?"
+      ],
+      "commercial_notes": [
+        "Gestão de documentos é maior que upload: inclui organização, acesso e ciclo de vida do arquivo."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "files_documents",
+      "category_name": "Arquivos e Documentos"
+    },
+    {
+      "id": "ocr_document",
+      "name": "OCR de documentos",
+      "client_terms": [
+        "OCR",
+        "ler documento",
+        "extrair texto",
+        "ler receita",
+        "ler PDF"
+      ],
+      "summary": "Extração automática de texto ou dados a partir de imagem/PDF usando serviço de OCR.",
+      "includes": [
+        "Upload de documento",
+        "Envio para OCR",
+        "Extração de texto",
+        "Tratamento de erro",
+        "Revisão manual",
+        "Armazenamento do resultado"
+      ],
+      "excludes": [
+        "IA de interpretação avançada",
+        "Validação humana completa",
+        "Treinamento de modelo próprio"
+      ],
+      "pages": [
+        "Upload",
+        "Processando",
+        "Resultado extraído",
+        "Revisão manual"
+      ],
+      "dependencies": [
+        "file_upload_simple"
+      ],
+      "usually_with": [
+        "ai_text_analysis",
+        "form_complex"
+      ],
+      "commercial_questions": [
+        "Que tipo de documento será lido?",
+        "O OCR precisa extrair texto livre ou campos específicos?",
+        "Qual precisão esperada?",
+        "Haverá revisão manual?"
+      ],
+      "commercial_notes": [
+        "OCR nunca deve ser tratado como 'só upload'. Tem incerteza, custo de API e tratamento de erro."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "files_documents",
+      "category_name": "Arquivos e Documentos"
+    }
+  ]
+}

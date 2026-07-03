@@ -1,0 +1,296 @@
+{
+  "category": {
+    "id": "authentication",
+    "name": "Autenticação",
+    "description": "Blocos relacionados a acesso, identidade, recuperação de senha e segurança inicial."
+  },
+  "blocks": [
+    {
+      "id": "auth_basic_login",
+      "name": "Login / Autenticação básica",
+      "client_terms": [
+        "login",
+        "entrar",
+        "área restrita",
+        "área do cliente",
+        "acesso com senha"
+      ],
+      "summary": "Fluxo responsável por permitir que um usuário acesse uma área privada usando e-mail e senha.",
+      "includes": [
+        "Tela de login",
+        "Campo de e-mail",
+        "Campo de senha",
+        "Validação de campos",
+        "Mensagens de erro",
+        "Sessão do usuário",
+        "Logout",
+        "Proteção de rotas privadas",
+        "Redirecionamento pós-login"
+      ],
+      "excludes": [
+        "Cadastro público",
+        "Recuperação de senha",
+        "Confirmação de e-mail",
+        "Login social",
+        "MFA / 2FA",
+        "Permissões avançadas"
+      ],
+      "pages": [
+        "Login"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "auth_forgot_password",
+        "user_profile",
+        "roles_permissions"
+      ],
+      "commercial_questions": [
+        "O usuário se cadastra sozinho ou é criado por um administrador?",
+        "Existem diferentes perfis de acesso?",
+        "O login será por e-mail e senha ou também Google/Microsoft?",
+        "Existe necessidade de MFA / 2FA?"
+      ],
+      "commercial_notes": [
+        "Cliente normalmente fala apenas 'login', mas pode estar imaginando cadastro, recuperação de senha e área do usuário.",
+        "Login não deve incluir automaticamente multiempresa, permissões avançadas ou login social."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "auth_forgot_password",
+      "name": "Esqueci minha senha / Recuperação de senha",
+      "client_terms": [
+        "esqueci minha senha",
+        "recuperar senha",
+        "resetar senha",
+        "nova senha"
+      ],
+      "summary": "Fluxo para permitir que um usuário redefina sua senha por e-mail.",
+      "includes": [
+        "Link 'esqueci minha senha' na tela de login",
+        "Tela para solicitar recuperação",
+        "Campo de e-mail",
+        "E-mail transacional de recuperação",
+        "Token/link seguro",
+        "Tela para criar nova senha",
+        "Validação de senha",
+        "Mensagem de sucesso",
+        "Retorno para login"
+      ],
+      "excludes": [
+        "Recuperação por SMS",
+        "Recuperação por WhatsApp",
+        "MFA",
+        "Atendimento manual de suporte"
+      ],
+      "pages": [
+        "Login",
+        "Solicitar nova senha",
+        "E-mail de recuperação",
+        "Redefinir senha",
+        "Senha alterada",
+        "Retorno ao login"
+      ],
+      "dependencies": [
+        "auth_basic_login",
+        "transactional_email"
+      ],
+      "usually_with": [
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "A recuperação será por e-mail?",
+        "Existe regra de expiração do link?",
+        "O cliente já possui provedor de e-mail transacional?"
+      ],
+      "commercial_notes": [
+        "Recuperação de senha quase sempre acompanha login, mas deve estar explícita no escopo.",
+        "Depende de envio de e-mail transacional."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "auth_user_signup",
+      "name": "Cadastro público de usuário",
+      "client_terms": [
+        "cadastro",
+        "criar conta",
+        "registro",
+        "sign up",
+        "abrir conta"
+      ],
+      "summary": "Fluxo para um novo usuário criar sua própria conta no sistema.",
+      "includes": [
+        "Tela de cadastro",
+        "Campos principais",
+        "Validação dos dados",
+        "Criação de usuário",
+        "Aceite de termos",
+        "Mensagem de sucesso",
+        "Redirecionamento pós-cadastro"
+      ],
+      "excludes": [
+        "Confirmação de e-mail",
+        "Aprovação manual",
+        "Cadastro por convite",
+        "Cadastro com CNPJ complexo",
+        "Onboarding completo"
+      ],
+      "pages": [
+        "Cadastro",
+        "Sucesso do cadastro",
+        "Login ou Dashboard"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "auth_basic_login",
+        "auth_email_confirmation",
+        "onboarding_first_access"
+      ],
+      "commercial_questions": [
+        "O usuário se cadastra sozinho?",
+        "Precisa confirmar e-mail?",
+        "O cadastro precisa de CPF, CNPJ ou validações externas?",
+        "Existe aprovação manual antes do acesso?"
+      ],
+      "commercial_notes": [
+        "Cliente costuma chamar qualquer formulário de 'cadastro'. É preciso diferenciar cadastro de conta, cadastro de entidade e CRUD administrativo."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "auth_email_confirmation",
+      "name": "Confirmação de e-mail",
+      "client_terms": [
+        "confirmar e-mail",
+        "validar e-mail",
+        "ativar conta",
+        "e-mail de confirmação"
+      ],
+      "summary": "Fluxo para validar que o usuário possui acesso ao e-mail informado.",
+      "includes": [
+        "Envio de e-mail de confirmação",
+        "Template de e-mail",
+        "Link/token de confirmação",
+        "Tela de confirmação bem-sucedida",
+        "Tela de link inválido ou expirado",
+        "Reenvio de confirmação"
+      ],
+      "excludes": [
+        "MFA",
+        "Verificação por SMS",
+        "Aprovação manual"
+      ],
+      "pages": [
+        "E-mail de confirmação",
+        "Conta confirmada",
+        "Link inválido/expirado"
+      ],
+      "dependencies": [
+        "transactional_email"
+      ],
+      "usually_with": [
+        "auth_user_signup"
+      ],
+      "commercial_questions": [
+        "O usuário poderá acessar antes de confirmar o e-mail?",
+        "O link expira em quanto tempo?",
+        "Precisa reenviar confirmação?"
+      ],
+      "commercial_notes": [
+        "Confirmação de e-mail parece detalhe, mas adiciona telas, e-mail, token e regras de acesso."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "auth_social_login",
+      "name": "Login social / OAuth",
+      "client_terms": [
+        "login com Google",
+        "login com Microsoft",
+        "entrar com Google",
+        "SSO simples"
+      ],
+      "summary": "Permite autenticação usando provedores externos como Google ou Microsoft.",
+      "includes": [
+        "Botão de login social",
+        "Configuração OAuth",
+        "Callback de autenticação",
+        "Associação com usuário existente",
+        "Criação automática de conta",
+        "Tratamento de erros"
+      ],
+      "excludes": [
+        "SSO corporativo avançado",
+        "SAML",
+        "Provisionamento automático",
+        "MFA corporativo"
+      ],
+      "pages": [
+        "Login",
+        "Callback OAuth",
+        "Tratamento de erro"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "auth_user_signup"
+      ],
+      "commercial_questions": [
+        "Quais provedores serão usados?",
+        "O domínio do e-mail precisa ser limitado?",
+        "O login social cria conta automaticamente?"
+      ],
+      "commercial_notes": [
+        "Login social envolve configuração externa, chaves, callback e regras para conta duplicada."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    }
+  ]
+}

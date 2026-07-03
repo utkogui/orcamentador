@@ -1,0 +1,117 @@
+{
+  "category": {
+    "id": "finance_payments",
+    "name": "Financeiro e Pagamentos",
+    "description": "Blocos de gateway, PIX, cartão, faturas, cupons e checkout."
+  },
+  "blocks": [
+    {
+      "id": "payment_gateway",
+      "name": "Gateway de pagamento",
+      "client_terms": [
+        "pagamento",
+        "cartão",
+        "PIX",
+        "checkout",
+        "cobrar cliente"
+      ],
+      "summary": "Integração com gateway para processar pagamentos.",
+      "includes": [
+        "Configuração de gateway",
+        "Checkout",
+        "Pagamento cartão/PIX conforme provedor",
+        "Retorno de status",
+        "Tratamento de falha",
+        "Logs básicos"
+      ],
+      "excludes": [
+        "Split",
+        "Marketplace financeiro",
+        "Antifraude avançado",
+        "Nota fiscal"
+      ],
+      "pages": [
+        "Checkout",
+        "Pagamento aprovado",
+        "Pagamento recusado"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "transactional_email",
+        "api_webhook"
+      ],
+      "commercial_questions": [
+        "Qual gateway será usado?",
+        "Precisa PIX, cartão ou boleto?",
+        "Pagamento único ou recorrente?",
+        "Precisa emitir nota?"
+      ],
+      "commercial_notes": [
+        "Pagamento envolve regra de negócio, webhook, status, conciliação e erro."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "alta",
+      "category_id": "finance_payments",
+      "category_name": "Financeiro e Pagamentos"
+    },
+    {
+      "id": "invoice_billing",
+      "name": "Faturas / Cobranças",
+      "client_terms": [
+        "fatura",
+        "cobrança",
+        "segunda via",
+        "recibo"
+      ],
+      "summary": "Área para listar cobranças, emitir segunda via e visualizar status financeiro.",
+      "includes": [
+        "Lista de faturas",
+        "Status",
+        "Download/segunda via",
+        "Detalhe da cobrança",
+        "E-mail de cobrança opcional"
+      ],
+      "excludes": [
+        "Nota fiscal",
+        "Contabilidade",
+        "Split",
+        "ERP financeiro"
+      ],
+      "pages": [
+        "Lista de faturas",
+        "Detalhe da fatura"
+      ],
+      "dependencies": [
+        "payment_gateway"
+      ],
+      "usually_with": [
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "Fatura vem do gateway ou do sistema?",
+        "Precisa segunda via?",
+        "Precisa enviar por e-mail?"
+      ],
+      "commercial_notes": [
+        "Fatura pode ser apenas visualização ou módulo financeiro com regras próprias."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "finance_payments",
+      "category_name": "Financeiro e Pagamentos"
+    }
+  ]
+}

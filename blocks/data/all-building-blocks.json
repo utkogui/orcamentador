@@ -1,0 +1,2692 @@
+{
+  "catalog": {
+    "version": "0.1.0",
+    "name": "Matilha Building Blocks",
+    "description": "Catálogo inicial de blocos funcionais para estimativa comercial, treinamento do time e interpretação de briefings por IA.",
+    "language": "pt-BR",
+    "intended_uses": [
+      "Interpretação de briefings",
+      "Estimativa comercial",
+      "Treinamento do time comercial",
+      "Alinhamento técnico-comercial",
+      "Geração de escopo e fora de escopo"
+    ],
+    "categories": [
+      {
+        "id": "authentication",
+        "name": "Autenticação",
+        "description": "Blocos relacionados a acesso, identidade, recuperação de senha e segurança inicial.",
+        "block_count": 5
+      },
+      {
+        "id": "users_permissions",
+        "name": "Usuários e Permissões",
+        "description": "Blocos de perfis, papéis, gestão de usuários, organizações e isolamento de dados.",
+        "block_count": 5
+      },
+      {
+        "id": "dashboard_analytics",
+        "name": "Dashboards e Analytics",
+        "description": "Blocos de painéis, indicadores, gráficos, filtros, BI e visualização de dados.",
+        "block_count": 3
+      },
+      {
+        "id": "crud_forms",
+        "name": "CRUD, Cadastros e Formulários",
+        "description": "Blocos de cadastro, listagem, detalhe, edição, filtros e formulários complexos.",
+        "block_count": 3
+      },
+      {
+        "id": "files_documents",
+        "name": "Arquivos e Documentos",
+        "description": "Blocos de upload, gestão de arquivos, OCR, documentos e visualização.",
+        "block_count": 3
+      },
+      {
+        "id": "communication",
+        "name": "Comunicação",
+        "description": "Blocos de e-mail, notificações, WhatsApp, SMS e mensagens internas.",
+        "block_count": 3
+      },
+      {
+        "id": "reports_exports",
+        "name": "Relatórios e Exportações",
+        "description": "Blocos de relatórios PDF, CSV, Excel e envio agendado.",
+        "block_count": 3
+      },
+      {
+        "id": "workflow",
+        "name": "Workflow",
+        "description": "Blocos de status, aprovação, comentários, revisão e auditoria.",
+        "block_count": 4
+      },
+      {
+        "id": "integrations",
+        "name": "Integrações",
+        "description": "Blocos de APIs externas, webhooks, sincronização e troca de dados.",
+        "block_count": 3
+      },
+      {
+        "id": "ai",
+        "name": "Inteligência Artificial",
+        "description": "Blocos de IA generativa, classificação, OCR com IA, chat e geração de documentos.",
+        "block_count": 4
+      },
+      {
+        "id": "landing_institutional",
+        "name": "Landing Pages e Sites Institucionais",
+        "description": "Blocos de páginas públicas, conteúdo, SEO, formulários e CMS.",
+        "block_count": 6
+      },
+      {
+        "id": "saas_essentials",
+        "name": "SaaS Essencial",
+        "description": "Blocos comuns a produtos SaaS, como onboarding, configurações, assinatura e conta.",
+        "block_count": 4
+      },
+      {
+        "id": "finance_payments",
+        "name": "Financeiro e Pagamentos",
+        "description": "Blocos de gateway, PIX, cartão, faturas, cupons e checkout.",
+        "block_count": 2
+      }
+    ],
+    "total_blocks": 48
+  },
+  "blocks": [
+    {
+      "id": "auth_basic_login",
+      "name": "Login / Autenticação básica",
+      "client_terms": [
+        "login",
+        "entrar",
+        "área restrita",
+        "área do cliente",
+        "acesso com senha"
+      ],
+      "summary": "Fluxo responsável por permitir que um usuário acesse uma área privada usando e-mail e senha.",
+      "includes": [
+        "Tela de login",
+        "Campo de e-mail",
+        "Campo de senha",
+        "Validação de campos",
+        "Mensagens de erro",
+        "Sessão do usuário",
+        "Logout",
+        "Proteção de rotas privadas",
+        "Redirecionamento pós-login"
+      ],
+      "excludes": [
+        "Cadastro público",
+        "Recuperação de senha",
+        "Confirmação de e-mail",
+        "Login social",
+        "MFA / 2FA",
+        "Permissões avançadas"
+      ],
+      "pages": [
+        "Login"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "auth_forgot_password",
+        "user_profile",
+        "roles_permissions"
+      ],
+      "commercial_questions": [
+        "O usuário se cadastra sozinho ou é criado por um administrador?",
+        "Existem diferentes perfis de acesso?",
+        "O login será por e-mail e senha ou também Google/Microsoft?",
+        "Existe necessidade de MFA / 2FA?"
+      ],
+      "commercial_notes": [
+        "Cliente normalmente fala apenas 'login', mas pode estar imaginando cadastro, recuperação de senha e área do usuário.",
+        "Login não deve incluir automaticamente multiempresa, permissões avançadas ou login social."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "auth_forgot_password",
+      "name": "Esqueci minha senha / Recuperação de senha",
+      "client_terms": [
+        "esqueci minha senha",
+        "recuperar senha",
+        "resetar senha",
+        "nova senha"
+      ],
+      "summary": "Fluxo para permitir que um usuário redefina sua senha por e-mail.",
+      "includes": [
+        "Link 'esqueci minha senha' na tela de login",
+        "Tela para solicitar recuperação",
+        "Campo de e-mail",
+        "E-mail transacional de recuperação",
+        "Token/link seguro",
+        "Tela para criar nova senha",
+        "Validação de senha",
+        "Mensagem de sucesso",
+        "Retorno para login"
+      ],
+      "excludes": [
+        "Recuperação por SMS",
+        "Recuperação por WhatsApp",
+        "MFA",
+        "Atendimento manual de suporte"
+      ],
+      "pages": [
+        "Login",
+        "Solicitar nova senha",
+        "E-mail de recuperação",
+        "Redefinir senha",
+        "Senha alterada",
+        "Retorno ao login"
+      ],
+      "dependencies": [
+        "auth_basic_login",
+        "transactional_email"
+      ],
+      "usually_with": [
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "A recuperação será por e-mail?",
+        "Existe regra de expiração do link?",
+        "O cliente já possui provedor de e-mail transacional?"
+      ],
+      "commercial_notes": [
+        "Recuperação de senha quase sempre acompanha login, mas deve estar explícita no escopo.",
+        "Depende de envio de e-mail transacional."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "auth_user_signup",
+      "name": "Cadastro público de usuário",
+      "client_terms": [
+        "cadastro",
+        "criar conta",
+        "registro",
+        "sign up",
+        "abrir conta"
+      ],
+      "summary": "Fluxo para um novo usuário criar sua própria conta no sistema.",
+      "includes": [
+        "Tela de cadastro",
+        "Campos principais",
+        "Validação dos dados",
+        "Criação de usuário",
+        "Aceite de termos",
+        "Mensagem de sucesso",
+        "Redirecionamento pós-cadastro"
+      ],
+      "excludes": [
+        "Confirmação de e-mail",
+        "Aprovação manual",
+        "Cadastro por convite",
+        "Cadastro com CNPJ complexo",
+        "Onboarding completo"
+      ],
+      "pages": [
+        "Cadastro",
+        "Sucesso do cadastro",
+        "Login ou Dashboard"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "auth_basic_login",
+        "auth_email_confirmation",
+        "onboarding_first_access"
+      ],
+      "commercial_questions": [
+        "O usuário se cadastra sozinho?",
+        "Precisa confirmar e-mail?",
+        "O cadastro precisa de CPF, CNPJ ou validações externas?",
+        "Existe aprovação manual antes do acesso?"
+      ],
+      "commercial_notes": [
+        "Cliente costuma chamar qualquer formulário de 'cadastro'. É preciso diferenciar cadastro de conta, cadastro de entidade e CRUD administrativo."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "auth_email_confirmation",
+      "name": "Confirmação de e-mail",
+      "client_terms": [
+        "confirmar e-mail",
+        "validar e-mail",
+        "ativar conta",
+        "e-mail de confirmação"
+      ],
+      "summary": "Fluxo para validar que o usuário possui acesso ao e-mail informado.",
+      "includes": [
+        "Envio de e-mail de confirmação",
+        "Template de e-mail",
+        "Link/token de confirmação",
+        "Tela de confirmação bem-sucedida",
+        "Tela de link inválido ou expirado",
+        "Reenvio de confirmação"
+      ],
+      "excludes": [
+        "MFA",
+        "Verificação por SMS",
+        "Aprovação manual"
+      ],
+      "pages": [
+        "E-mail de confirmação",
+        "Conta confirmada",
+        "Link inválido/expirado"
+      ],
+      "dependencies": [
+        "transactional_email"
+      ],
+      "usually_with": [
+        "auth_user_signup"
+      ],
+      "commercial_questions": [
+        "O usuário poderá acessar antes de confirmar o e-mail?",
+        "O link expira em quanto tempo?",
+        "Precisa reenviar confirmação?"
+      ],
+      "commercial_notes": [
+        "Confirmação de e-mail parece detalhe, mas adiciona telas, e-mail, token e regras de acesso."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "auth_social_login",
+      "name": "Login social / OAuth",
+      "client_terms": [
+        "login com Google",
+        "login com Microsoft",
+        "entrar com Google",
+        "SSO simples"
+      ],
+      "summary": "Permite autenticação usando provedores externos como Google ou Microsoft.",
+      "includes": [
+        "Botão de login social",
+        "Configuração OAuth",
+        "Callback de autenticação",
+        "Associação com usuário existente",
+        "Criação automática de conta",
+        "Tratamento de erros"
+      ],
+      "excludes": [
+        "SSO corporativo avançado",
+        "SAML",
+        "Provisionamento automático",
+        "MFA corporativo"
+      ],
+      "pages": [
+        "Login",
+        "Callback OAuth",
+        "Tratamento de erro"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "auth_user_signup"
+      ],
+      "commercial_questions": [
+        "Quais provedores serão usados?",
+        "O domínio do e-mail precisa ser limitado?",
+        "O login social cria conta automaticamente?"
+      ],
+      "commercial_notes": [
+        "Login social envolve configuração externa, chaves, callback e regras para conta duplicada."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "authentication",
+      "category_name": "Autenticação"
+    },
+    {
+      "id": "user_profile",
+      "name": "Perfil do usuário",
+      "client_terms": [
+        "meu perfil",
+        "editar perfil",
+        "dados do usuário",
+        "minha conta"
+      ],
+      "summary": "Área onde o usuário visualiza e edita informações básicas da própria conta.",
+      "includes": [
+        "Página Meu Perfil",
+        "Editar nome",
+        "Editar telefone",
+        "Editar avatar",
+        "Alterar senha",
+        "Mensagens de sucesso/erro"
+      ],
+      "excludes": [
+        "Gestão de usuários",
+        "Permissões",
+        "Preferências avançadas",
+        "Billing"
+      ],
+      "pages": [
+        "Meu Perfil",
+        "Alterar senha"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "auth_basic_login"
+      ],
+      "commercial_questions": [
+        "Quais dados do usuário serão editáveis?",
+        "Precisa de foto/avatar?",
+        "O usuário pode alterar e-mail?"
+      ],
+      "commercial_notes": [
+        "Perfil do usuário é comum em sistemas logados e costuma ser esquecido no briefing."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "user_management",
+      "name": "Gestão de usuários",
+      "client_terms": [
+        "admin cadastra usuários",
+        "gerenciar usuários",
+        "lista de usuários",
+        "usuários do sistema"
+      ],
+      "summary": "Painel administrativo para criar, editar, ativar, desativar e pesquisar usuários.",
+      "includes": [
+        "Listagem de usuários",
+        "Criar usuário",
+        "Editar usuário",
+        "Ativar/desativar",
+        "Excluir ou arquivar",
+        "Busca",
+        "Filtros",
+        "Definir perfil"
+      ],
+      "excludes": [
+        "Permissões granulares",
+        "Multiempresa",
+        "Convite por e-mail",
+        "SSO"
+      ],
+      "pages": [
+        "Lista de usuários",
+        "Novo usuário",
+        "Editar usuário",
+        "Detalhe do usuário"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "roles_permissions",
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "Quem pode criar usuários?",
+        "Usuário recebe e-mail de convite?",
+        "Existem perfis diferentes?"
+      ],
+      "commercial_notes": [
+        "Gestão de usuários pode parecer apenas uma tabela, mas afeta segurança, permissões e operações administrativas."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "roles_permissions",
+      "name": "Perfis e permissões",
+      "client_terms": [
+        "admin e usuário comum",
+        "níveis de acesso",
+        "permissões",
+        "perfil de acesso"
+      ],
+      "summary": "Controle do que cada tipo de usuário pode ver e fazer dentro do sistema.",
+      "includes": [
+        "Papéis de acesso",
+        "Bloqueio de telas",
+        "Bloqueio de ações",
+        "Regras no backend",
+        "Permissões por área"
+      ],
+      "excludes": [
+        "Permissões customizadas por usuário",
+        "Multiempresa",
+        "RBAC avançado",
+        "ABAC"
+      ],
+      "pages": [
+        "Configuração de perfis",
+        "Atribuição de perfil"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "user_management"
+      ],
+      "commercial_questions": [
+        "Quais perfis existem?",
+        "Cada perfil pode ver quais áreas?",
+        "As permissões são fixas ou configuráveis?"
+      ],
+      "commercial_notes": [
+        "Mesmo 'só dois perfis' já muda o desenho do sistema inteiro."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "multi_organization",
+      "name": "Multiempresa / Organizações",
+      "client_terms": [
+        "cada cliente vê seus dados",
+        "multiempresa",
+        "tenant",
+        "organização",
+        "empresa"
+      ],
+      "summary": "Estrutura para separar dados e usuários por empresa/organização dentro do mesmo sistema.",
+      "includes": [
+        "Cadastro de organização",
+        "Usuários vinculados",
+        "Isolamento de dados",
+        "Admin por empresa",
+        "Regras por organização",
+        "Troca de organização"
+      ],
+      "excludes": [
+        "Cobrança por organização",
+        "White label",
+        "Infraestrutura dedicada por cliente"
+      ],
+      "pages": [
+        "Lista de organizações",
+        "Detalhe da organização",
+        "Usuários da organização",
+        "Configurações da organização"
+      ],
+      "dependencies": [
+        "auth_basic_login",
+        "roles_permissions"
+      ],
+      "usually_with": [
+        "user_management",
+        "member_invite"
+      ],
+      "commercial_questions": [
+        "Cada empresa tem seus próprios usuários?",
+        "Um usuário pode pertencer a mais de uma empresa?",
+        "Existe admin por empresa?"
+      ],
+      "commercial_notes": [
+        "Multiempresa é um dos maiores multiplicadores de complexidade em SaaS."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "alta",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "member_invite",
+      "name": "Convite de membros",
+      "client_terms": [
+        "convidar usuário",
+        "convite por e-mail",
+        "adicionar membro",
+        "enviar convite"
+      ],
+      "summary": "Fluxo para convidar pessoas por e-mail para entrar em uma conta, time ou organização.",
+      "includes": [
+        "Enviar convite",
+        "E-mail de convite",
+        "Aceitar convite",
+        "Definir perfil",
+        "Expiração de convite",
+        "Reenviar convite"
+      ],
+      "excludes": [
+        "SSO",
+        "Provisionamento automático",
+        "Importação em massa"
+      ],
+      "pages": [
+        "Convidar membro",
+        "E-mail de convite",
+        "Aceitar convite",
+        "Convite expirado"
+      ],
+      "dependencies": [
+        "auth_basic_login",
+        "transactional_email"
+      ],
+      "usually_with": [
+        "multi_organization",
+        "roles_permissions"
+      ],
+      "commercial_questions": [
+        "Quem pode convidar?",
+        "O convite define perfil?",
+        "Convite expira?",
+        "Pode reenviar convite?"
+      ],
+      "commercial_notes": [
+        "Convite de membros combina autenticação, e-mail transacional e permissões."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "dashboard_simple",
+      "name": "Dashboard simples",
+      "client_terms": [
+        "dashboard",
+        "painel",
+        "home logada",
+        "visão geral"
+      ],
+      "summary": "Página inicial logada com indicadores simples, atalhos e últimos registros.",
+      "includes": [
+        "Cards de indicadores",
+        "Atalhos principais",
+        "Últimos registros",
+        "Estado vazio",
+        "Loading",
+        "Erro"
+      ],
+      "excludes": [
+        "Gráficos complexos",
+        "BI",
+        "Tempo real",
+        "Exportação",
+        "Drill-down"
+      ],
+      "pages": [
+        "Dashboard"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "crud_simple",
+        "report_basic_export"
+      ],
+      "commercial_questions": [
+        "Quais indicadores aparecem?",
+        "Os dados já existem?",
+        "Precisa filtrar por período?"
+      ],
+      "commercial_notes": [
+        "Cliente costuma chamar tudo de dashboard. Separar painel simples, gráficos e BI."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "dashboard_analytics",
+      "category_name": "Dashboards e Analytics"
+    },
+    {
+      "id": "dashboard_charts",
+      "name": "Dashboard com gráficos",
+      "client_terms": [
+        "gráficos",
+        "dashboard com gráficos",
+        "indicadores visuais",
+        "KPI"
+      ],
+      "summary": "Dashboard com visualização gráfica de dados e filtros básicos.",
+      "includes": [
+        "Gráfico de linha",
+        "Gráfico de barra",
+        "Gráfico de pizza/donut",
+        "Filtros por período",
+        "Cards de KPI",
+        "Dados agregados"
+      ],
+      "excludes": [
+        "BI avançado",
+        "Drill-down",
+        "Exportação complexa",
+        "Tempo real"
+      ],
+      "pages": [
+        "Dashboard com gráficos"
+      ],
+      "dependencies": [
+        "dashboard_simple"
+      ],
+      "usually_with": [
+        "table_advanced_filters",
+        "report_basic_export"
+      ],
+      "commercial_questions": [
+        "Quais métricas serão calculadas?",
+        "Qual fonte dos dados?",
+        "Precisa comparar períodos?"
+      ],
+      "commercial_notes": [
+        "Gráfico não é só visual: precisa dado confiável, regra de cálculo e consulta."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "dashboard_analytics",
+      "category_name": "Dashboards e Analytics"
+    },
+    {
+      "id": "dashboard_bi",
+      "name": "Dashboard executivo / BI",
+      "client_terms": [
+        "BI",
+        "dashboard executivo",
+        "painel gerencial",
+        "relatórios gerenciais"
+      ],
+      "summary": "Painel avançado com filtros, segmentações, comparativos e exploração de dados.",
+      "includes": [
+        "Múltiplos filtros",
+        "Comparativos",
+        "Períodos",
+        "Segmentações",
+        "Exportação",
+        "Drill-down",
+        "Permissões por visão"
+      ],
+      "excludes": [
+        "Data warehouse",
+        "ETL complexo",
+        "Modelagem BI corporativa",
+        "Power BI externo"
+      ],
+      "pages": [
+        "Painel BI",
+        "Visões filtradas",
+        "Detalhamento de indicador"
+      ],
+      "dependencies": [
+        "dashboard_charts"
+      ],
+      "usually_with": [
+        "report_pdf",
+        "report_excel_csv",
+        "audit_log"
+      ],
+      "commercial_questions": [
+        "Quais decisões o painel precisa apoiar?",
+        "Dados vêm de quais sistemas?",
+        "Quem pode ver quais indicadores?"
+      ],
+      "commercial_notes": [
+        "Dashboard executivo deve ter peso alto. Normalmente exige descoberta, modelagem e validação de regra de negócio."
+      ],
+      "disciplines": [
+        "Estratégia",
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "dashboard_analytics",
+      "category_name": "Dashboards e Analytics"
+    },
+    {
+      "id": "crud_simple",
+      "name": "CRUD simples",
+      "client_terms": [
+        "cadastro",
+        "cadastrar",
+        "gerenciar itens",
+        "lista e edição"
+      ],
+      "summary": "Conjunto básico para criar, listar, editar, visualizar e excluir um tipo de registro.",
+      "includes": [
+        "Listagem",
+        "Criar",
+        "Editar",
+        "Excluir",
+        "Visualizar detalhe",
+        "Validação",
+        "Mensagens de erro",
+        "Estado vazio"
+      ],
+      "excludes": [
+        "Filtros avançados",
+        "Ações em massa",
+        "Workflow",
+        "Importação",
+        "Exportação"
+      ],
+      "pages": [
+        "Lista",
+        "Novo",
+        "Editar",
+        "Detalhe"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "table_basic",
+        "form_basic"
+      ],
+      "commercial_questions": [
+        "Que entidade será cadastrada?",
+        "Quais campos existem?",
+        "Quem pode criar, editar ou excluir?"
+      ],
+      "commercial_notes": [
+        "'Cadastro' pode significar CRUD simples, formulário complexo ou fluxo de inscrição. Sempre confirmar."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "crud_forms",
+      "category_name": "CRUD, Cadastros e Formulários"
+    },
+    {
+      "id": "table_advanced_filters",
+      "name": "Tabela avançada com filtros",
+      "client_terms": [
+        "tabela",
+        "filtros",
+        "busca avançada",
+        "ordenar",
+        "paginação"
+      ],
+      "summary": "Tabela robusta para listar dados com busca, filtros, ordenação, paginação e ações.",
+      "includes": [
+        "Busca",
+        "Filtros",
+        "Ordenação",
+        "Paginação",
+        "Seleção múltipla",
+        "Ações em massa",
+        "Colunas configuráveis"
+      ],
+      "excludes": [
+        "BI",
+        "Exportação complexa",
+        "Edição inline avançada"
+      ],
+      "pages": [
+        "Listagem avançada"
+      ],
+      "dependencies": [
+        "crud_simple"
+      ],
+      "usually_with": [
+        "report_excel_csv"
+      ],
+      "commercial_questions": [
+        "Quais filtros são necessários?",
+        "A tabela precisa exportar?",
+        "Terá ações em massa?"
+      ],
+      "commercial_notes": [
+        "Tabela avançada pode consumir mais esforço que o cadastro em si."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "crud_forms",
+      "category_name": "CRUD, Cadastros e Formulários"
+    },
+    {
+      "id": "form_complex",
+      "name": "Formulário complexo",
+      "client_terms": [
+        "formulário grande",
+        "várias etapas",
+        "muitos campos",
+        "questionário"
+      ],
+      "summary": "Formulário com muitos campos, regras condicionais, validações, etapas ou rascunho.",
+      "includes": [
+        "Muitos campos",
+        "Campos condicionais",
+        "Máscaras",
+        "Validações",
+        "Etapas",
+        "Salvar rascunho",
+        "Revisão antes de enviar"
+      ],
+      "excludes": [
+        "Workflow de aprovação",
+        "Assinatura digital",
+        "OCR",
+        "Pagamento"
+      ],
+      "pages": [
+        "Formulário etapa 1",
+        "Formulário etapa 2",
+        "Revisão",
+        "Confirmação"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "file_upload_simple",
+        "workflow_status_simple"
+      ],
+      "commercial_questions": [
+        "Quantos campos existem?",
+        "Existem regras condicionais?",
+        "Precisa salvar rascunho?",
+        "Há validação externa?"
+      ],
+      "commercial_notes": [
+        "Formulário complexo deve ser tratado como bloco próprio, não como 'uma tela'."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "crud_forms",
+      "category_name": "CRUD, Cadastros e Formulários"
+    },
+    {
+      "id": "file_upload_simple",
+      "name": "Upload simples de arquivo",
+      "client_terms": [
+        "upload",
+        "anexar arquivo",
+        "enviar documento",
+        "mandar imagem"
+      ],
+      "summary": "Permite selecionar, validar, enviar e baixar arquivos.",
+      "includes": [
+        "Selecionar arquivo",
+        "Validar tipo",
+        "Validar tamanho",
+        "Enviar arquivo",
+        "Mostrar progresso",
+        "Salvar referência",
+        "Download"
+      ],
+      "excludes": [
+        "OCR",
+        "Preview avançado",
+        "Versionamento",
+        "Assinatura digital"
+      ],
+      "pages": [
+        "Componente de upload",
+        "Lista ou detalhe com arquivo"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "document_management"
+      ],
+      "commercial_questions": [
+        "Quais tipos de arquivo?",
+        "Qual tamanho máximo?",
+        "Arquivos precisam ser privados?",
+        "Precisa visualizar no navegador?"
+      ],
+      "commercial_notes": [
+        "Upload simples ainda exige storage, validação, segurança e regras de acesso."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "files_documents",
+      "category_name": "Arquivos e Documentos"
+    },
+    {
+      "id": "document_management",
+      "name": "Gestão de documentos",
+      "client_terms": [
+        "documentos",
+        "arquivos",
+        "biblioteca de documentos",
+        "gestão documental"
+      ],
+      "summary": "Área para listar, categorizar, visualizar, baixar e administrar documentos.",
+      "includes": [
+        "Lista de documentos",
+        "Upload",
+        "Download",
+        "Preview",
+        "Excluir",
+        "Categorizar",
+        "Histórico",
+        "Permissões"
+      ],
+      "excludes": [
+        "OCR",
+        "Versionamento avançado",
+        "Assinatura digital",
+        "GED corporativo"
+      ],
+      "pages": [
+        "Lista de documentos",
+        "Detalhe do documento",
+        "Upload de documento"
+      ],
+      "dependencies": [
+        "file_upload_simple"
+      ],
+      "usually_with": [
+        "roles_permissions",
+        "audit_log"
+      ],
+      "commercial_questions": [
+        "Documentos são públicos ou privados?",
+        "Precisa categorizar?",
+        "Precisa histórico?",
+        "Quem pode excluir?"
+      ],
+      "commercial_notes": [
+        "Gestão de documentos é maior que upload: inclui organização, acesso e ciclo de vida do arquivo."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "files_documents",
+      "category_name": "Arquivos e Documentos"
+    },
+    {
+      "id": "ocr_document",
+      "name": "OCR de documentos",
+      "client_terms": [
+        "OCR",
+        "ler documento",
+        "extrair texto",
+        "ler receita",
+        "ler PDF"
+      ],
+      "summary": "Extração automática de texto ou dados a partir de imagem/PDF usando serviço de OCR.",
+      "includes": [
+        "Upload de documento",
+        "Envio para OCR",
+        "Extração de texto",
+        "Tratamento de erro",
+        "Revisão manual",
+        "Armazenamento do resultado"
+      ],
+      "excludes": [
+        "IA de interpretação avançada",
+        "Validação humana completa",
+        "Treinamento de modelo próprio"
+      ],
+      "pages": [
+        "Upload",
+        "Processando",
+        "Resultado extraído",
+        "Revisão manual"
+      ],
+      "dependencies": [
+        "file_upload_simple"
+      ],
+      "usually_with": [
+        "ai_text_analysis",
+        "form_complex"
+      ],
+      "commercial_questions": [
+        "Que tipo de documento será lido?",
+        "O OCR precisa extrair texto livre ou campos específicos?",
+        "Qual precisão esperada?",
+        "Haverá revisão manual?"
+      ],
+      "commercial_notes": [
+        "OCR nunca deve ser tratado como 'só upload'. Tem incerteza, custo de API e tratamento de erro."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "files_documents",
+      "category_name": "Arquivos e Documentos"
+    },
+    {
+      "id": "transactional_email",
+      "name": "E-mail transacional",
+      "client_terms": [
+        "enviar e-mail",
+        "e-mail automático",
+        "notificação por e-mail",
+        "template de e-mail"
+      ],
+      "summary": "Envio automático de e-mails disparados por ações do sistema.",
+      "includes": [
+        "Configuração de provedor",
+        "Template de e-mail",
+        "Variáveis dinâmicas",
+        "Envio",
+        "Tratamento de erro",
+        "Logs básicos"
+      ],
+      "excludes": [
+        "Campanhas de marketing",
+        "Newsletter",
+        "Automação CRM avançada"
+      ],
+      "pages": [
+        "Template de e-mail",
+        "Logs básicos opcional"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "auth_forgot_password",
+        "auth_email_confirmation",
+        "member_invite"
+      ],
+      "commercial_questions": [
+        "Qual provedor será usado?",
+        "Quais eventos enviam e-mail?",
+        "O cliente já tem domínio configurado?"
+      ],
+      "commercial_notes": [
+        "Muitos fluxos dependem deste bloco: recuperação de senha, convite, confirmação e comprovantes."
+      ],
+      "disciplines": [
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "communication",
+      "category_name": "Comunicação"
+    },
+    {
+      "id": "internal_notifications",
+      "name": "Notificações internas",
+      "client_terms": [
+        "notificações",
+        "sininho",
+        "alertas internos",
+        "avisos no sistema"
+      ],
+      "summary": "Central interna para exibir notificações dentro do sistema.",
+      "includes": [
+        "Ícone de notificações",
+        "Lista de notificações",
+        "Contador",
+        "Marcar como lida",
+        "Link para item relacionado"
+      ],
+      "excludes": [
+        "Push mobile",
+        "Tempo real com websocket",
+        "E-mail/SMS"
+      ],
+      "pages": [
+        "Central de notificações",
+        "Dropdown de notificações"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "workflow_approval",
+        "comments"
+      ],
+      "commercial_questions": [
+        "Notificações precisam ser em tempo real?",
+        "Quais eventos geram notificação?",
+        "Precisa enviar e-mail junto?"
+      ],
+      "commercial_notes": [
+        "Notificação interna pode ser simples ou virar sistema de comunicação complexo."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "communication",
+      "category_name": "Comunicação"
+    },
+    {
+      "id": "whatsapp_sms",
+      "name": "WhatsApp / SMS",
+      "client_terms": [
+        "WhatsApp",
+        "SMS",
+        "mandar mensagem",
+        "notificar no celular"
+      ],
+      "summary": "Envio de mensagens via WhatsApp ou SMS usando provedor externo.",
+      "includes": [
+        "Integração com provedor",
+        "Templates",
+        "Envio",
+        "Logs",
+        "Tratamento de falha"
+      ],
+      "excludes": [
+        "Chat bidirecional completo",
+        "Atendimento humano",
+        "CRM WhatsApp"
+      ],
+      "pages": [
+        "Configuração de templates",
+        "Logs de envio opcional"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "workflow_approval",
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "Será WhatsApp, SMS ou ambos?",
+        "Já existe provedor?",
+        "Precisa aprovar template?",
+        "É envio único ou conversa?"
+      ],
+      "commercial_notes": [
+        "Depende de provedor, aprovação de template e regras externas."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "communication",
+      "category_name": "Comunicação"
+    },
+    {
+      "id": "report_excel_csv",
+      "name": "Exportação CSV / Excel",
+      "client_terms": [
+        "exportar Excel",
+        "baixar CSV",
+        "planilha",
+        "relatório em Excel"
+      ],
+      "summary": "Geração de arquivo tabular com dados do sistema, respeitando filtros e permissões.",
+      "includes": [
+        "Selecionar dados",
+        "Gerar arquivo",
+        "Download",
+        "Respeitar filtros",
+        "Tratar volume de dados"
+      ],
+      "excludes": [
+        "Template visual avançado",
+        "Relatório PDF",
+        "Envio agendado"
+      ],
+      "pages": [
+        "Botão exportar",
+        "Download"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "table_advanced_filters"
+      ],
+      "commercial_questions": [
+        "Quais dados entram?",
+        "Respeita filtros da tela?",
+        "Qual volume esperado?",
+        "Precisa de layout específico?"
+      ],
+      "commercial_notes": [
+        "Exportar dados filtrados é diferente de exportar toda a base."
+      ],
+      "disciplines": [
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "reports_exports",
+      "category_name": "Relatórios e Exportações"
+    },
+    {
+      "id": "report_pdf",
+      "name": "Relatório PDF",
+      "client_terms": [
+        "gerar PDF",
+        "baixar PDF",
+        "relatório em PDF",
+        "comprovante"
+      ],
+      "summary": "Geração de PDF com layout, dados dinâmicos e estrutura visual.",
+      "includes": [
+        "Template visual",
+        "Dados dinâmicos",
+        "Geração PDF",
+        "Download",
+        "Cabeçalho/rodapé",
+        "Tratamento de quebra de página"
+      ],
+      "excludes": [
+        "Assinatura digital",
+        "Envio automático",
+        "Relatório agendado"
+      ],
+      "pages": [
+        "Preview opcional",
+        "Download PDF"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "PDF precisa seguir identidade visual?",
+        "É relatório, comprovante ou contrato?",
+        "Precisa ser enviado por e-mail?"
+      ],
+      "commercial_notes": [
+        "PDF pode variar de simples comprovante a documento complexo com múltiplas páginas e regras de layout."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "reports_exports",
+      "category_name": "Relatórios e Exportações"
+    },
+    {
+      "id": "scheduled_reports",
+      "name": "Relatórios agendados",
+      "client_terms": [
+        "relatório automático",
+        "enviar todo mês",
+        "agendar envio",
+        "relatório recorrente"
+      ],
+      "summary": "Geração e envio automático de relatórios em uma frequência definida.",
+      "includes": [
+        "Escolher frequência",
+        "Destinatários",
+        "Geração automática",
+        "Envio por e-mail",
+        "Histórico de envios"
+      ],
+      "excludes": [
+        "BI avançado",
+        "Data warehouse",
+        "Aprovação de relatório"
+      ],
+      "pages": [
+        "Configuração de agendamento",
+        "Histórico de envios"
+      ],
+      "dependencies": [
+        "transactional_email",
+        "report_pdf"
+      ],
+      "usually_with": [
+        "report_excel_csv"
+      ],
+      "commercial_questions": [
+        "Qual frequência?",
+        "Quem recebe?",
+        "Qual formato?",
+        "Precisa log de envio?"
+      ],
+      "commercial_notes": [
+        "Agendamento adiciona rotina de backend, filas ou cron, logs e tratamento de falhas."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "reports_exports",
+      "category_name": "Relatórios e Exportações"
+    },
+    {
+      "id": "workflow_status_simple",
+      "name": "Status simples",
+      "client_terms": [
+        "status",
+        "etapas",
+        "andamento",
+        "situação"
+      ],
+      "summary": "Controle simples de status de um registro, como rascunho, enviado, aprovado ou reprovado.",
+      "includes": [
+        "Status do registro",
+        "Alterar status",
+        "Histórico básico",
+        "Filtro por status"
+      ],
+      "excludes": [
+        "Aprovação com permissões",
+        "Notificação",
+        "Workflow configurável"
+      ],
+      "pages": [
+        "Detalhe com status",
+        "Filtro por status"
+      ],
+      "dependencies": [
+        "crud_simple"
+      ],
+      "usually_with": [
+        "workflow_approval"
+      ],
+      "commercial_questions": [
+        "Quais são os status?",
+        "Quem pode mudar cada status?",
+        "Precisa histórico?"
+      ],
+      "commercial_notes": [
+        "Status simples pode virar workflow completo se houver regras por etapa."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "workflow",
+      "category_name": "Workflow"
+    },
+    {
+      "id": "workflow_approval",
+      "name": "Aprovação / Revisão",
+      "client_terms": [
+        "aprovar",
+        "reprovar",
+        "fluxo de aprovação",
+        "revisão"
+      ],
+      "summary": "Fluxo para enviar um item para aprovação, aprovar, reprovar e registrar justificativa.",
+      "includes": [
+        "Enviar para aprovação",
+        "Aprovar",
+        "Reprovar",
+        "Justificativa",
+        "Histórico",
+        "Notificação",
+        "Permissões por etapa"
+      ],
+      "excludes": [
+        "Workflow configurável pelo usuário",
+        "Assinatura digital",
+        "SLA avançado"
+      ],
+      "pages": [
+        "Detalhe em revisão",
+        "Modal de aprovação",
+        "Histórico de aprovação"
+      ],
+      "dependencies": [
+        "workflow_status_simple",
+        "roles_permissions"
+      ],
+      "usually_with": [
+        "internal_notifications",
+        "comments",
+        "audit_log"
+      ],
+      "commercial_questions": [
+        "Quem aprova?",
+        "Existe mais de uma etapa?",
+        "Reprovação exige justificativa?",
+        "Precisa notificar alguém?"
+      ],
+      "commercial_notes": [
+        "Aprovação simples pode crescer muito quando há múltiplos perfis e etapas."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "workflow",
+      "category_name": "Workflow"
+    },
+    {
+      "id": "comments",
+      "name": "Comentários",
+      "client_terms": [
+        "comentários",
+        "observações",
+        "conversa no item",
+        "anotações"
+      ],
+      "summary": "Permite registrar comentários associados a um item ou processo.",
+      "includes": [
+        "Comentar",
+        "Listar comentários",
+        "Autor",
+        "Data/hora",
+        "Excluir comentário",
+        "Notificação opcional"
+      ],
+      "excludes": [
+        "Chat em tempo real",
+        "Menções",
+        "Anexos em comentário"
+      ],
+      "pages": [
+        "Área de comentários"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "workflow_approval",
+        "internal_notifications"
+      ],
+      "commercial_questions": [
+        "Comentário é interno ou visível ao cliente?",
+        "Pode excluir?",
+        "Precisa notificar?",
+        "Precisa anexar arquivo?"
+      ],
+      "commercial_notes": [
+        "Comentário simples é diferente de chat, menções ou colaboração em tempo real."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "workflow",
+      "category_name": "Workflow"
+    },
+    {
+      "id": "audit_log",
+      "name": "Histórico / Auditoria",
+      "client_terms": [
+        "histórico",
+        "log",
+        "auditoria",
+        "quem alterou"
+      ],
+      "summary": "Registro de eventos importantes do sistema, indicando ação, usuário e data/hora.",
+      "includes": [
+        "Registro de alterações",
+        "Quem alterou",
+        "Quando alterou",
+        "Evento",
+        "Filtro por evento"
+      ],
+      "excludes": [
+        "Auditoria compliance avançada",
+        "Antes/depois completo",
+        "Retenção legal"
+      ],
+      "pages": [
+        "Histórico do item",
+        "Lista de logs opcional"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "roles_permissions",
+        "workflow_approval"
+      ],
+      "commercial_questions": [
+        "Quais eventos precisam ser auditados?",
+        "Precisa ver antes/depois?",
+        "Por quanto tempo os logs ficam salvos?"
+      ],
+      "commercial_notes": [
+        "Auditoria pode ser básica ou requisito crítico de segurança/compliance."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "workflow",
+      "category_name": "Workflow"
+    },
+    {
+      "id": "api_integration_simple",
+      "name": "Integração com API externa simples",
+      "client_terms": [
+        "integrar API",
+        "conectar com sistema",
+        "buscar dados externos",
+        "enviar dados"
+      ],
+      "summary": "Integração pontual com API externa para enviar ou receber dados em fluxo simples.",
+      "includes": [
+        "Configurar credenciais",
+        "Enviar dados",
+        "Receber resposta",
+        "Tratar erro",
+        "Log básico"
+      ],
+      "excludes": [
+        "Webhooks",
+        "Sincronização recorrente",
+        "Retentativas avançadas",
+        "Mapeamento complexo"
+      ],
+      "pages": [
+        "Configuração opcional",
+        "Resultado da integração"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "api_webhook"
+      ],
+      "commercial_questions": [
+        "Existe documentação da API?",
+        "A API já está disponível?",
+        "É envio, consulta ou ambos?",
+        "Quem fornece credenciais?"
+      ],
+      "commercial_notes": [
+        "Integração simples depende muito da qualidade da API externa."
+      ],
+      "disciplines": [
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "integrations",
+      "category_name": "Integrações"
+    },
+    {
+      "id": "api_integration_complex",
+      "name": "Integração com API externa complexa",
+      "client_terms": [
+        "sincronizar sistemas",
+        "integrar ERP",
+        "integração complexa",
+        "conectar legado"
+      ],
+      "summary": "Integração robusta com autenticação, webhooks, sincronização, mapeamento e tratamento de inconsistências.",
+      "includes": [
+        "Autenticação",
+        "Webhooks",
+        "Sincronização",
+        "Retentativas",
+        "Logs",
+        "Mapeamento de dados",
+        "Tratamento de inconsistência"
+      ],
+      "excludes": [
+        "Construção da API do terceiro",
+        "Correção de sistema legado",
+        "ETL corporativo completo"
+      ],
+      "pages": [
+        "Configuração",
+        "Logs de integração",
+        "Status de sincronização"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "api_webhook",
+        "audit_log"
+      ],
+      "commercial_questions": [
+        "Qual sistema será integrado?",
+        "Existe ambiente sandbox?",
+        "Existe documentação?",
+        "A integração é em tempo real ou lote?"
+      ],
+      "commercial_notes": [
+        "Integração complexa é uma das maiores fontes de risco e deve ter margem/contingência."
+      ],
+      "disciplines": [
+        "Backend",
+        "QA",
+        "DevOps",
+        "PM"
+      ],
+      "complexity": "alta",
+      "category_id": "integrations",
+      "category_name": "Integrações"
+    },
+    {
+      "id": "api_webhook",
+      "name": "Webhook",
+      "client_terms": [
+        "webhook",
+        "receber evento",
+        "notificação de API",
+        "callback"
+      ],
+      "summary": "Endpoint para receber eventos externos de outro sistema.",
+      "includes": [
+        "Criar endpoint",
+        "Validar origem",
+        "Receber evento",
+        "Processar evento",
+        "Registrar log",
+        "Retornar status"
+      ],
+      "excludes": [
+        "Fila avançada",
+        "Retentativas externas",
+        "Painel completo de integração"
+      ],
+      "pages": [
+        "Logs de webhook opcional"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "api_integration_complex"
+      ],
+      "commercial_questions": [
+        "Quais eventos serão recebidos?",
+        "A origem assina os eventos?",
+        "Precisa retry?",
+        "Precisa log visível?"
+      ],
+      "commercial_notes": [
+        "Webhook exige cuidado com segurança, idempotência e falhas."
+      ],
+      "disciplines": [
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "integrations",
+      "category_name": "Integrações"
+    },
+    {
+      "id": "ai_text_analysis",
+      "name": "IA: análise de texto",
+      "client_terms": [
+        "analisar texto",
+        "IA analisa",
+        "parecer automático",
+        "interpretação por IA"
+      ],
+      "summary": "Envia texto para modelo de IA e retorna análise estruturada ou explicação.",
+      "includes": [
+        "Campo de entrada",
+        "Envio para API",
+        "Prompt estruturado",
+        "Resposta formatada",
+        "Tratamento de erro",
+        "Logs básicos"
+      ],
+      "excludes": [
+        "Treinamento de modelo próprio",
+        "RAG",
+        "Chat completo",
+        "Classificação em lote"
+      ],
+      "pages": [
+        "Entrada de dados",
+        "Resultado da análise"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "ocr_document",
+        "ai_document_generation"
+      ],
+      "commercial_questions": [
+        "Qual texto será analisado?",
+        "Qual formato de saída?",
+        "A resposta precisa ser revisada por humano?",
+        "Há dados sensíveis?"
+      ],
+      "commercial_notes": [
+        "IA exige definição clara de entrada, saída, limite de erro e responsabilidade."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "ai",
+      "category_name": "Inteligência Artificial"
+    },
+    {
+      "id": "ai_classification",
+      "name": "IA: classificação automática",
+      "client_terms": [
+        "classificar automaticamente",
+        "categorizar com IA",
+        "triagem automática"
+      ],
+      "summary": "Classifica entradas em categorias predefinidas usando IA.",
+      "includes": [
+        "Entrada de dados",
+        "Prompt de classificação",
+        "Categorias",
+        "Confiança",
+        "Revisão manual",
+        "Ajuste de resultado"
+      ],
+      "excludes": [
+        "Treinamento supervisionado próprio",
+        "Modelo customizado",
+        "MLOps"
+      ],
+      "pages": [
+        "Resultado da classificação",
+        "Revisão manual"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "ai_text_analysis",
+        "workflow_approval"
+      ],
+      "commercial_questions": [
+        "Quais categorias existem?",
+        "Qual taxa de erro aceitável?",
+        "Haverá revisão humana?",
+        "A classificação altera algum processo crítico?"
+      ],
+      "commercial_notes": [
+        "Classificação automática precisa de exemplos, fallback e revisão quando o risco for alto."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "ai",
+      "category_name": "Inteligência Artificial"
+    },
+    {
+      "id": "ai_document_generation",
+      "name": "IA: geração de documento",
+      "client_terms": [
+        "gerar documento",
+        "gerar proposta",
+        "gerar relatório com IA",
+        "texto automático"
+      ],
+      "summary": "Gera textos ou documentos estruturados a partir de dados informados.",
+      "includes": [
+        "Coleta de dados",
+        "Prompt estruturado",
+        "Geração de texto",
+        "Revisão",
+        "Exportação",
+        "Versionamento opcional"
+      ],
+      "excludes": [
+        "Assinatura digital",
+        "Workflow jurídico",
+        "Editor colaborativo avançado"
+      ],
+      "pages": [
+        "Formulário de entrada",
+        "Documento gerado",
+        "Revisão/edição"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "report_pdf",
+        "ai_text_analysis"
+      ],
+      "commercial_questions": [
+        "Qual documento será gerado?",
+        "Existe modelo/base?",
+        "Precisa edição manual?",
+        "Precisa exportar em PDF/DOCX?"
+      ],
+      "commercial_notes": [
+        "Geração de documento deve diferenciar rascunho assistido e documento final aprovado."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "ai",
+      "category_name": "Inteligência Artificial"
+    },
+    {
+      "id": "ai_chat",
+      "name": "Chat com IA",
+      "client_terms": [
+        "chatbot",
+        "chat com IA",
+        "assistente",
+        "perguntar para IA"
+      ],
+      "summary": "Interface conversacional para interação com modelo de IA.",
+      "includes": [
+        "Interface de chat",
+        "Histórico",
+        "Envio de mensagens",
+        "Resposta simples ou streaming",
+        "Contexto",
+        "Limite de uso",
+        "Tratamento de erro"
+      ],
+      "excludes": [
+        "RAG com base documental",
+        "Agentes autônomos",
+        "Atendimento humano integrado"
+      ],
+      "pages": [
+        "Chat",
+        "Histórico de conversa"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "ai_text_analysis"
+      ],
+      "commercial_questions": [
+        "O chat usa quais dados?",
+        "Precisa histórico?",
+        "Precisa limitar uso?",
+        "Responde com base em documentos?"
+      ],
+      "commercial_notes": [
+        "Chat simples é diferente de chatbot treinado com base de conhecimento ou agente com ações."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "IA",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "ai",
+      "category_name": "Inteligência Artificial"
+    },
+    {
+      "id": "lp_hero",
+      "name": "Hero / Chamada principal",
+      "client_terms": [
+        "hero",
+        "primeira dobra",
+        "chamada principal",
+        "banner principal"
+      ],
+      "summary": "Primeira seção da página com promessa, apoio visual e CTA.",
+      "includes": [
+        "Título principal",
+        "Subtítulo",
+        "Imagem ou vídeo",
+        "CTA",
+        "Responsividade"
+      ],
+      "excludes": [
+        "Animação complexa",
+        "Vídeo produzido",
+        "Teste A/B"
+      ],
+      "pages": [
+        "Landing Page ou Home"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "lp_benefits",
+        "lp_lead_form"
+      ],
+      "commercial_questions": [
+        "Existe copy pronta?",
+        "Existe imagem/vídeo?",
+        "Qual CTA principal?"
+      ],
+      "commercial_notes": [
+        "Hero parece simples, mas define narrativa, direção visual e conversão."
+      ],
+      "disciplines": [
+        "Estratégia",
+        "UX",
+        "UI",
+        "Frontend",
+        "Conteúdo",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "lp_benefits",
+      "name": "Seção de benefícios",
+      "client_terms": [
+        "benefícios",
+        "diferenciais",
+        "vantagens",
+        "por que escolher"
+      ],
+      "summary": "Seção com cards explicando benefícios ou diferenciais da oferta.",
+      "includes": [
+        "Cards",
+        "Ícones",
+        "Títulos",
+        "Textos curtos"
+      ],
+      "excludes": [
+        "Ilustrações customizadas",
+        "Animação avançada",
+        "Pesquisa de posicionamento"
+      ],
+      "pages": [
+        "Landing Page ou Home"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "lp_hero",
+        "lp_faq"
+      ],
+      "commercial_questions": [
+        "Os benefícios já estão definidos?",
+        "Precisa de ícones ou ilustrações?",
+        "Quantos cards?"
+      ],
+      "commercial_notes": [
+        "Depende mais de conteúdo/estratégia do que de desenvolvimento."
+      ],
+      "disciplines": [
+        "Estratégia",
+        "UX",
+        "UI",
+        "Frontend",
+        "Conteúdo"
+      ],
+      "complexity": "baixa",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "lp_lead_form",
+      "name": "Formulário de lead",
+      "client_terms": [
+        "formulário",
+        "capturar lead",
+        "contato",
+        "conversão"
+      ],
+      "summary": "Formulário público para captar interessados e enviar dados ao cliente ou CRM.",
+      "includes": [
+        "Nome",
+        "E-mail",
+        "Telefone",
+        "Empresa",
+        "Mensagem",
+        "Validação",
+        "Envio",
+        "Mensagem de sucesso"
+      ],
+      "excludes": [
+        "CRM avançado",
+        "Automação de marketing",
+        "Qualificação complexa"
+      ],
+      "pages": [
+        "Seção de formulário",
+        "Sucesso opcional"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "crm_integration_simple",
+        "recaptcha_lgpd"
+      ],
+      "commercial_questions": [
+        "Para onde o lead vai?",
+        "Precisa integrar RD/HubSpot/Pipedrive?",
+        "Precisa reCAPTCHA?",
+        "Precisa consentimento LGPD?"
+      ],
+      "commercial_notes": [
+        "Formulário sem integração é simples; formulário com CRM, LGPD e regras já vira outro escopo."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "site_home",
+      "name": "Página Home institucional",
+      "client_terms": [
+        "home",
+        "página inicial",
+        "site institucional",
+        "site da empresa"
+      ],
+      "summary": "Página inicial de site institucional com principais seções de apresentação.",
+      "includes": [
+        "Hero",
+        "Serviços",
+        "Diferenciais",
+        "Cases",
+        "Clientes",
+        "CTA",
+        "Rodapé"
+      ],
+      "excludes": [
+        "CMS",
+        "Blog",
+        "Área logada",
+        "Multiidioma"
+      ],
+      "pages": [
+        "Home"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "site_about",
+        "site_services",
+        "lp_lead_form"
+      ],
+      "commercial_questions": [
+        "Quantas seções?",
+        "Conteúdo está pronto?",
+        "Precisa CMS?",
+        "Precisa SEO avançado?"
+      ],
+      "commercial_notes": [
+        "Home institucional é composição de blocos de conteúdo, não apenas uma página visual."
+      ],
+      "disciplines": [
+        "Estratégia",
+        "UX",
+        "UI",
+        "Frontend",
+        "Conteúdo",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "cms_simple",
+      "name": "CMS simples",
+      "client_terms": [
+        "editar conteúdo",
+        "painel admin do site",
+        "CMS",
+        "gerenciar páginas"
+      ],
+      "summary": "Área administrativa básica para criar e editar conteúdos do site.",
+      "includes": [
+        "Login admin",
+        "Criar conteúdo",
+        "Editar conteúdo",
+        "Publicar/despublicar",
+        "Upload de imagem",
+        "Preview básico"
+      ],
+      "excludes": [
+        "Workflow editorial",
+        "Versionamento avançado",
+        "Permissões granulares",
+        "Page builder"
+      ],
+      "pages": [
+        "Login admin",
+        "Lista de conteúdos",
+        "Novo conteúdo",
+        "Editar conteúdo"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "blog_news"
+      ],
+      "commercial_questions": [
+        "Quais conteúdos serão editáveis?",
+        "Precisa preview?",
+        "Precisa agendamento?",
+        "Haverá perfis editoriais?"
+      ],
+      "commercial_notes": [
+        "CMS pode ir de edição simples a produto completo. Definir claramente o que será editável."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "blog_news",
+      "name": "Blog / Notícias",
+      "client_terms": [
+        "blog",
+        "notícias",
+        "artigos",
+        "conteúdo"
+      ],
+      "summary": "Estrutura pública e administrativa para publicar artigos, notícias ou conteúdos.",
+      "includes": [
+        "Lista de posts",
+        "Página de post",
+        "Categorias",
+        "Tags",
+        "Busca",
+        "SEO",
+        "CMS"
+      ],
+      "excludes": [
+        "Newsletter",
+        "Comentários públicos",
+        "Workflow editorial avançado"
+      ],
+      "pages": [
+        "Lista de posts",
+        "Post individual",
+        "Categoria",
+        "Admin de posts"
+      ],
+      "dependencies": [
+        "cms_simple"
+      ],
+      "usually_with": [
+        "seo_basic"
+      ],
+      "commercial_questions": [
+        "Quem publica?",
+        "Precisa categorias e tags?",
+        "Precisa busca?",
+        "Vai ter migração de posts antigos?"
+      ],
+      "commercial_notes": [
+        "Blog com CMS é maior que páginas estáticas. Considerar SEO, URLs, categorias e edição."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "Conteúdo",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "landing_institutional",
+      "category_name": "Landing Pages e Sites Institucionais"
+    },
+    {
+      "id": "onboarding_first_access",
+      "name": "Onboarding inicial",
+      "client_terms": [
+        "onboarding",
+        "primeiro acesso",
+        "passo a passo",
+        "configuração inicial"
+      ],
+      "summary": "Fluxo guiado para configurar conta ou coletar informações no primeiro acesso.",
+      "includes": [
+        "Primeira tela após cadastro",
+        "Coleta de informações iniciais",
+        "Passo a passo",
+        "Progresso",
+        "Finalização"
+      ],
+      "excludes": [
+        "Tour interativo avançado",
+        "Gamificação",
+        "Personalização por IA"
+      ],
+      "pages": [
+        "Boas-vindas",
+        "Etapa 1",
+        "Etapa 2",
+        "Finalização"
+      ],
+      "dependencies": [
+        "auth_user_signup"
+      ],
+      "usually_with": [
+        "account_settings"
+      ],
+      "commercial_questions": [
+        "Quais informações são obrigatórias?",
+        "Pode pular?",
+        "O onboarding muda conforme perfil?"
+      ],
+      "commercial_notes": [
+        "Onboarding reduz fricção, mas adiciona fluxo, estado e regras."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "saas_essentials",
+      "category_name": "SaaS Essencial"
+    },
+    {
+      "id": "account_settings",
+      "name": "Configurações da conta",
+      "client_terms": [
+        "configurações",
+        "preferências",
+        "dados da empresa",
+        "minha conta"
+      ],
+      "summary": "Área para editar dados e preferências gerais da conta ou empresa.",
+      "includes": [
+        "Dados da empresa",
+        "Preferências",
+        "Notificações",
+        "Segurança",
+        "Integrações"
+      ],
+      "excludes": [
+        "Billing",
+        "Multiempresa",
+        "Permissões avançadas"
+      ],
+      "pages": [
+        "Configurações gerais",
+        "Segurança",
+        "Preferências"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "user_profile",
+        "multi_organization"
+      ],
+      "commercial_questions": [
+        "Quais configurações existem?",
+        "São por usuário ou por empresa?",
+        "Quem pode alterar?"
+      ],
+      "commercial_notes": [
+        "Configurações costumam surgir no fim, mas impactam arquitetura e permissões."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "saas_essentials",
+      "category_name": "SaaS Essencial"
+    },
+    {
+      "id": "billing_subscription",
+      "name": "Billing / Assinatura",
+      "client_terms": [
+        "assinatura",
+        "planos",
+        "pagamento recorrente",
+        "cobrança"
+      ],
+      "summary": "Gestão de plano, pagamento, faturas e cancelamento em produto SaaS.",
+      "includes": [
+        "Plano atual",
+        "Trocar plano",
+        "Pagamento",
+        "Faturas",
+        "Cancelamento",
+        "Integração com gateway"
+      ],
+      "excludes": [
+        "Split de pagamento",
+        "Nota fiscal automática",
+        "Cobrança enterprise customizada"
+      ],
+      "pages": [
+        "Planos",
+        "Checkout",
+        "Faturas",
+        "Gerenciar assinatura"
+      ],
+      "dependencies": [
+        "auth_basic_login",
+        "payment_gateway"
+      ],
+      "usually_with": [
+        "multi_organization"
+      ],
+      "commercial_questions": [
+        "Qual gateway?",
+        "Planos são simples ou customizados?",
+        "Precisa trial?",
+        "Precisa nota fiscal?"
+      ],
+      "commercial_notes": [
+        "Billing é crítico e deve considerar regras de cobrança, gateway, faturas e suporte."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "alta",
+      "category_id": "saas_essentials",
+      "category_name": "SaaS Essencial"
+    },
+    {
+      "id": "admin_logs",
+      "name": "Logs administrativos",
+      "client_terms": [
+        "logs",
+        "registro de ações",
+        "admin logs",
+        "auditoria admin"
+      ],
+      "summary": "Área administrativa para visualizar eventos e ações relevantes do sistema.",
+      "includes": [
+        "Lista de eventos",
+        "Usuário",
+        "Ação",
+        "Data/hora",
+        "Filtros",
+        "Exportação opcional"
+      ],
+      "excludes": [
+        "Observabilidade técnica",
+        "Logs de servidor",
+        "Compliance avançado"
+      ],
+      "pages": [
+        "Lista de logs",
+        "Detalhe do evento"
+      ],
+      "dependencies": [
+        "audit_log"
+      ],
+      "usually_with": [
+        "roles_permissions"
+      ],
+      "commercial_questions": [
+        "Quais ações precisam aparecer?",
+        "Quem pode ver logs?",
+        "Precisa exportar?",
+        "Por quanto tempo reter?"
+      ],
+      "commercial_notes": [
+        "Logs administrativos são diferentes de logs técnicos de infraestrutura."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "saas_essentials",
+      "category_name": "SaaS Essencial"
+    },
+    {
+      "id": "payment_gateway",
+      "name": "Gateway de pagamento",
+      "client_terms": [
+        "pagamento",
+        "cartão",
+        "PIX",
+        "checkout",
+        "cobrar cliente"
+      ],
+      "summary": "Integração com gateway para processar pagamentos.",
+      "includes": [
+        "Configuração de gateway",
+        "Checkout",
+        "Pagamento cartão/PIX conforme provedor",
+        "Retorno de status",
+        "Tratamento de falha",
+        "Logs básicos"
+      ],
+      "excludes": [
+        "Split",
+        "Marketplace financeiro",
+        "Antifraude avançado",
+        "Nota fiscal"
+      ],
+      "pages": [
+        "Checkout",
+        "Pagamento aprovado",
+        "Pagamento recusado"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "transactional_email",
+        "api_webhook"
+      ],
+      "commercial_questions": [
+        "Qual gateway será usado?",
+        "Precisa PIX, cartão ou boleto?",
+        "Pagamento único ou recorrente?",
+        "Precisa emitir nota?"
+      ],
+      "commercial_notes": [
+        "Pagamento envolve regra de negócio, webhook, status, conciliação e erro."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "alta",
+      "category_id": "finance_payments",
+      "category_name": "Financeiro e Pagamentos"
+    },
+    {
+      "id": "invoice_billing",
+      "name": "Faturas / Cobranças",
+      "client_terms": [
+        "fatura",
+        "cobrança",
+        "segunda via",
+        "recibo"
+      ],
+      "summary": "Área para listar cobranças, emitir segunda via e visualizar status financeiro.",
+      "includes": [
+        "Lista de faturas",
+        "Status",
+        "Download/segunda via",
+        "Detalhe da cobrança",
+        "E-mail de cobrança opcional"
+      ],
+      "excludes": [
+        "Nota fiscal",
+        "Contabilidade",
+        "Split",
+        "ERP financeiro"
+      ],
+      "pages": [
+        "Lista de faturas",
+        "Detalhe da fatura"
+      ],
+      "dependencies": [
+        "payment_gateway"
+      ],
+      "usually_with": [
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "Fatura vem do gateway ou do sistema?",
+        "Precisa segunda via?",
+        "Precisa enviar por e-mail?"
+      ],
+      "commercial_notes": [
+        "Fatura pode ser apenas visualização ou módulo financeiro com regras próprias."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "finance_payments",
+      "category_name": "Financeiro e Pagamentos"
+    }
+  ]
+}

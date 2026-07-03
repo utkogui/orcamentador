@@ -1,0 +1,177 @@
+{
+  "category": {
+    "id": "crud_forms",
+    "name": "CRUD, Cadastros e Formulários",
+    "description": "Blocos de cadastro, listagem, detalhe, edição, filtros e formulários complexos."
+  },
+  "blocks": [
+    {
+      "id": "crud_simple",
+      "name": "CRUD simples",
+      "client_terms": [
+        "cadastro",
+        "cadastrar",
+        "gerenciar itens",
+        "lista e edição"
+      ],
+      "summary": "Conjunto básico para criar, listar, editar, visualizar e excluir um tipo de registro.",
+      "includes": [
+        "Listagem",
+        "Criar",
+        "Editar",
+        "Excluir",
+        "Visualizar detalhe",
+        "Validação",
+        "Mensagens de erro",
+        "Estado vazio"
+      ],
+      "excludes": [
+        "Filtros avançados",
+        "Ações em massa",
+        "Workflow",
+        "Importação",
+        "Exportação"
+      ],
+      "pages": [
+        "Lista",
+        "Novo",
+        "Editar",
+        "Detalhe"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "table_basic",
+        "form_basic"
+      ],
+      "commercial_questions": [
+        "Que entidade será cadastrada?",
+        "Quais campos existem?",
+        "Quem pode criar, editar ou excluir?"
+      ],
+      "commercial_notes": [
+        "'Cadastro' pode significar CRUD simples, formulário complexo ou fluxo de inscrição. Sempre confirmar."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "crud_forms",
+      "category_name": "CRUD, Cadastros e Formulários"
+    },
+    {
+      "id": "table_advanced_filters",
+      "name": "Tabela avançada com filtros",
+      "client_terms": [
+        "tabela",
+        "filtros",
+        "busca avançada",
+        "ordenar",
+        "paginação"
+      ],
+      "summary": "Tabela robusta para listar dados com busca, filtros, ordenação, paginação e ações.",
+      "includes": [
+        "Busca",
+        "Filtros",
+        "Ordenação",
+        "Paginação",
+        "Seleção múltipla",
+        "Ações em massa",
+        "Colunas configuráveis"
+      ],
+      "excludes": [
+        "BI",
+        "Exportação complexa",
+        "Edição inline avançada"
+      ],
+      "pages": [
+        "Listagem avançada"
+      ],
+      "dependencies": [
+        "crud_simple"
+      ],
+      "usually_with": [
+        "report_excel_csv"
+      ],
+      "commercial_questions": [
+        "Quais filtros são necessários?",
+        "A tabela precisa exportar?",
+        "Terá ações em massa?"
+      ],
+      "commercial_notes": [
+        "Tabela avançada pode consumir mais esforço que o cadastro em si."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "crud_forms",
+      "category_name": "CRUD, Cadastros e Formulários"
+    },
+    {
+      "id": "form_complex",
+      "name": "Formulário complexo",
+      "client_terms": [
+        "formulário grande",
+        "várias etapas",
+        "muitos campos",
+        "questionário"
+      ],
+      "summary": "Formulário com muitos campos, regras condicionais, validações, etapas ou rascunho.",
+      "includes": [
+        "Muitos campos",
+        "Campos condicionais",
+        "Máscaras",
+        "Validações",
+        "Etapas",
+        "Salvar rascunho",
+        "Revisão antes de enviar"
+      ],
+      "excludes": [
+        "Workflow de aprovação",
+        "Assinatura digital",
+        "OCR",
+        "Pagamento"
+      ],
+      "pages": [
+        "Formulário etapa 1",
+        "Formulário etapa 2",
+        "Revisão",
+        "Confirmação"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "file_upload_simple",
+        "workflow_status_simple"
+      ],
+      "commercial_questions": [
+        "Quantos campos existem?",
+        "Existem regras condicionais?",
+        "Precisa salvar rascunho?",
+        "Há validação externa?"
+      ],
+      "commercial_notes": [
+        "Formulário complexo deve ser tratado como bloco próprio, não como 'uma tela'."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "crud_forms",
+      "category_name": "CRUD, Cadastros e Formulários"
+    }
+  ]
+}

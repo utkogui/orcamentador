@@ -1,0 +1,225 @@
+{
+  "category": {
+    "id": "saas_essentials",
+    "name": "SaaS Essencial",
+    "description": "Blocos comuns a produtos SaaS, como onboarding, configurações, assinatura e conta."
+  },
+  "blocks": [
+    {
+      "id": "onboarding_first_access",
+      "name": "Onboarding inicial",
+      "client_terms": [
+        "onboarding",
+        "primeiro acesso",
+        "passo a passo",
+        "configuração inicial"
+      ],
+      "summary": "Fluxo guiado para configurar conta ou coletar informações no primeiro acesso.",
+      "includes": [
+        "Primeira tela após cadastro",
+        "Coleta de informações iniciais",
+        "Passo a passo",
+        "Progresso",
+        "Finalização"
+      ],
+      "excludes": [
+        "Tour interativo avançado",
+        "Gamificação",
+        "Personalização por IA"
+      ],
+      "pages": [
+        "Boas-vindas",
+        "Etapa 1",
+        "Etapa 2",
+        "Finalização"
+      ],
+      "dependencies": [
+        "auth_user_signup"
+      ],
+      "usually_with": [
+        "account_settings"
+      ],
+      "commercial_questions": [
+        "Quais informações são obrigatórias?",
+        "Pode pular?",
+        "O onboarding muda conforme perfil?"
+      ],
+      "commercial_notes": [
+        "Onboarding reduz fricção, mas adiciona fluxo, estado e regras."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "saas_essentials",
+      "category_name": "SaaS Essencial"
+    },
+    {
+      "id": "account_settings",
+      "name": "Configurações da conta",
+      "client_terms": [
+        "configurações",
+        "preferências",
+        "dados da empresa",
+        "minha conta"
+      ],
+      "summary": "Área para editar dados e preferências gerais da conta ou empresa.",
+      "includes": [
+        "Dados da empresa",
+        "Preferências",
+        "Notificações",
+        "Segurança",
+        "Integrações"
+      ],
+      "excludes": [
+        "Billing",
+        "Multiempresa",
+        "Permissões avançadas"
+      ],
+      "pages": [
+        "Configurações gerais",
+        "Segurança",
+        "Preferências"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "user_profile",
+        "multi_organization"
+      ],
+      "commercial_questions": [
+        "Quais configurações existem?",
+        "São por usuário ou por empresa?",
+        "Quem pode alterar?"
+      ],
+      "commercial_notes": [
+        "Configurações costumam surgir no fim, mas impactam arquitetura e permissões."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "saas_essentials",
+      "category_name": "SaaS Essencial"
+    },
+    {
+      "id": "billing_subscription",
+      "name": "Billing / Assinatura",
+      "client_terms": [
+        "assinatura",
+        "planos",
+        "pagamento recorrente",
+        "cobrança"
+      ],
+      "summary": "Gestão de plano, pagamento, faturas e cancelamento em produto SaaS.",
+      "includes": [
+        "Plano atual",
+        "Trocar plano",
+        "Pagamento",
+        "Faturas",
+        "Cancelamento",
+        "Integração com gateway"
+      ],
+      "excludes": [
+        "Split de pagamento",
+        "Nota fiscal automática",
+        "Cobrança enterprise customizada"
+      ],
+      "pages": [
+        "Planos",
+        "Checkout",
+        "Faturas",
+        "Gerenciar assinatura"
+      ],
+      "dependencies": [
+        "auth_basic_login",
+        "payment_gateway"
+      ],
+      "usually_with": [
+        "multi_organization"
+      ],
+      "commercial_questions": [
+        "Qual gateway?",
+        "Planos são simples ou customizados?",
+        "Precisa trial?",
+        "Precisa nota fiscal?"
+      ],
+      "commercial_notes": [
+        "Billing é crítico e deve considerar regras de cobrança, gateway, faturas e suporte."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "alta",
+      "category_id": "saas_essentials",
+      "category_name": "SaaS Essencial"
+    },
+    {
+      "id": "admin_logs",
+      "name": "Logs administrativos",
+      "client_terms": [
+        "logs",
+        "registro de ações",
+        "admin logs",
+        "auditoria admin"
+      ],
+      "summary": "Área administrativa para visualizar eventos e ações relevantes do sistema.",
+      "includes": [
+        "Lista de eventos",
+        "Usuário",
+        "Ação",
+        "Data/hora",
+        "Filtros",
+        "Exportação opcional"
+      ],
+      "excludes": [
+        "Observabilidade técnica",
+        "Logs de servidor",
+        "Compliance avançado"
+      ],
+      "pages": [
+        "Lista de logs",
+        "Detalhe do evento"
+      ],
+      "dependencies": [
+        "audit_log"
+      ],
+      "usually_with": [
+        "roles_permissions"
+      ],
+      "commercial_questions": [
+        "Quais ações precisam aparecer?",
+        "Quem pode ver logs?",
+        "Precisa exportar?",
+        "Por quanto tempo reter?"
+      ],
+      "commercial_notes": [
+        "Logs administrativos são diferentes de logs técnicos de infraestrutura."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "saas_essentials",
+      "category_name": "SaaS Essencial"
+    }
+  ]
+}

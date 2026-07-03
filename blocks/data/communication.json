@@ -1,0 +1,162 @@
+{
+  "category": {
+    "id": "communication",
+    "name": "Comunicação",
+    "description": "Blocos de e-mail, notificações, WhatsApp, SMS e mensagens internas."
+  },
+  "blocks": [
+    {
+      "id": "transactional_email",
+      "name": "E-mail transacional",
+      "client_terms": [
+        "enviar e-mail",
+        "e-mail automático",
+        "notificação por e-mail",
+        "template de e-mail"
+      ],
+      "summary": "Envio automático de e-mails disparados por ações do sistema.",
+      "includes": [
+        "Configuração de provedor",
+        "Template de e-mail",
+        "Variáveis dinâmicas",
+        "Envio",
+        "Tratamento de erro",
+        "Logs básicos"
+      ],
+      "excludes": [
+        "Campanhas de marketing",
+        "Newsletter",
+        "Automação CRM avançada"
+      ],
+      "pages": [
+        "Template de e-mail",
+        "Logs básicos opcional"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "auth_forgot_password",
+        "auth_email_confirmation",
+        "member_invite"
+      ],
+      "commercial_questions": [
+        "Qual provedor será usado?",
+        "Quais eventos enviam e-mail?",
+        "O cliente já tem domínio configurado?"
+      ],
+      "commercial_notes": [
+        "Muitos fluxos dependem deste bloco: recuperação de senha, convite, confirmação e comprovantes."
+      ],
+      "disciplines": [
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "communication",
+      "category_name": "Comunicação"
+    },
+    {
+      "id": "internal_notifications",
+      "name": "Notificações internas",
+      "client_terms": [
+        "notificações",
+        "sininho",
+        "alertas internos",
+        "avisos no sistema"
+      ],
+      "summary": "Central interna para exibir notificações dentro do sistema.",
+      "includes": [
+        "Ícone de notificações",
+        "Lista de notificações",
+        "Contador",
+        "Marcar como lida",
+        "Link para item relacionado"
+      ],
+      "excludes": [
+        "Push mobile",
+        "Tempo real com websocket",
+        "E-mail/SMS"
+      ],
+      "pages": [
+        "Central de notificações",
+        "Dropdown de notificações"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "workflow_approval",
+        "comments"
+      ],
+      "commercial_questions": [
+        "Notificações precisam ser em tempo real?",
+        "Quais eventos geram notificação?",
+        "Precisa enviar e-mail junto?"
+      ],
+      "commercial_notes": [
+        "Notificação interna pode ser simples ou virar sistema de comunicação complexo."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "communication",
+      "category_name": "Comunicação"
+    },
+    {
+      "id": "whatsapp_sms",
+      "name": "WhatsApp / SMS",
+      "client_terms": [
+        "WhatsApp",
+        "SMS",
+        "mandar mensagem",
+        "notificar no celular"
+      ],
+      "summary": "Envio de mensagens via WhatsApp ou SMS usando provedor externo.",
+      "includes": [
+        "Integração com provedor",
+        "Templates",
+        "Envio",
+        "Logs",
+        "Tratamento de falha"
+      ],
+      "excludes": [
+        "Chat bidirecional completo",
+        "Atendimento humano",
+        "CRM WhatsApp"
+      ],
+      "pages": [
+        "Configuração de templates",
+        "Logs de envio opcional"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "workflow_approval",
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "Será WhatsApp, SMS ou ambos?",
+        "Já existe provedor?",
+        "Precisa aprovar template?",
+        "É envio único ou conversa?"
+      ],
+      "commercial_notes": [
+        "Depende de provedor, aprovação de template e regras externas."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "communication",
+      "category_name": "Comunicação"
+    }
+  ]
+}

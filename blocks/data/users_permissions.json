@@ -1,0 +1,287 @@
+{
+  "category": {
+    "id": "users_permissions",
+    "name": "Usuários e Permissões",
+    "description": "Blocos de perfis, papéis, gestão de usuários, organizações e isolamento de dados."
+  },
+  "blocks": [
+    {
+      "id": "user_profile",
+      "name": "Perfil do usuário",
+      "client_terms": [
+        "meu perfil",
+        "editar perfil",
+        "dados do usuário",
+        "minha conta"
+      ],
+      "summary": "Área onde o usuário visualiza e edita informações básicas da própria conta.",
+      "includes": [
+        "Página Meu Perfil",
+        "Editar nome",
+        "Editar telefone",
+        "Editar avatar",
+        "Alterar senha",
+        "Mensagens de sucesso/erro"
+      ],
+      "excludes": [
+        "Gestão de usuários",
+        "Permissões",
+        "Preferências avançadas",
+        "Billing"
+      ],
+      "pages": [
+        "Meu Perfil",
+        "Alterar senha"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "auth_basic_login"
+      ],
+      "commercial_questions": [
+        "Quais dados do usuário serão editáveis?",
+        "Precisa de foto/avatar?",
+        "O usuário pode alterar e-mail?"
+      ],
+      "commercial_notes": [
+        "Perfil do usuário é comum em sistemas logados e costuma ser esquecido no briefing."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "user_management",
+      "name": "Gestão de usuários",
+      "client_terms": [
+        "admin cadastra usuários",
+        "gerenciar usuários",
+        "lista de usuários",
+        "usuários do sistema"
+      ],
+      "summary": "Painel administrativo para criar, editar, ativar, desativar e pesquisar usuários.",
+      "includes": [
+        "Listagem de usuários",
+        "Criar usuário",
+        "Editar usuário",
+        "Ativar/desativar",
+        "Excluir ou arquivar",
+        "Busca",
+        "Filtros",
+        "Definir perfil"
+      ],
+      "excludes": [
+        "Permissões granulares",
+        "Multiempresa",
+        "Convite por e-mail",
+        "SSO"
+      ],
+      "pages": [
+        "Lista de usuários",
+        "Novo usuário",
+        "Editar usuário",
+        "Detalhe do usuário"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "roles_permissions",
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "Quem pode criar usuários?",
+        "Usuário recebe e-mail de convite?",
+        "Existem perfis diferentes?"
+      ],
+      "commercial_notes": [
+        "Gestão de usuários pode parecer apenas uma tabela, mas afeta segurança, permissões e operações administrativas."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "roles_permissions",
+      "name": "Perfis e permissões",
+      "client_terms": [
+        "admin e usuário comum",
+        "níveis de acesso",
+        "permissões",
+        "perfil de acesso"
+      ],
+      "summary": "Controle do que cada tipo de usuário pode ver e fazer dentro do sistema.",
+      "includes": [
+        "Papéis de acesso",
+        "Bloqueio de telas",
+        "Bloqueio de ações",
+        "Regras no backend",
+        "Permissões por área"
+      ],
+      "excludes": [
+        "Permissões customizadas por usuário",
+        "Multiempresa",
+        "RBAC avançado",
+        "ABAC"
+      ],
+      "pages": [
+        "Configuração de perfis",
+        "Atribuição de perfil"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "user_management"
+      ],
+      "commercial_questions": [
+        "Quais perfis existem?",
+        "Cada perfil pode ver quais áreas?",
+        "As permissões são fixas ou configuráveis?"
+      ],
+      "commercial_notes": [
+        "Mesmo 'só dois perfis' já muda o desenho do sistema inteiro."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "multi_organization",
+      "name": "Multiempresa / Organizações",
+      "client_terms": [
+        "cada cliente vê seus dados",
+        "multiempresa",
+        "tenant",
+        "organização",
+        "empresa"
+      ],
+      "summary": "Estrutura para separar dados e usuários por empresa/organização dentro do mesmo sistema.",
+      "includes": [
+        "Cadastro de organização",
+        "Usuários vinculados",
+        "Isolamento de dados",
+        "Admin por empresa",
+        "Regras por organização",
+        "Troca de organização"
+      ],
+      "excludes": [
+        "Cobrança por organização",
+        "White label",
+        "Infraestrutura dedicada por cliente"
+      ],
+      "pages": [
+        "Lista de organizações",
+        "Detalhe da organização",
+        "Usuários da organização",
+        "Configurações da organização"
+      ],
+      "dependencies": [
+        "auth_basic_login",
+        "roles_permissions"
+      ],
+      "usually_with": [
+        "user_management",
+        "member_invite"
+      ],
+      "commercial_questions": [
+        "Cada empresa tem seus próprios usuários?",
+        "Um usuário pode pertencer a mais de uma empresa?",
+        "Existe admin por empresa?"
+      ],
+      "commercial_notes": [
+        "Multiempresa é um dos maiores multiplicadores de complexidade em SaaS."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "alta",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    },
+    {
+      "id": "member_invite",
+      "name": "Convite de membros",
+      "client_terms": [
+        "convidar usuário",
+        "convite por e-mail",
+        "adicionar membro",
+        "enviar convite"
+      ],
+      "summary": "Fluxo para convidar pessoas por e-mail para entrar em uma conta, time ou organização.",
+      "includes": [
+        "Enviar convite",
+        "E-mail de convite",
+        "Aceitar convite",
+        "Definir perfil",
+        "Expiração de convite",
+        "Reenviar convite"
+      ],
+      "excludes": [
+        "SSO",
+        "Provisionamento automático",
+        "Importação em massa"
+      ],
+      "pages": [
+        "Convidar membro",
+        "E-mail de convite",
+        "Aceitar convite",
+        "Convite expirado"
+      ],
+      "dependencies": [
+        "auth_basic_login",
+        "transactional_email"
+      ],
+      "usually_with": [
+        "multi_organization",
+        "roles_permissions"
+      ],
+      "commercial_questions": [
+        "Quem pode convidar?",
+        "O convite define perfil?",
+        "Convite expira?",
+        "Pode reenviar convite?"
+      ],
+      "commercial_notes": [
+        "Convite de membros combina autenticação, e-mail transacional e permissões."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "users_permissions",
+      "category_name": "Usuários e Permissões"
+    }
+  ]
+}

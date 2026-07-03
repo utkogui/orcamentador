@@ -1,0 +1,174 @@
+{
+  "category": {
+    "id": "dashboard_analytics",
+    "name": "Dashboards e Analytics",
+    "description": "Blocos de painéis, indicadores, gráficos, filtros, BI e visualização de dados."
+  },
+  "blocks": [
+    {
+      "id": "dashboard_simple",
+      "name": "Dashboard simples",
+      "client_terms": [
+        "dashboard",
+        "painel",
+        "home logada",
+        "visão geral"
+      ],
+      "summary": "Página inicial logada com indicadores simples, atalhos e últimos registros.",
+      "includes": [
+        "Cards de indicadores",
+        "Atalhos principais",
+        "Últimos registros",
+        "Estado vazio",
+        "Loading",
+        "Erro"
+      ],
+      "excludes": [
+        "Gráficos complexos",
+        "BI",
+        "Tempo real",
+        "Exportação",
+        "Drill-down"
+      ],
+      "pages": [
+        "Dashboard"
+      ],
+      "dependencies": [
+        "auth_basic_login"
+      ],
+      "usually_with": [
+        "crud_simple",
+        "report_basic_export"
+      ],
+      "commercial_questions": [
+        "Quais indicadores aparecem?",
+        "Os dados já existem?",
+        "Precisa filtrar por período?"
+      ],
+      "commercial_notes": [
+        "Cliente costuma chamar tudo de dashboard. Separar painel simples, gráficos e BI."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "dashboard_analytics",
+      "category_name": "Dashboards e Analytics"
+    },
+    {
+      "id": "dashboard_charts",
+      "name": "Dashboard com gráficos",
+      "client_terms": [
+        "gráficos",
+        "dashboard com gráficos",
+        "indicadores visuais",
+        "KPI"
+      ],
+      "summary": "Dashboard com visualização gráfica de dados e filtros básicos.",
+      "includes": [
+        "Gráfico de linha",
+        "Gráfico de barra",
+        "Gráfico de pizza/donut",
+        "Filtros por período",
+        "Cards de KPI",
+        "Dados agregados"
+      ],
+      "excludes": [
+        "BI avançado",
+        "Drill-down",
+        "Exportação complexa",
+        "Tempo real"
+      ],
+      "pages": [
+        "Dashboard com gráficos"
+      ],
+      "dependencies": [
+        "dashboard_simple"
+      ],
+      "usually_with": [
+        "table_advanced_filters",
+        "report_basic_export"
+      ],
+      "commercial_questions": [
+        "Quais métricas serão calculadas?",
+        "Qual fonte dos dados?",
+        "Precisa comparar períodos?"
+      ],
+      "commercial_notes": [
+        "Gráfico não é só visual: precisa dado confiável, regra de cálculo e consulta."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "dashboard_analytics",
+      "category_name": "Dashboards e Analytics"
+    },
+    {
+      "id": "dashboard_bi",
+      "name": "Dashboard executivo / BI",
+      "client_terms": [
+        "BI",
+        "dashboard executivo",
+        "painel gerencial",
+        "relatórios gerenciais"
+      ],
+      "summary": "Painel avançado com filtros, segmentações, comparativos e exploração de dados.",
+      "includes": [
+        "Múltiplos filtros",
+        "Comparativos",
+        "Períodos",
+        "Segmentações",
+        "Exportação",
+        "Drill-down",
+        "Permissões por visão"
+      ],
+      "excludes": [
+        "Data warehouse",
+        "ETL complexo",
+        "Modelagem BI corporativa",
+        "Power BI externo"
+      ],
+      "pages": [
+        "Painel BI",
+        "Visões filtradas",
+        "Detalhamento de indicador"
+      ],
+      "dependencies": [
+        "dashboard_charts"
+      ],
+      "usually_with": [
+        "report_pdf",
+        "report_excel_csv",
+        "audit_log"
+      ],
+      "commercial_questions": [
+        "Quais decisões o painel precisa apoiar?",
+        "Dados vêm de quais sistemas?",
+        "Quem pode ver quais indicadores?"
+      ],
+      "commercial_notes": [
+        "Dashboard executivo deve ter peso alto. Normalmente exige descoberta, modelagem e validação de regra de negócio."
+      ],
+      "disciplines": [
+        "Estratégia",
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "alta",
+      "category_id": "dashboard_analytics",
+      "category_name": "Dashboards e Analytics"
+    }
+  ]
+}

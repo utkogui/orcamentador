@@ -1,0 +1,161 @@
+{
+  "category": {
+    "id": "reports_exports",
+    "name": "Relatórios e Exportações",
+    "description": "Blocos de relatórios PDF, CSV, Excel e envio agendado."
+  },
+  "blocks": [
+    {
+      "id": "report_excel_csv",
+      "name": "Exportação CSV / Excel",
+      "client_terms": [
+        "exportar Excel",
+        "baixar CSV",
+        "planilha",
+        "relatório em Excel"
+      ],
+      "summary": "Geração de arquivo tabular com dados do sistema, respeitando filtros e permissões.",
+      "includes": [
+        "Selecionar dados",
+        "Gerar arquivo",
+        "Download",
+        "Respeitar filtros",
+        "Tratar volume de dados"
+      ],
+      "excludes": [
+        "Template visual avançado",
+        "Relatório PDF",
+        "Envio agendado"
+      ],
+      "pages": [
+        "Botão exportar",
+        "Download"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "table_advanced_filters"
+      ],
+      "commercial_questions": [
+        "Quais dados entram?",
+        "Respeita filtros da tela?",
+        "Qual volume esperado?",
+        "Precisa de layout específico?"
+      ],
+      "commercial_notes": [
+        "Exportar dados filtrados é diferente de exportar toda a base."
+      ],
+      "disciplines": [
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "baixa",
+      "category_id": "reports_exports",
+      "category_name": "Relatórios e Exportações"
+    },
+    {
+      "id": "report_pdf",
+      "name": "Relatório PDF",
+      "client_terms": [
+        "gerar PDF",
+        "baixar PDF",
+        "relatório em PDF",
+        "comprovante"
+      ],
+      "summary": "Geração de PDF com layout, dados dinâmicos e estrutura visual.",
+      "includes": [
+        "Template visual",
+        "Dados dinâmicos",
+        "Geração PDF",
+        "Download",
+        "Cabeçalho/rodapé",
+        "Tratamento de quebra de página"
+      ],
+      "excludes": [
+        "Assinatura digital",
+        "Envio automático",
+        "Relatório agendado"
+      ],
+      "pages": [
+        "Preview opcional",
+        "Download PDF"
+      ],
+      "dependencies": [],
+      "usually_with": [
+        "transactional_email"
+      ],
+      "commercial_questions": [
+        "PDF precisa seguir identidade visual?",
+        "É relatório, comprovante ou contrato?",
+        "Precisa ser enviado por e-mail?"
+      ],
+      "commercial_notes": [
+        "PDF pode variar de simples comprovante a documento complexo com múltiplas páginas e regras de layout."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA"
+      ],
+      "complexity": "média",
+      "category_id": "reports_exports",
+      "category_name": "Relatórios e Exportações"
+    },
+    {
+      "id": "scheduled_reports",
+      "name": "Relatórios agendados",
+      "client_terms": [
+        "relatório automático",
+        "enviar todo mês",
+        "agendar envio",
+        "relatório recorrente"
+      ],
+      "summary": "Geração e envio automático de relatórios em uma frequência definida.",
+      "includes": [
+        "Escolher frequência",
+        "Destinatários",
+        "Geração automática",
+        "Envio por e-mail",
+        "Histórico de envios"
+      ],
+      "excludes": [
+        "BI avançado",
+        "Data warehouse",
+        "Aprovação de relatório"
+      ],
+      "pages": [
+        "Configuração de agendamento",
+        "Histórico de envios"
+      ],
+      "dependencies": [
+        "transactional_email",
+        "report_pdf"
+      ],
+      "usually_with": [
+        "report_excel_csv"
+      ],
+      "commercial_questions": [
+        "Qual frequência?",
+        "Quem recebe?",
+        "Qual formato?",
+        "Precisa log de envio?"
+      ],
+      "commercial_notes": [
+        "Agendamento adiciona rotina de backend, filas ou cron, logs e tratamento de falhas."
+      ],
+      "disciplines": [
+        "UX",
+        "UI",
+        "Frontend",
+        "Backend",
+        "QA",
+        "DevOps"
+      ],
+      "complexity": "média",
+      "category_id": "reports_exports",
+      "category_name": "Relatórios e Exportações"
+    }
+  ]
+}
