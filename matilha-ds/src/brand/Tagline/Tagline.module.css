@@ -1,0 +1,15 @@
+.tagline {
+  margin: 0;
+  font-family: var(--matilha-font-brand);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--matilha-brand-black);
+}
+
+@media (min-width: 768px) {
+  .tagline {
+    font-size: 2rem;
+  }
+}

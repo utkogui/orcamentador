@@ -1,0 +1,111 @@
+/**
+ * Matilha Design System — CSS Custom Properties
+ * Fonte: Figma UI Kit → 💎Styleguide
+ * Importe em qualquer projeto: @import '@matilha/design-system/styles/tokens.css';
+ */
+
+:root {
+  /* Neutral */
+  --matilha-neutral-100: #ffffff;
+  --matilha-neutral-200: #f2f2f2;
+  --matilha-neutral-300: #e0e0e0;
+  --matilha-neutral-400: #c2c2c2;
+  --matilha-neutral-500: #9e9e9e;
+  --matilha-neutral-600: #858585;
+  --matilha-neutral-700: #595959;
+  --matilha-neutral-800: #323232;
+  --matilha-neutral-900: #191919;
+  --matilha-neutral-1000: #000000;
+
+  /* Brand Primary */
+  --matilha-primary-100: #8aa8ef;
+  --matilha-primary-200: #5381e9;
+  --matilha-primary-300: #2b63e3;
+  --matilha-primary-400: #204bac;
+  --matilha-primary-500: #193880;
+
+  /* Brand Secondary */
+  --matilha-secondary-100: #d5c2ff;
+  --matilha-secondary-200: #ac85ff;
+  --matilha-secondary-300: #8247ff;
+  --matilha-secondary-400: #631aff;
+  --matilha-secondary-500: #4208bf;
+
+  /* System */
+  --matilha-success-100: #93d2ad;
+  --matilha-success-200: #5cba83;
+  --matilha-success-300: #478f65;
+  --matilha-warning-100: #ffe680;
+  --matilha-warning-200: #ffd83c;
+  --matilha-warning-300: #d5b120;
+  --matilha-danger-100: #f68684;
+  --matilha-danger-200: #e94c49;
+  --matilha-danger-300: #bf2a27;
+
+  /* Alpha */
+  --matilha-alpha-light-100: rgba(255, 255, 255, 0.3);
+  --matilha-alpha-light-200: rgba(255, 255, 255, 0.56);
+  --matilha-alpha-light-300: rgba(255, 255, 255, 0.8);
+  --matilha-alpha-dark-100: rgba(0, 0, 0, 0.3);
+  --matilha-alpha-dark-200: rgba(0, 0, 0, 0.56);
+  --matilha-alpha-dark-300: rgba(0, 0, 0, 0.8);
+
+  /* Typography families — brandbook oficial */
+  --matilha-font-brand: "Moderat", system-ui, sans-serif;
+  --matilha-font-display: "Moderat", system-ui, sans-serif;
+  --matilha-font-heading: "Moderat", system-ui, sans-serif;
+  --matilha-font-body: "Roboto Slab", Georgia, serif;
+  --matilha-font-mono: "Roboto Mono", ui-monospace, monospace;
+  --matilha-font-extended: "Moderat Extended", "Moderat", system-ui, sans-serif;
+
+  /* Spacing */
+  --matilha-space-1: 0.25rem;
+  --matilha-space-2: 0.5rem;
+  --matilha-space-3: 0.75rem;
+  --matilha-space-4: 1rem;
+  --matilha-space-5: 1.5rem;
+  --matilha-space-6: 2rem;
+  --matilha-space-7: 2.5rem;
+  --matilha-space-8: 3.5rem;
+
+  /* Radii */
+  --matilha-radius-xs: 2px;
+  --matilha-radius-sm: 4px;
+  --matilha-radius-md: 6px;
+  --matilha-radius-lg: 8px;
+  --matilha-radius-pill: 32px;
+  --matilha-radius-full: 9999px;
+
+  /* Shadows */
+  --matilha-shadow-100: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+  --matilha-shadow-200: 0 2px 4px -2px rgba(16, 24, 40, 0.06), 0 4px 8px -2px rgba(16, 24, 40, 0.1);
+  --matilha-shadow-300: 0 4px 6px -2px rgba(16, 24, 40, 0.05), 0 12px 16px -4px rgba(16, 24, 40, 0.1);
+  --matilha-shadow-400: 0 8px 8px -4px rgba(16, 24, 40, 0.04), 0 20px 24px -4px rgba(16, 24, 40, 0.1);
+  --matilha-shadow-500: 0 32px 64px -12px rgba(16, 24, 39, 0.2);
+
+  /* Interação padrão — identidade Matilha (amarelo) */
+  --matilha-interactive: var(--matilha-brand-yellow);
+  --matilha-interactive-hover: var(--matilha-brand-yellow-hover);
+  --matilha-interactive-active: var(--matilha-brand-yellow-active);
+  --matilha-interactive-muted: var(--matilha-brand-yellow-muted);
+  --matilha-interactive-on: var(--matilha-brand-black);
+
+  /* Focus ring */
+  --matilha-focus-ring: 0 0 0 3px var(--matilha-primary-100);
+  --matilha-focus-ring-brand: 0 0 0 3px rgba(251, 217, 81, 0.45);
+
+  /* Brand — Figma Branding */
+  --matilha-brand-yellow: #fbd951;
+  --matilha-brand-yellow-hover: #f5d033;
+  --matilha-brand-yellow-active: #e8c42e;
+  --matilha-brand-yellow-muted: rgba(251, 217, 81, 0.16);
+  --matilha-brand-green: #a5e6ba;
+  --matilha-brand-dark-orange: #eb6239;
+  --matilha-brand-orange: #fd9c27;
+  --matilha-brand-blue: #3ca8fb;
+  --matilha-brand-purple: #bc83f3;
+  --matilha-brand-purple-alt: #876bdb;
+  --matilha-brand-pink: #fea0fb;
+  --matilha-brand-black: #000000;
+  --matilha-brand-white: #ffffff;
+}

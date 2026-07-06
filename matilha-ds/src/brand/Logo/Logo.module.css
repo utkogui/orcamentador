@@ -1,0 +1,34 @@
+.logo {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.matilha {
+  width: 17.75rem;
+}
+
+.m {
+  width: 2rem;
+  height: 2rem;
+}
+
+.tone-auto {
+  transition: filter 0.2s ease;
+}
+
+:global([data-theme='dark']) .tone-auto {
+  filter: brightness(0) invert(1);
+}
+
+:global([data-theme='dark']) .tone-light {
+  filter: brightness(0) invert(1);
+}
+
+.craftedby {
+  width: 34.6875rem;
+}
+
+.badge {
+  width: 14.0625rem;
+}

@@ -1,0 +1,50 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--matilha-space-2);
+  padding: var(--matilha-space-5);
+  border-radius: var(--matilha-radius-md);
+  border: 2px solid var(--matilha-neutral-300);
+  background: var(--matilha-neutral-100);
+  max-width: 25rem;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--matilha-font-brand);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.28;
+  color: var(--matilha-neutral-1000);
+}
+
+.content {
+  font-family: var(--matilha-font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--matilha-neutral-800);
+}
+
+.info {
+  border-color: var(--matilha-interactive);
+  background: var(--matilha-interactive-muted);
+}
+
+.info .title {
+  color: var(--matilha-brand-black);
+}
+
+.warning {
+  border-color: var(--matilha-warning-200);
+  background: color-mix(in srgb, var(--matilha-warning-100) 40%, white);
+}
+
+.success {
+  border-color: var(--matilha-success-200);
+  background: color-mix(in srgb, var(--matilha-success-100) 40%, white);
+}
+
+.danger {
+  border-color: var(--matilha-danger-200);
+  background: color-mix(in srgb, var(--matilha-danger-100) 30%, white);
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@matilha/design-system",
+  "version": "1.0.0",
+  "figmaSources": [
+    {
+      "name": "UI Kit Styleguide",
+      "fileKey": "JCPqaAjUdsx23SgfkLMCj2",
+      "nodeId": "1535:819",
+      "url": "https://www.figma.com/design/JCPqaAjUdsx23SgfkLMCj2/UI-Kit--base-?node-id=1535-819"
+    },
+    {
+      "name": "Branding",
+      "fileKey": "NdXU8DZIy1CTIABGRPXiI5",
+      "nodeId": "4064:5297",
+      "url": "https://www.figma.com/design/NdXU8DZIy1CTIABGRPXiI5/Branding?node-id=4064-5297"
+    }
+  ],
+  "sections": [
+    { "figma": "Color", "source": "UI Kit", "code": "src/tokens/colors.ts" },
+    { "figma": "Typography", "source": "UI Kit", "code": "src/components/Typography" },
+    { "figma": "Effect", "source": "UI Kit", "code": "src/tokens/shadows.ts" },
+    { "figma": "Icons", "source": "UI Kit", "code": "src/components/Icon/iconRegistry.ts" },
+    { "figma": "Button", "source": "UI Kit", "code": "src/components/Button" },
+    { "figma": "Inputs", "source": "UI Kit", "code": ["src/components/Input", "src/components/TextArea"] },
+    { "figma": "Selection", "source": "UI Kit", "code": ["src/components/Radio", "src/components/Checkbox", "src/components/Switch"] },
+    { "figma": "Utilities", "source": "UI Kit", "code": ["src/components/TipBox", "src/styles/tokens.css"] },
+    { "figma": "colors", "source": "Branding", "code": "src/tokens/brand.ts" },
+    { "figma": "Logos", "source": "Branding", "code": "src/brand/Logo" },
+    { "figma": "Elementos visuais", "source": "Branding", "code": "src/brand/BrandElement" }
+  ],
+  "components": [
+    "Button", "Input", "TextArea", "Radio", "Checkbox", "Switch", "Typography", "TipBox",
+    "Logo", "BrandElement", "Tagline", "Badge", "ColorDots"
+  ]
+}

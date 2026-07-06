@@ -1,0 +1,21 @@
+@import "./tokens.css";
+
+.matilha-brand-display {
+  font-family: var(--matilha-font-brand);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.matilha-brand-tagline {
+  font-family: var(--matilha-font-brand);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.matilha-brand-body {
+  font-family: var(--matilha-font-brand);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+}

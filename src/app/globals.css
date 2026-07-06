@@ -1,29 +1,32 @@
+@import "../../matilha-ds/src/styles/tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 24 10% 10%;
+    /* Fundo claro · texto preto · acento amarelo Matilha */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 24 10% 10%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 24 10% 10%;
-    --primary: 24 95% 53%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 40 15% 92%;
-    --secondary-foreground: 24 10% 10%;
-    --muted: 40 15% 92%;
-    --muted-foreground: 24 5% 45%;
-    --accent: 40 20% 94%;
-    --accent-foreground: 24 10% 10%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 40 10% 88%;
-    --input: 40 10% 88%;
-    --ring: 24 95% 53%;
-    --radius: 0.75rem;
+    --popover-foreground: 0 0% 0%;
+    --primary: 47 96% 65%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 35%;
+    --accent: 47 80% 92%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 47 96% 65%;
+    --radius: 0.5rem;
   }
 
   * {
@@ -31,6 +34,47 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-moderat), var(--matilha-font-brand), system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-moderat), var(--matilha-font-brand), system-ui, sans-serif;
+    font-weight: 700;
+  }
+}
+
+@media print {
+  @page {
+    margin: 16mm;
+    size: A4;
+  }
+
+  body {
+    background: white !important;
+    color: #000000 !important;
+  }
+
+  .no-print,
+  .app-nav {
+    display: none !important;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .screen-only {
+    display: none !important;
+  }
+
+  .client-proposal {
+    box-shadow: none !important;
   }
 }

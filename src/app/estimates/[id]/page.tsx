@@ -8,12 +8,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { EstimateResultSummary } from "@/components/estimate-result-summary";
 import { EstimateStickyPreview } from "@/components/estimate-sticky-preview";
+import { EstimateClientPricePanel } from "@/components/estimate-client-price-panel";
+import { ApplicationStructureSection } from "@/components/application-structure-section";
 import { ProjectFlowSection } from "@/components/project-flow-section";
 import { DisciplineToggleList } from "@/components/discipline-toggle-list";
 import { MultiplierToggleList } from "@/components/multiplier-toggle-list";
 import { prisma } from "@/lib/prisma";
 import { getEstimateCalculation, syncEstimateDisciplines } from "@/lib/estimate-service";
 import { getEstimateProjectFlow } from "@/lib/estimate-project-flow";
+import { parseApplicationFlow } from "@/lib/application-flow/storage";
 import { COMPLEXITY_LABELS, MODULE_LAYER_LABELS } from "@/lib/calculations";
 import {
   addEstimateModule,
@@ -59,7 +62,8 @@ export default async function EstimateDetailPage({ params }: Props) {
     estimateDisciplines.map((ed) => [ed.disciplineId, ed.enabled])
   );
   const result = await getEstimateCalculation(id);
-  const projectFlow = await getEstimateProjectFlow(id);
+  const applicationFlow = parseApplicationFlow(estimate.projectFlowJson);
+  const projectFlow = applicationFlow ? null : await getEstimateProjectFlow(id);
 
   return (
     <div className="space-y-8">
@@ -71,9 +75,11 @@ export default async function EstimateDetailPage({ params }: Props) {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" asChild>
-            <Link href={`/estimates/${id}/result`}>Ver resultado</Link>
-          </Button>
+          {estimate.clientProposalPrice != null && (
+            <Button variant="outline" asChild>
+              <Link href={`/estimates/${id}/result`}>Ver proposta salva</Link>
+            </Button>
+          )}
           <form action={deleteEstimate.bind(null, id)}>
             <Button variant="destructive" type="submit">
               Excluir
@@ -83,6 +89,19 @@ export default async function EstimateDetailPage({ params }: Props) {
       </div>
 
       {result && <EstimateStickyPreview result={result} />}
+
+      {result && (
+        <EstimateClientPricePanel
+          estimateId={id}
+          suggestedPrice={result.suggestedPrice}
+          commercialMin={result.commercialMin}
+          commercialMax={result.commercialMax}
+          savedMode={estimate.clientProposalPriceMode}
+          savedPrice={estimate.clientProposalPrice}
+        />
+      )}
+
+      {applicationFlow && <ApplicationStructureSection flow={applicationFlow} />}
 
       <div className="grid gap-6 xl:grid-cols-2">
         <Card>

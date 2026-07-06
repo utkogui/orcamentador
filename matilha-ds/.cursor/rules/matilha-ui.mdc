@@ -1,0 +1,21 @@
+---
+description: UI via matilha-ds (@matilha/design-system) — leia matilha-ds/MATILHA-UI.md
+globs:
+alwaysApply: true
+---
+
+# Matilha UI
+
+Antes de criar qualquer interface neste projeto:
+
+1. Leia **`matilha-ds/MATILHA-UI.md`** (e `matilha-ds/AGENTS.md` para detalhes técnicos)
+2. Use **apenas** componentes de `@matilha/design-system` (pacote em `matilha-ds/`)
+3. **Proibido** recriar: Button, Input, TextArea, Radio, Checkbox, Switch, Typography, TipBox, Logo, Badge, Tagline, ColorDots, BrandElement
+4. **Proibido** hardcode de cores — use `var(--matilha-*)`
+5. CSS global deve estar importado: `@matilha/design-system/styles/global.css`
+
+```tsx
+import { Button, Input, Typography } from '@matilha/design-system';
+```
+
+Instalação do pacote: `npm install file:./matilha-ds`

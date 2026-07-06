@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--matilha-font-body);
+    color: var(--matilha-neutral-900);
+    background-color: var(--matilha-neutral-100);
+  }
+}

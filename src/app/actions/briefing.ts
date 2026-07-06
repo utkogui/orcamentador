@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { interpretBriefing } from "@/lib/ai/interpret-briefing";
+import { interpretBriefingModules } from "@/lib/ai/interpret-briefing-modules";
 import { previewBriefingEstimate } from "@/lib/ai/preview-briefing";
 import { createEstimateFromBriefing } from "@/lib/ai/create-from-briefing";
 import { resolvedBriefingSchema } from "@/lib/ai/briefing-schema";
@@ -11,7 +11,7 @@ export async function interpretBriefingAction(formData: FormData) {
   const briefing = String(formData.get("briefing") ?? "");
   const instructions = String(formData.get("instructions") ?? "");
 
-  const resolved = await interpretBriefing(briefing, instructions || undefined);
+  const resolved = await interpretBriefingModules(briefing, instructions || undefined);
   const preview = await previewBriefingEstimate(resolved);
 
   return {

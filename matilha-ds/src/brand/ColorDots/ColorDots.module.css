@@ -1,0 +1,12 @@
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dot {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: var(--matilha-radius-xs);
+  flex-shrink: 0;
+}

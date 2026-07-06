@@ -9,7 +9,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-moderat)", "Moderat", "system-ui", "sans-serif"],
+        brand: ["var(--font-moderat)", "Moderat", "system-ui", "sans-serif"],
+      },
       colors: {
+        matilha: {
+          yellow: "var(--matilha-brand-yellow)",
+          "yellow-hover": "var(--matilha-brand-yellow-hover)",
+          "yellow-muted": "var(--matilha-brand-yellow-muted)",
+          black: "var(--matilha-brand-black)",
+          white: "var(--matilha-brand-white)",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -3,7 +3,7 @@
  * Uso: npm run test:briefing-ai
  */
 import { execSync } from "child_process";
-import { interpretBriefing } from "../src/lib/ai/interpret-briefing";
+import { interpretBriefingModules } from "../src/lib/ai/interpret-briefing-modules";
 import { previewBriefingEstimate } from "../src/lib/ai/preview-briefing";
 import { getEstimateCalculation } from "../src/lib/estimate-service";
 import { COMPLEXITY_LABELS, formatCurrency } from "../src/lib/calculations";
@@ -35,7 +35,7 @@ async function main() {
 
   console.log("🤖 Chamando GPT-4o-mini...");
   const start = Date.now();
-  const resolved = await interpretBriefing(
+  const resolved = await interpretBriefingModules(
     briefing,
     "Mapeie como plataforma com reuso entre cadastros. Evite VERY_COMPLEX sem necessidade. Margem 30%."
   );

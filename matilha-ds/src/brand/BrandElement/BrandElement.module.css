@@ -1,0 +1,16 @@
+.element {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  min-height: 3rem;
+  border: 2px dashed var(--matilha-neutral-400);
+  border-radius: var(--matilha-radius-sm);
+  background: var(--matilha-neutral-200);
+}

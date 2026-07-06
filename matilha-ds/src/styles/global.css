@@ -1,0 +1,22 @@
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./typography.css";
+@import "./brand.css";
+@import "./tailwind.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.matilha-focus-ring:focus-visible {
+  outline: none;
+  box-shadow: var(--matilha-focus-ring-brand);
+}
+
+@keyframes matilha-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

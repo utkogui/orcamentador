@@ -1,0 +1,113 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--matilha-space-2);
+  width: 100%;
+  max-width: 24rem;
+}
+
+.label {
+  font-family: var(--matilha-font-brand);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: var(--matilha-neutral-900);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--matilha-space-2);
+  height: 3rem;
+  padding: var(--matilha-space-2) var(--matilha-space-3);
+  background: var(--matilha-neutral-100);
+  border: 2px solid var(--matilha-neutral-300);
+  border-radius: var(--matilha-radius-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field:hover:not(:has(input:disabled)) {
+  border-color: var(--matilha-neutral-400);
+}
+
+.field:focus-within {
+  border-color: var(--matilha-interactive);
+  box-shadow: var(--matilha-focus-ring-brand);
+}
+
+.field.error {
+  border-color: var(--matilha-danger-200);
+}
+
+.field.error:focus-within {
+  box-shadow: 0 0 0 3px var(--matilha-danger-100);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--matilha-font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.2;
+  color: var(--matilha-neutral-900);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--matilha-neutral-600);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  color: var(--matilha-neutral-500);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--matilha-neutral-600);
+}
+
+.helper {
+  display: flex;
+  align-items: center;
+  gap: var(--matilha-space-1);
+  margin: 0;
+  font-family: var(--matilha-font-body);
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--matilha-neutral-800);
+}
+
+.helperError {
+  color: var(--matilha-danger-300);
+}
+
+:global([data-theme='dark']) .label {
+  color: var(--matilha-neutral-100);
+}
+
+:global([data-theme='dark']) .field {
+  background: var(--matilha-neutral-800);
+  border-color: var(--matilha-neutral-700);
+}
+
+:global([data-theme='dark']) .input {
+  color: var(--matilha-neutral-100);
+}
+
+:global([data-theme='dark']) .helper {
+  color: var(--matilha-neutral-400);
+}
+
+.disabled {
+  opacity: 0.5;
+}

@@ -1,0 +1,92 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 1.5rem;
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--matilha-interactive);
+  border-radius: var(--matilha-radius-sm);
+  background: var(--matilha-neutral-100);
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.checkIcon {
+  width: 0.75rem;
+  height: 0.625rem;
+  color: var(--matilha-interactive-on);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.indeterminate {
+  position: absolute;
+  width: 0.625rem;
+  height: 2px;
+  background: var(--matilha-interactive-on);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.input:checked + .control {
+  background: var(--matilha-interactive);
+  border-color: var(--matilha-interactive);
+}
+
+.input:checked + .control .checkIcon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.input:indeterminate + .control {
+  background: var(--matilha-interactive);
+  border-color: var(--matilha-interactive);
+}
+
+.input:indeterminate + .control .indeterminate {
+  opacity: 1;
+}
+
+.input:hover:not(:disabled) + .control {
+  border-color: var(--matilha-interactive-hover);
+}
+
+.input:focus-visible + .control {
+  box-shadow: var(--matilha-focus-ring-brand);
+}
+
+.input:disabled + .control {
+  border-color: var(--matilha-neutral-400);
+  background: var(--matilha-neutral-200);
+}
+
+.input:disabled ~ .label {
+  color: var(--matilha-neutral-500);
+  cursor: not-allowed;
+}
+
+.label {
+  font-family: var(--matilha-font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.2;
+  color: var(--matilha-neutral-800);
+}

@@ -4,7 +4,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Complexity } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { syncEstimateDisciplines, syncEstimateMultipliers, getNextInstanceIndex } from "@/lib/estimate-service";
+import { syncEstimateDisciplines, syncEstimateMultipliers, getNextInstanceIndex, getEstimateCalculation } from "@/lib/estimate-service";
+import {
+  resolveClientProposalPrice,
+  type ClientProposalPriceMode,
+} from "@/lib/client-proposal/client-price";
 import {
   buildDefaultProjectFlow,
   getEstimateProjectFlow,
@@ -113,6 +117,35 @@ export async function updateEstimate(id: string, formData: FormData) {
   revalidatePath(`/estimates/${id}`);
   revalidatePath("/estimates");
   redirect(`/estimates/${id}`);
+}
+
+export async function saveClientProposalPrice(
+  estimateId: string,
+  input: {
+    mode: ClientProposalPriceMode;
+    customPrice?: number | null;
+    redirectToResult?: boolean;
+  }
+) {
+  const result = await getEstimateCalculation(estimateId);
+  if (!result) throw new Error("Estimativa não encontrada");
+
+  const price = resolveClientProposalPrice(input.mode, input.customPrice, result);
+
+  await prisma.estimate.update({
+    where: { id: estimateId },
+    data: {
+      clientProposalPrice: price,
+      clientProposalPriceMode: input.mode,
+    },
+  });
+
+  revalidatePath(`/estimates/${estimateId}`);
+  revalidatePath(`/estimates/${estimateId}/result`);
+
+  if (input.redirectToResult) {
+    redirect(`/estimates/${estimateId}/result`);
+  }
 }
 
 export async function deleteEstimate(id: string) {

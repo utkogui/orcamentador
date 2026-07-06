@@ -1,0 +1,155 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--matilha-space-3);
+  border: 2px solid transparent;
+  border-radius: var(--matilha-radius-sm);
+  cursor: pointer;
+  font-family: var(--matilha-font-brand);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--matilha-focus-ring-brand);
+}
+
+.large {
+  height: 3.5rem;
+  padding: var(--matilha-space-4) var(--matilha-space-5);
+  font-size: 1.125rem;
+  min-width: 14rem;
+}
+
+.medium {
+  height: 2.5rem;
+  padding: var(--matilha-space-2) var(--matilha-space-4);
+  font-size: 1rem;
+  min-width: 11.75rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+/* Primary — identidade Matilha: amarelo + texto preto */
+.primary,
+.brand {
+  background-color: var(--matilha-brand-yellow);
+  color: var(--matilha-brand-black);
+  border-color: var(--matilha-brand-yellow);
+}
+
+.primary:hover:not(:disabled),
+.brand:hover:not(:disabled) {
+  background-color: var(--matilha-brand-yellow-hover);
+  border-color: var(--matilha-brand-yellow-hover);
+}
+
+.primary:active:not(:disabled),
+.brand:active:not(:disabled) {
+  background-color: var(--matilha-brand-yellow-active);
+  border-color: var(--matilha-brand-yellow-active);
+}
+
+/* Secondary — outline amarelo (fundos claros) */
+.secondary {
+  background-color: transparent;
+  color: var(--matilha-brand-black);
+  border-color: var(--matilha-brand-yellow);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: var(--matilha-brand-yellow-muted);
+}
+
+.secondary:active:not(:disabled) {
+  background-color: rgba(251, 217, 81, 0.28);
+}
+
+:global([data-theme='dark']) .secondary {
+  color: var(--matilha-neutral-100);
+}
+
+:global([data-theme='dark']) .secondary:hover:not(:disabled) {
+  color: var(--matilha-brand-yellow);
+  background-color: rgba(251, 217, 81, 0.12);
+}
+
+/* Secondary inverted — outline branco (fundos escuros / preto) */
+.secondary-inverted,
+.brand-outline {
+  background-color: transparent;
+  color: var(--matilha-brand-white);
+  border-color: var(--matilha-brand-white);
+}
+
+.secondary-inverted:hover:not(:disabled),
+.brand-outline:hover:not(:disabled) {
+  background-color: var(--matilha-alpha-light-100);
+}
+
+.secondary-inverted:active:not(:disabled),
+.brand-outline:active:not(:disabled) {
+  background-color: var(--matilha-alpha-light-200);
+}
+
+/* UI — azul do UI Kit (apps internos, dashboards) */
+.ui {
+  font-family: var(--matilha-font-heading);
+  font-weight: 600;
+  background-color: var(--matilha-primary-300);
+  color: var(--matilha-neutral-100);
+  border-color: var(--matilha-primary-300);
+}
+
+.ui:hover:not(:disabled) {
+  background-color: var(--matilha-primary-400);
+  border-color: var(--matilha-primary-400);
+}
+
+.ui:active:not(:disabled) {
+  background-color: var(--matilha-primary-500);
+  border-color: var(--matilha-primary-500);
+}
+
+.ui:focus-visible {
+  box-shadow: var(--matilha-focus-ring);
+}
+
+.loading {
+  pointer-events: none;
+}
+
+.spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--matilha-radius-full);
+  animation: matilha-spin 0.6s linear infinite;
+}
