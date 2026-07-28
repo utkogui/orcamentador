@@ -124,6 +124,11 @@ export interface EngineeringBlock {
    * Ex.: CRUD 0.05, Marketplace 0.45, OCR 0.60, IA 0.70, ERP 0.80.
    */
   riskFactor: number;
+  /**
+   * IDs de fontes de esforço (`effort-sources`) que ancoram este perfil.
+   * Opcional — também resolvido via blockLinks/categorias no catálogo de fontes.
+   */
+  sourceIds?: string[];
 }
 
 export interface EngineeringCatalog {

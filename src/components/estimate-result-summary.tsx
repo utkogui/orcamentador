@@ -3,6 +3,7 @@ import type { EstimateCalculationResult } from "@/lib/calculations";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { EstimateMetricsBar } from "@/components/estimate-metrics-bar";
+import { EstimateDesignIntelligence } from "@/components/estimate-design-intelligence";
 
 type Props = {
   result: EstimateCalculationResult;
@@ -30,6 +31,8 @@ export function EstimateResultSummary({ result }: Props) {
           </CardContent>
         </Card>
       )}
+
+      <EstimateDesignIntelligence result={result} />
 
       <Card>
         <CardHeader>

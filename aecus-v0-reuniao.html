@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>AECUS: Modo reunião · Versão 0 · Matilha</title>
+ <style>
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Regular.ttf") format("truetype");
+ font-weight: 400; font-style: normal; font-display: swap;
+ }
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Medium.ttf") format("truetype");
+ font-weight: 500; font-style: normal; font-display: swap;
+ }
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Bold.ttf") format("truetype");
+ font-weight: 700; font-style: normal; font-display: swap;
+ }
+:root {
+ --brand-yellow: #FBD951;
+ --brand-black: #000;
+ --brand-white: #fff;
+ --ink: #191919;
+ --muted: #595959;
+ --line: #E0E0E0;
+ --bg: #F2F2F2;
+ --paper: #fff;
+ --soft-yellow: #FFF8DC;
+ --soft-orange: #FDF0EB;
+ --soft-green: #EEF9F2;
+ --zebra: #FAFAFA;
+ --radius: 4px;
+ --font: "Moderat", "Avenir Next", "Segoe UI", sans-serif;
+ --sk: #E6E6E6;
+ --sk2: #F0F0F0;
+ }
+ * { box-sizing: border-box; }
+ html, body { height: 100%; }
+ body {
+ margin: 0; color: var(--ink); background: var(--bg);
+ font-family: var(--font); font-size: 15.5px; line-height: 1.45; overflow: hidden;
+ }
+.deck { height: 100%; display: flex; flex-direction: column; }
+.topbar {
+ flex-shrink: 0; background: var(--brand-black); color: #fff;
+ border-bottom: 4px solid var(--brand-yellow);
+ }
+.topbar-inner {
+ max-width: 1120px; margin: 0 auto; padding: 12px 20px;
+ display: flex; align-items: center; justify-content: space-between; gap: 12px;
+ }
+.logo svg { height: 28px; width: auto; display: block; }
+.logo svg path { fill: #fff; }
+.topbar-meta { text-align: right; font-size: 11px; color: rgba(255,255,255,.7); }
+.topbar-meta strong {
+ display: block; color: var(--brand-yellow); text-transform: uppercase;
+ letter-spacing:.05em; font-size: 10px; margin-bottom: 2px;
+ }
+.progress {
+ flex-shrink: 0; display: flex; gap: 5px; max-width: 1120px; width: 100%;
+ margin: 0 auto; padding: 10px 20px 0;
+ }
+.progress button {
+ flex: 1; height: 4px; border: 0; padding: 0; background: #D0D0D0;
+ border-radius: 2px; cursor: pointer;
+ }
+.progress button.on { background: var(--brand-yellow); }
+.progress button.done { background: var(--brand-black); }
+.stage { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; }
+.slide {
+ display: none; max-width: 1120px; margin: 0 auto;
+ padding: 24px 20px 110px; animation: fade.25s ease;
+ }
+.slide.on { display: block; }
+ @keyframes fade {
+ from { opacity: 0; transform: translateY(5px); }
+ to { opacity: 1; transform: none; }
+ }
+.act {
+ font-size: 11px; font-weight: 700; letter-spacing:.08em;
+ text-transform: uppercase; color: var(--muted); margin: 0 0 8px;
+ }
+.act span {
+ display: inline-block; background: var(--brand-yellow); color: var(--ink);
+ border: 1.5px solid var(--brand-black); padding: 2px 8px; margin-right: 8px;
+ }
+ h1 {
+ font-size: clamp(1.75rem, 3.8vw, 2.5rem); line-height: 1.1;
+ margin: 0 0 10px; letter-spacing: -.02em; max-width: 20ch;
+ }
+ h2 {
+ font-size: clamp(1.4rem, 2.8vw, 1.9rem); line-height: 1.15;
+ margin: 0 0 10px; letter-spacing: -.02em; max-width: 30ch;
+ }
+.lede { margin: 0 0 20px; color: var(--muted); font-size: 1.05rem; max-width: 58ch; }
+.lede strong { color: var(--ink); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+ @media (max-width: 900px) {
+.grid-4,.grid-3 { grid-template-columns: 1fr 1fr; }
+.grid-2 { grid-template-columns: 1fr; }
+ }
+ @media (max-width: 560px) {
+.grid-4,.grid-3 { grid-template-columns: 1fr; }
+ }
+
+.card {
+ border: 1.5px solid var(--brand-black); background: var(--paper);
+ border-radius: var(--radius); padding: 14px 15px;
+ }
+.card h3 {
+ margin: 0 0 8px; font-size:.98rem; display: flex; align-items: center; gap: 8px;
+ }
+.card p { margin: 0 0 8px; font-size: 13.5px; color: var(--muted); }
+.card ul { margin: 0; padding-left: 1.1rem; font-size: 13px; color: var(--muted); }
+.card li { margin: 3px 0; }
+.num {
+ width: 22px; height: 22px; background: var(--brand-yellow);
+ border: 1.5px solid var(--brand-black); display: inline-flex;
+ align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0;
+ }
+.tag {
+ display: inline-block; font-size: 10px; font-weight: 700; letter-spacing:.04em;
+ text-transform: uppercase; border: 1.5px solid var(--brand-black);
+ padding: 2px 6px; background: var(--soft-yellow); margin-bottom: 8px;
+ }
+.tag.free { background: var(--soft-green); }
+.tag.out { background: var(--soft-orange); }
+
+.pain {
+ border: 1.5px solid var(--brand-black); background: var(--paper);
+ border-radius: var(--radius); padding: 12px 14px;
+ }
+.pain.k { font-size: 11px; font-weight: 700; letter-spacing:.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.pain p { margin: 0; font-size: 14px; }
+
+.why-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 12px;
+ margin-top: 4px;
+ }
+ @media (max-width: 800px) {
+.why-grid { grid-template-columns: 1fr; }
+ }
+.why-card {
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ background: var(--paper);
+ padding: 16px 16px 14px;
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ min-height: 100%;
+ }
+.why-card.highlight {
+ background: var(--brand-yellow);
+ }
+.why-card.q {
+ margin: 0;
+ font-size: 11px;
+ font-weight: 700;
+ letter-spacing: 0.06em;
+ text-transform: uppercase;
+ }
+.why-card h3 {
+ margin: 0;
+ font-size: 1.05rem;
+ line-height: 1.25;
+ letter-spacing: -0.01em;
+ }
+.why-card p {
+ margin: 0;
+ font-size: 13.5px;
+ color: var(--muted);
+ flex: 1;
+ }
+.why-card.highlight p { color: var(--ink); }
+.why-card ul {
+ margin: 0;
+ padding-left: 1.05rem;
+ font-size: 13px;
+ color: var(--muted);
+ }
+.why-card.highlight ul { color: var(--ink); }
+.why-card li { margin: 3px 0; }
+
+.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+ @media (max-width: 720px) {.outcomes { grid-template-columns: 1fr; } }
+.outcome {
+ border: 1.5px solid var(--brand-black); border-radius: var(--radius);
+ padding: 12px 14px; background: var(--paper);
+ }
+.outcome.now { background: var(--brand-yellow); }
+.outcome.t { font-size: 11px; font-weight: 700; letter-spacing:.05em; text-transform: uppercase; margin-bottom: 4px; }
+.outcome p { margin: 0; font-size: 14px; }
+
+.promise {
+ margin-top: 14px; background: var(--brand-black); color: #fff;
+ border-radius: var(--radius); padding: 14px 16px; border-bottom: 4px solid var(--brand-yellow);
+ }
+.promise strong {
+ display: block; color: var(--brand-yellow); font-size: 11px;
+ letter-spacing:.06em; text-transform: uppercase; margin-bottom: 6px;
+ }
+.promise p { margin: 0; font-size: 1.02rem; max-width: 54ch; }
+
+.layer {
+ border: 1.5px solid var(--brand-black); border-radius: var(--radius);
+ background: var(--paper); overflow: hidden; margin-bottom: 10px;
+ }
+.layer-h {
+ display: flex; justify-content: space-between; align-items: center; gap: 10px;
+ padding: 10px 14px; background: var(--zebra); border-bottom: 1px solid var(--line);
+ flex-wrap: wrap;
+ }
+.layer-h h3 { margin: 0; font-size:.95rem; }
+.layer-b { padding: 12px 14px; }
+.layer.v0.layer-h { background: var(--soft-yellow); }
+
+.func-grid {
+ display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+ }
+ @media (max-width: 900px) {.func-grid { grid-template-columns: 1fr 1fr; } }
+.func {
+ border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; background: var(--zebra);
+ }
+.func.fn { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+.func h4 { margin: 0 0 6px; font-size:.92rem; }
+.func ul { margin: 0; padding-left: 1rem; font-size: 12.5px; color: var(--muted); }
+.func li { margin: 2px 0; }
+
+.screen-wrap {
+ display: grid; grid-template-columns: 1.15fr.85fr; gap: 16px; align-items: start;
+ }
+ @media (max-width: 860px) {.screen-wrap { grid-template-columns: 1fr; } }
+.screen-stage {
+ background: #D4D4D4; border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius); padding: 14px; min-height: 400px;
+ }
+.screen-slide { display: none; }
+.screen-slide.on { display: block; }
+.browser {
+ background: var(--paper); border: 1.5px solid var(--brand-black);
+ border-radius: 8px; overflow: hidden; max-width: 560px; margin: 0 auto;
+ box-shadow: 0 6px 0 rgba(0,0,0,.05);
+ }
+.browser-bar {
+ display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+ background: #F5F5F5; border-bottom: 1px solid var(--line);
+ }
+.dots { display: flex; gap: 4px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: #CFCFCF; border: 1px solid #999; display: block; }
+.url {
+ flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 3px;
+ padding: 4px 8px; font-size: 11px; color: var(--muted);
+ }
+.wf-body { min-height: 300px; }
+.wf-auth { padding: 40px 22px; max-width: 320px; margin: 0 auto; text-align: center; }
+.wf-card { text-align: left; border: 1px solid var(--line); padding: 12px; border-radius: var(--radius); margin-top: 8px; }
+.wf-pad { padding: 12px 14px 18px; }
+.wf-nav { display: flex; border-bottom: 1.5px solid var(--brand-black); background: var(--zebra); }
+.wf-nav span {
+ flex: 1; text-align: center; padding: 8px 2px; font-size: 10px; font-weight: 700;
+ color: var(--muted); border-right: 1px solid var(--line);
+ }
+.wf-nav span:last-child { border-right: 0; }
+.wf-nav span.on { background: var(--brand-yellow); color: var(--ink); }
+.wf-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+.wf-row { display: flex; gap: 8px; }
+.wf-row > * { flex: 1; }
+.wf-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.wf-grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.wf-chip {
+ display: inline-block; font-size: 10px; font-weight: 700; letter-spacing:.05em;
+ text-transform: uppercase; border: 1.5px solid var(--brand-black);
+ background: var(--soft-yellow); padding: 2px 6px; margin-bottom: 6px;
+ }
+ @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity:.55; } }
+.sk {
+ background: linear-gradient(90deg, var(--sk), var(--sk2), var(--sk));
+ background-size: 200% 100%; animation: pulse 1.4s ease-in-out infinite;
+ border-radius: 3px; margin: 6px 0;
+ }
+.sk-block {
+ background: linear-gradient(90deg, var(--sk), var(--sk2), var(--sk));
+ background-size: 200% 100%; animation: pulse 1.4s ease-in-out infinite;
+ border: 1px dashed #C8C8C8; border-radius: var(--radius); margin: 8px 0;
+ display: flex; align-items: center; justify-content: center;
+ }
+.sk-label {
+ font-size: 10px; font-weight: 700; letter-spacing:.04em; text-transform: uppercase;
+ color: #7A7A7A; background: rgba(255,255,255,.65); padding: 2px 5px;
+ }
+.sk-logo {
+ width: 64px; height: 24px; background: var(--sk); border: 1.5px solid var(--brand-black);
+ margin: 0 auto 10px; animation: pulse 1.4s ease-in-out infinite;
+ }
+
+.screen-side {
+ border: 1.5px solid var(--brand-black); background: var(--brand-black);
+ color: #fff; border-radius: var(--radius); padding: 16px;
+ border-bottom: 4px solid var(--brand-yellow); position: sticky; top: 8px;
+ }
+.screen-side.eyebrow {
+ color: var(--brand-yellow); font-size: 11px; font-weight: 700;
+ letter-spacing:.06em; text-transform: uppercase; margin: 0 0 6px;
+ }
+.screen-side h3 { margin: 0 0 6px; font-size: 1.15rem; }
+.screen-side.role {
+ display: inline-block; font-size: 11px; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+ padding: 2px 7px; border-radius: 2px; margin-bottom: 10px; color: rgba(255,255,255,.85);
+ }
+.screen-side.do { margin: 0 0 10px; font-size: 14.5px; color: rgba(255,255,255,.9); }
+.screen-side.see {
+ margin: 0 0 14px; font-size: 13px; color: rgba(255,255,255,.62);
+ padding-top: 10px; border-top: 1px solid rgba(255,255,255,.15);
+ }
+.journey-list {
+ list-style: none; margin: 0; padding: 0; max-height: 220px; overflow: auto;
+ }
+.journey-list li {
+ padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.12);
+ font-size: 12.5px; color: rgba(255,255,255,.45); cursor: pointer;
+ }
+.journey-list li.on { color: #fff; font-weight: 700; }
+.journey-list.jr {
+ display: inline-block; min-width: 64px; font-size: 10px; letter-spacing:.04em;
+ text-transform: uppercase; color: var(--brand-yellow); margin-right: 6px;
+ }
+.dots-nav { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+.dot {
+ width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--brand-black);
+ background: var(--paper); padding: 0; cursor: pointer;
+ }
+.dot.on { background: var(--brand-yellow); }
+
+.hero-card {
+ border: 1.5px solid var(--brand-black); background: var(--brand-yellow);
+ border-radius: var(--radius); padding: 16px;
+ }
+.hero-card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.hero-card ul { margin: 0; padding-left: 1.1rem; font-size: 13.5px; }
+.hero-card li { margin: 4px 0; }
+.warn {
+ border: 1.5px solid var(--brand-black); background: var(--soft-orange);
+ border-radius: var(--radius); padding: 14px 16px; font-size: 14px;
+ }
+.warn ul { margin: 8px 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 13.5px; }
+
+.price-hero {
+ border: 1.5px solid var(--brand-black); background: var(--brand-black); color: #fff;
+ border-radius: var(--radius); padding: 22px 20px; border-bottom: 4px solid var(--brand-yellow);
+ display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;
+ }
+.price-hero.label { color: var(--brand-yellow); font-size: 12px; font-weight: 700; letter-spacing:.06em; text-transform: uppercase; }
+.price-hero.n { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; margin: 6px 0 0; letter-spacing: -.02em; }
+.price-hero.sub { color: rgba(255,255,255,.65); font-size: 13px; margin: 0; max-width: 28ch; text-align: right; }
+
+.budget-mini {
+ margin-top: 12px; border: 1.5px solid var(--brand-black); border-radius: var(--radius);
+ overflow: hidden; background: var(--paper);
+ }
+.budget-mini table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.budget-mini th,.budget-mini td { padding: 9px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+.budget-mini th { background: var(--zebra); font-size: 11px; text-transform: uppercase; letter-spacing:.04em; }
+.budget-mini tr:last-child td { border-bottom: 0; }
+.budget-mini.money { font-weight: 700; white-space: nowrap; }
+.budget-mini.absorbed { color: var(--muted); }
+.budget-mini tfoot td { background: var(--soft-yellow); font-weight: 700; }
+
+.evo-track {
+ display: flex; gap: 0; overflow-x: auto; padding: 4px 0 8px; -webkit-overflow-scrolling: touch;
+ }
+.evo-node { flex: 0 0 150px; }
+.evo-card {
+ border: 1.5px solid var(--brand-black); border-radius: var(--radius);
+ padding: 12px; background: var(--paper); height: 100%;
+ display: flex; flex-direction: column; gap: 6px;
+ }
+.evo-card.now { background: var(--brand-yellow); }
+.evo-card.name { margin: 0; font-size:.92rem; font-weight: 700; }
+.evo-card.goal { margin: 0; font-size: 12px; color: var(--muted); flex: 1; }
+.evo-card.approx {
+ font-size: 12px; font-weight: 700; padding-top: 6px; border-top: 1px dashed var(--line);
+ }
+.evo-arrow {
+ flex: 0 0 24px; display: flex; align-items: center; justify-content: center;
+ color: var(--muted); font-weight: 700; font-size: 1.1rem;
+ }
+
+.check ul { margin: 0; padding-left: 1.2rem; }
+.check li { margin: 8px 0; font-size: 1rem; }
+.links { margin-top: 14px; font-size: 13px; color: var(--muted); }
+.links a { color: var(--ink); font-weight: 700; }
+
+.footer-bar {
+ flex-shrink: 0; background: var(--paper); border-top: 1.5px solid var(--brand-black);
+ padding: 12px 20px;
+ }
+.footer-inner {
+ max-width: 1120px; margin: 0 auto; display: flex; align-items: center;
+ justify-content: space-between; gap: 12px; flex-wrap: wrap;
+ }
+.step-label { font-size: 13px; font-weight: 700; color: var(--muted); }
+.step-label b { color: var(--ink); }
+.keys { font-size: 11px; color: var(--muted); }
+.nav-btns { display: flex; gap: 8px; }
+.nav-btns button {
+ border: 1.5px solid var(--brand-black); background: var(--paper);
+ font-family: inherit; font-weight: 700; font-size: 14px;
+ padding: 10px 16px; border-radius: var(--radius); cursor: pointer;
+ }
+.nav-btns button.primary { background: var(--brand-yellow); }
+.nav-btns button:disabled { opacity:.35; cursor: default; }
+ </style>
+</head>
+<body>
+ <div class="deck">
+ <div class="topbar">
+ <div class="topbar-inner">
+ <a class="logo" href="#" aria-label="Matilha"><svg width="142" height="64" viewBox="0 0 284 128" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+ <path d="M150.228 52.4676C149.129 52.4676 148.183 52.0749 147.39 51.2895C146.597 50.4887 146.2 49.5569 146.2 48.4943C146.2 47.3701 146.589 46.4229 147.367 45.6529C148.16 44.8675 149.114 44.4748 150.228 44.4748C151.311 44.4748 152.242 44.8675 153.02 45.6529C153.798 46.4229 154.187 47.3701 154.187 48.4943C154.187 49.5569 153.79 50.4887 152.997 51.2895C152.219 52.0749 151.296 52.4676 150.228 52.4676Z"/>
+ <path d="M168.392 44.4793H161.249V82.1861H168.392V44.4793Z"/>
+ <path d="M84.9555 44.9979V82.1861H77.7859V59.5205H77.3311L70.1615 79.5409H61.3332L54.2171 59.5205H53.789V82.1861H46.5926V44.9979H55.9827L65.346 71.346H66.2289L75.5922 44.9979H84.9555Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M115.051 73.2651C115.051 74.7346 115.309 75.7374 115.827 76.2733C116.344 76.8093 117.164 77.0772 118.288 77.0772V82.1861H116.629C113.33 82.1861 111.216 81.0536 110.289 78.7888C108.47 81.2265 105.581 82.4454 101.621 82.4454C98.5357 82.4454 96.0745 81.7366 94.2375 80.3189C92.4005 78.8839 91.482 76.9735 91.482 74.5877C91.482 73.6886 91.6247 72.8588 91.9101 72.0981C92.1954 71.3374 92.5611 70.6804 93.0069 70.1272C93.4528 69.5566 94.0235 69.038 94.7191 68.5712C95.4146 68.1044 96.1013 67.7154 96.779 67.4042C97.4746 67.093 98.2771 66.8164 99.1867 66.5743C100.114 66.315 100.935 66.1162 101.648 65.9779C102.379 65.8395 103.217 65.7272 104.163 65.6407C105.108 65.537 105.857 65.4678 106.41 65.4333C106.981 65.3814 107.649 65.3382 108.416 65.3036C108.327 62.5028 106.775 61.1024 103.761 61.1024C103.03 61.1024 102.388 61.1802 101.835 61.3358C101.3 61.4914 100.89 61.6816 100.605 61.9064C100.337 62.1311 100.123 62.3559 99.9625 62.5806C99.802 62.8054 99.7039 62.9955 99.6683 63.1511L99.6148 63.3845H92.7662C93.0158 60.9641 94.1127 59.0278 96.0567 57.5755C98.0185 56.106 100.64 55.3712 103.922 55.3712C107.364 55.3712 110.075 56.2529 112.055 58.0164C114.052 59.7798 115.051 62.5115 115.051 66.2113V73.2651ZM98.3842 74.3802C98.3842 75.4694 98.9816 76.2387 100.177 76.6882C101.461 77.1723 102.861 77.1205 104.377 76.5326C106.125 75.8584 107.311 74.6655 107.935 72.9539C108.149 72.366 108.274 71.7264 108.309 71.0348V70.4902C107.453 70.5767 106.74 70.6545 106.169 70.7236C105.616 70.7928 104.956 70.8879 104.189 71.0089C103.423 71.1299 102.789 71.2509 102.29 71.3719C101.808 71.493 101.291 71.6572 100.738 71.8647C100.203 72.0548 99.7753 72.271 99.4542 72.513C99.1511 72.7378 98.8924 73.0144 98.6784 73.3429C98.4822 73.6541 98.3842 73.9998 98.3842 74.3802Z"/>
+ <path d="M141.963 80.2151L139.314 75.4953L138.886 75.7287C138.601 75.8843 138.191 76.0399 137.656 76.1955C137.121 76.3338 136.612 76.403 136.131 76.403C135.132 76.403 134.294 76.1004 133.616 75.4953C132.956 74.8729 132.626 74.1122 132.626 73.2132V61.3099H139.528V55.6305H132.626V47.6691H126.018V52.9854C126.018 53.9362 125.733 54.6969 125.162 55.2675C124.591 55.8207 123.833 56.0973 122.888 56.0973H120.133V61.3099H125.617V73.6281C125.617 76.2387 126.571 78.3652 128.479 80.0077C130.388 81.6328 132.706 82.4454 135.435 82.4454C136.22 82.4454 136.987 82.3589 137.736 82.1861C138.485 82.0305 139.091 81.8576 139.555 81.6674C140.019 81.4772 140.456 81.2525 140.866 80.9931C141.294 80.7338 141.561 80.5523 141.668 80.4485C141.793 80.3448 141.891 80.267 141.963 80.2151Z"/>
+ <path d="M153.626 55.6305V82.1861H146.59V55.6305H153.626Z"/>
+ <path d="M192.147 55.3712C195.571 55.3712 198.166 56.495 199.932 58.7425C201.715 60.9728 202.607 63.9896 202.607 67.7932V82.1861H195.277V68.8046C195.259 68.4069 195.259 67.9834 195.277 67.5338C195.295 67.0843 195.268 66.6262 195.197 66.1594C195.143 65.6926 195.063 65.2344 194.956 64.7849C194.867 64.3354 194.706 63.9118 194.474 63.5142C194.26 63.1166 193.993 62.7708 193.672 62.4769C193.369 62.183 192.967 61.9496 192.468 61.7767C191.969 61.6038 191.407 61.5174 190.783 61.5174C190.23 61.5174 189.668 61.5779 189.097 61.6989C188.544 61.8026 187.929 62.036 187.251 62.3991C186.591 62.7621 186.003 63.2376 185.486 63.8254C184.986 64.3959 184.567 65.1912 184.228 66.2113C183.889 67.2313 183.72 68.3983 183.72 69.7122V82.1861H176.363V44.4793H183.319V58.3794H184.255C186.235 56.3739 188.865 55.3712 192.147 55.3712Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M233.826 76.2733C233.309 75.7374 233.05 74.7346 233.05 73.2651V66.2113C233.05 62.5115 232.051 59.7798 230.054 58.0164C228.074 56.2529 225.363 55.3712 221.921 55.3712C218.64 55.3712 216.018 56.106 214.056 57.5755C212.112 59.0278 211.015 60.9641 210.765 63.3845H217.614L217.668 63.1511C217.703 62.9955 217.801 62.8054 217.962 62.5806C218.122 62.3559 218.336 62.1311 218.604 61.9064C218.889 61.6816 219.299 61.4914 219.835 61.3358C220.387 61.1802 221.029 61.1024 221.761 61.1024C224.775 61.1024 226.326 62.5028 226.416 65.3036C225.649 65.3382 224.98 65.3814 224.409 65.4333C223.856 65.4678 223.107 65.537 222.162 65.6407C221.217 65.7272 220.379 65.8395 219.647 65.9779C218.934 66.1162 218.113 66.315 217.186 66.5743C216.276 66.8164 215.474 67.093 214.778 67.4042C214.101 67.7154 213.414 68.1044 212.718 68.5712C212.023 69.038 211.452 69.5566 211.006 70.1272C210.56 70.6804 210.195 71.3374 209.909 72.0981C209.624 72.8588 209.481 73.6886 209.481 74.5877C209.481 76.9735 210.4 78.8839 212.237 80.3189C214.074 81.7366 216.535 82.4454 219.621 82.4454C223.58 82.4454 226.469 81.2265 228.288 78.7888C229.216 81.0536 231.329 82.1861 234.629 82.1861H236.287V77.0772C235.164 77.0772 234.343 76.8093 233.826 76.2733ZM218.176 76.6882C216.981 76.2387 216.383 75.4694 216.383 74.3802C216.383 73.9998 216.482 73.6541 216.678 73.3429C216.892 73.0144 217.15 72.7378 217.454 72.513C217.775 72.271 218.203 72.0548 218.738 71.8647C219.291 71.6572 219.808 71.493 220.289 71.3719C220.789 71.2509 221.422 71.1299 222.189 71.0089C222.956 70.8879 223.616 70.7928 224.168 70.7236C224.739 70.6545 225.453 70.5767 226.309 70.4902V71.0348C226.273 71.7264 226.148 72.366 225.934 72.9539C225.31 74.6655 224.124 75.8584 222.376 76.5326C220.86 77.1205 219.46 77.1723 218.176 76.6882Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H284V128H0V0ZM7.58779 7.59322V120.407H276.412V7.59322H7.58779Z"/>
+ </svg></a>
+ <div class="topbar-meta">
+ <strong>Modo reunião</strong>
+ AECUS · Versão 0 · Julho 2026
+ </div>
+ </div>
+ </div>
+ <div class="progress" id="progress" aria-label="Progresso"></div>
+
+ <div class="stage">
+ <!-- 0 -->
+ <section class="slide on" data-step="0">
+ <p class="act"><span>1 / 7</span> Por que a Versão 0</p>
+ <h1>Por que começamos pela Versão 0</h1>
+ <p class="lede">
+ Não estamos pedindo para a AECUS comprar “a plataforma completa” de uma vez.
+ Estamos propondo a <strong>única fatia que já muda a operação</strong> e que torna tudo o que vem depois mais barato, rápido e seguro.
+ </p>
+
+ <div class="why-grid">
+ <div class="why-card">
+ <p class="q">Por que oferecemos a V0</p>
+ <h3>Porque sem ela não existe plataforma</h3>
+ <p>
+ Sem acesso, turmas, conteúdo e progresso, o resto (avaliações, app, EAD) não tem onde se apoiar.
+ A Versão 0 é o chão: o ambiente próprio onde a escola passa a operar de verdade.
+ </p>
+ <ul>
+ <li>Publicar, matricular, consumir e acompanhar</li>
+ <li>Quatro perfis: admin, professor, aluno e família</li>
+ <li>Web agora; app depois, na mesma base</li>
+ </ul>
+ </div>
+
+ <div class="why-card highlight">
+ <p class="q">Por que é a mais valiosa</p>
+ <h3>Porque é a que gera valor no dia 1</h3>
+ <p>
+ É a peça com melhor relação entre investimento e impacto:
+ a escola deixa de improvisar entre ferramentas e ganha um lugar único, inclusive para os pais.
+ </p>
+ <ul>
+ <li>Resolve a dor central (operação fragmentada)</li>
+ <li>Preço fechável, escopo defensável</li>
+ <li>Tudo o que vier depois reaproveita esta base</li>
+ </ul>
+ </div>
+
+ <div class="why-card">
+ <p class="q">Por que agora</p>
+ <h3>Porque é o momento de fundar, não de enfeitar</h3>
+ <p>
+ Contratar avaliações, mobile ou checkout antes da base é caro e arriscado:
+ se a jornada acadêmica não estiver no ar, o resto não entrega valor.
+ </p>
+ <ul>
+ <li>Sobe rápido o que a escola já precisa usar</li>
+ <li>Reduz risco de escopo e de expectativa</li>
+ <li>Expansões entram no ritmo da AECUS</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="promise" style="margin-top:16px">
+ <strong>Em uma frase</strong>
+ <p>
+ A Versão 0 é o começo certo: o máximo de valor operacional com o mínimo de risco, para a AECUS ter plataforma própria agora e crescer depois sem recomeçar.
+ </p>
+ </div>
+ </section>
+
+ <!-- 1 -->
+ <section class="slide" data-step="1">
+ <p class="act"><span>2 / 7</span> Valor</p>
+ <h2>O que a AECUS consegue fazer na Versão 0</h2>
+ <p class="lede">Resultado prático do investimento: o “ouro” antes de preço e telas.</p>
+ <div class="grid-4">
+ <div class="card">
+ <h3><span class="num">1</span> Administrativo</h3>
+ <p>A escola passa a existir na plataforma.</p>
+ <ul>
+ <li>Cadastrar alunos, responsáveis e professores</li>
+ <li>Criar curso, turma e matrícula</li>
+ <li>Vincular pais ao aluno</li>
+ <li>Organizar a estrutura acadêmica inicial</li>
+ </ul>
+ </div>
+ <div class="card">
+ <h3><span class="num">2</span> Professor</h3>
+ <p>Publica e acompanha no mesmo lugar.</p>
+ <ul>
+ <li>Montar aulas com vídeo e materiais</li>
+ <li>Definir a sequência da trilha</li>
+ <li>Publicar ou manter em rascunho</li>
+ <li>Ver quem avançou em cada turma</li>
+ </ul>
+ </div>
+ <div class="card">
+ <h3><span class="num">3</span> Aluno</h3>
+ <p>Estuda sem se perder.</p>
+ <ul>
+ <li>Encontrar a própria trilha</li>
+ <li>Abrir a próxima aula</li>
+ <li>Consumir vídeo e arquivos no ambiente AECUS</li>
+ <li>Acompanhar o próprio progresso</li>
+ </ul>
+ </div>
+ <div class="card">
+ <h3><span class="num">4</span> Pais / responsável</h3>
+ <p>Acompanha com visão filtrada.</p>
+ <ul>
+ <li>Ver trilha e progresso do filho</li>
+ <li>Consultar materiais relevantes</li>
+ <li>Sem as ações exclusivas do aluno</li>
+ <li>Mesma base de produto, não um segundo sistema</li>
+ </ul>
+ </div>
+ </div>
+ <div class="promise">
+ <strong>Promessa da Versão 0</strong>
+ <p>A AECUS opera conteúdo e trilha em plataforma própria, e já sai do dia 1 com valor real para administrativo, professor, aluno e família.</p>
+ </div>
+ </section>
+
+ <!-- 2 composição -->
+ <section class="slide" data-step="2">
+ <p class="act"><span>3 / 7</span> Composição</p>
+ <h2>O que compõe a Versão 0</h2>
+ <p class="lede">Três camadas: o que absorvemos, o básico de acesso e as funcionalidades que geram valor no lançamento.</p>
+
+ <div class="layer">
+ <div class="layer-h">
+ <h3><span class="tag free">Absorvido</span> Fundação técnica</h3>
+ <span style="font-size:12px;color:var(--muted);font-weight:700">Sem custo adicional</span>
+ </div>
+ <div class="layer-b" style="font-size:13.5px;color:var(--muted)">
+ Ambientes, deploy, banco, armazenamento, monitoramento básico, HTTPS/backups e testes dos fluxos críticos, base reutilizável para as expansões.
+ </div>
+ </div>
+
+ <div class="layer">
+ <div class="layer-h">
+ <h3><span class="tag">Inegociável</span> Conta e acesso</h3>
+ <span style="font-size:12px;color:var(--muted);font-weight:700">Incluído</span>
+ </div>
+ <div class="layer-b" style="font-size:13.5px;color:var(--muted)">
+ Login, logout, sessão, perfil, recuperação de senha e papéis (aluno, responsável, professor, admin) com vínculo familiar.
+ </div>
+ </div>
+
+ <div class="layer v0">
+ <div class="layer-h">
+ <h3><span class="tag">Versão 0</span> Funcionalidades de valor</h3>
+ <span style="font-size:12px;font-weight:700">Núcleo cobrado</span>
+ </div>
+ <div class="layer-b">
+ <div class="func-grid">
+ <div class="func">
+ <div class="fn">F1</div>
+ <h4>Gestão acadêmica</h4>
+ <ul>
+ <li>Cursos, módulos, aulas</li>
+ <li>Turmas e matrículas</li>
+ <li>Trilha ordenada</li>
+ </ul>
+ </div>
+ <div class="func">
+ <div class="fn">F2</div>
+ <h4>Conteúdo e consumo</h4>
+ <ul>
+ <li>Publicação com Vimeo</li>
+ <li>PDF, áudio, links</li>
+ <li>Rascunho / publicado</li>
+ </ul>
+ </div>
+ <div class="func">
+ <div class="fn">F3</div>
+ <h4>Progresso</h4>
+ <ul>
+ <li>Conclusão de aula</li>
+ <li>Home com próximos passos</li>
+ <li>Visões por perfil</li>
+ </ul>
+ </div>
+ <div class="func">
+ <div class="fn">F4</div>
+ <h4>Portais web</h4>
+ <ul>
+ <li>Aluno e pais</li>
+ <li>Professor</li>
+ <li>Administrativo</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- 3 telas -->
+ <section class="slide" data-step="3">
+ <p class="act"><span>4 / 7</span> Prova visual</p>
+ <h2>Como isso aparece na tela</h2>
+ <p class="lede">Wireframes em baixa fidelidade (web). Não é o design final, é a estrutura do produto.</p>
+ <div class="screen-wrap">
+ <div>
+ <div class="screen-stage">
+ <div class="screen-slide on" data-si="0">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/entrar</div>
+ </div>
+ 
+ <div class="wf-auth">
+ <div class="sk-logo"></div>
+ <div class="sk" style="width:42%;height:10px"></div>
+ <div class="wf-card">
+ <div class="sk-block" style="min-height:34px"><span class="sk-label">E-mail</span></div><div class="sk-block" style="min-height:34px"><span class="sk-label">Senha</span></div><div class="sk-block" style="min-height:38px"><span class="sk-label">Entrar</span></div>
+ <div class="sk" style="width:55%;height:8px"></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="1">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/admin</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-nav"><span class="on">Painel</span><span>Pessoas</span><span>Cursos</span><span>Turmas</span></div>
+ <div class="wf-pad">
+ <div class="sk" style="width:36%;height:12px"></div>
+ <div class="wf-grid3"><div class="sk-block" style="min-height:60px"><span class="sk-label">Pessoas</span></div><div class="sk-block" style="min-height:60px"><span class="sk-label">Turmas</span></div><div class="sk-block" style="min-height:60px"><span class="sk-label">Cursos</span></div></div>
+ <div class="sk-block" style="min-height:72px"><span class="sk-label">Atividade recente</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="2">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/admin/pessoas</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-nav"><span>Painel</span><span class="on">Pessoas</span><span>Cursos</span><span>Turmas</span></div>
+ <div class="wf-pad">
+ <div class="wf-top"><div class="sk" style="width:40%;height:12px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Novo</span></div></div>
+ <div class="sk-block" style="min-height:28px"><span class="sk-label">Busca e filtros</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Aluno · ativo</span></div><div class="sk-block" style="min-height:36px"><span class="sk-label">Responsável · vinculado</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Professor · ativo</span></div><div class="sk-block" style="min-height:36px"><span class="sk-label">Admin</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="3">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/admin/turmas</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-nav"><span>Painel</span><span>Pessoas</span><span>Cursos</span><span class="on">Turmas</span></div>
+ <div class="wf-pad">
+ <div class="sk" style="width:44%;height:12px"></div>
+ <div class="sk-block" style="min-height:44px"><span class="sk-label">Turma Teen A · 12 alunos</span></div>
+ <div class="sk-block" style="min-height:44px"><span class="sk-label">Turma Adulto Noite · 8 alunos</span></div>
+ <div class="wf-row"><div class="sk-block" style="min-height:36px"><span class="sk-label">Matricular</span></div><div class="sk-block" style="min-height:36px"><span class="sk-label">Vínculo familiar</span></div></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="4">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/professor/aula</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-pad">
+ <div class="wf-top"><div class="sk" style="width:48%;height:12px"></div><span class="wf-chip">Rascunho</span></div>
+ <div class="sk-block" style="min-height:32px"><span class="sk-label">Título da aula</span></div><div class="sk-block" style="min-height:52px"><span class="sk-label">Objetivos</span></div>
+ <div class="sk-block" style="min-height:32px"><span class="sk-label">Link Vimeo</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Anexos · PDF · áudio · link</span></div>
+ <div class="wf-row"><div class="sk-block" style="min-height:34px"><span class="sk-label">Salvar rascunho</span></div><div class="sk-block" style="min-height:34px"><span class="sk-label">Publicar</span></div></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="5">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/professor/turma</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-nav"><span class="on">Turmas</span><span>Conteúdos</span><span>Perfil</span></div>
+ <div class="wf-pad">
+ <div class="sk" style="width:50%;height:12px"></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Resumo · 12 alunos · 68% médio</span></div>
+ <div class="sk-block" style="min-height:34px"><span class="sk-label">Ana · módulo 2</span></div><div class="sk-block" style="min-height:34px"><span class="sk-label">Bruno · módulo 1</span></div>
+ <div class="sk-block" style="min-height:34px"><span class="sk-label">Carla · módulo 3</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="6">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/aluno</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-nav"><span class="on">Início</span><span>Trilha</span><span>Progresso</span><span>Perfil</span></div>
+ <div class="wf-pad">
+ <div class="sk" style="width:38%;height:12px"></div>
+ <div class="sk-block" style="min-height:64px"><span class="sk-label">Próxima aula · Listening 3</span></div>
+ <div class="wf-grid2"><div class="sk-block" style="min-height:56px"><span class="sk-label">Progresso</span></div><div class="sk-block" style="min-height:56px"><span class="sk-label">Pendências</span></div></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Continuar trilha</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="7">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/aluno/trilha</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-nav"><span>Início</span><span class="on">Trilha</span><span>Progresso</span><span>Perfil</span></div>
+ <div class="wf-pad">
+ <div class="sk" style="width:46%;height:12px"></div>
+ <div class="sk-block" style="min-height:38px"><span class="sk-label">Módulo 1 · concluído</span></div>
+ <div class="sk-block" style="min-height:52px"><span class="sk-label">Módulo 2 · aula atual</span></div>
+ <div class="sk-block" style="min-height:38px"><span class="sk-label">Módulo 3 · bloqueado</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="8">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/aluno/aula</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-pad">
+ <div class="sk" style="width:55%;height:12px"></div>
+ <div class="sk-block" style="min-height:120px"><span class="sk-label">Player Vimeo</span></div>
+ <div class="wf-grid2"><div class="sk-block" style="min-height:40px"><span class="sk-label">PDF</span></div><div class="sk-block" style="min-height:40px"><span class="sk-label">Áudio</span></div></div>
+ <div class="sk-block" style="min-height:38px"><span class="sk-label">Marcar como concluída</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="screen-slide" data-si="9">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url">app.aecus.escola/familia</div>
+ </div>
+ 
+ <div class="wf-body">
+ <div class="wf-nav"><span class="on">Início</span><span>Trilha</span><span>Progresso</span><span>Perfil</span></div>
+ <div class="wf-pad">
+ <div class="wf-chip">Visão do responsável</div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Filho vinculado · Ana</span></div>
+ <div class="sk-block" style="min-height:64px"><span class="sk-label">Progresso · módulo 2</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Trilha · somente leitura</span></div>
+ </div>
+ </div>
+ </div>
+ </div></div>
+ <div class="dots-nav"><button type="button" class="dot on" data-si="0"></button><button type="button" class="dot" data-si="1"></button><button type="button" class="dot" data-si="2"></button><button type="button" class="dot" data-si="3"></button><button type="button" class="dot" data-si="4"></button><button type="button" class="dot" data-si="5"></button><button type="button" class="dot" data-si="6"></button><button type="button" class="dot" data-si="7"></button><button type="button" class="dot" data-si="8"></button><button type="button" class="dot" data-si="9"></button></div>
+ </div>
+ <aside class="screen-side">
+ <p class="eyebrow">O ouro desta tela</p>
+ <div class="role" id="sell-role">Acesso</div>
+ <h3 id="sell-title">Login</h3>
+ <p class="do" id="sell-do">Entrar com e-mail e senha nos quatro papéis.</p>
+ <p class="see" id="sell-see">Uma porta única para escola e família.</p>
+ <ol class="journey-list" id="journey-list"><li class="on" data-si="0"><span class="jr">Acesso</span>Login</li><li class="" data-si="1"><span class="jr">Admin</span>Painel administrativo</li><li class="" data-si="2"><span class="jr">Admin</span>Pessoas e cadastros</li><li class="" data-si="3"><span class="jr">Admin</span>Turmas e matrículas</li><li class="" data-si="4"><span class="jr">Professor</span>Montar / editar aula</li><li class="" data-si="5"><span class="jr">Professor</span>Turma, progresso</li><li class="" data-si="6"><span class="jr">Aluno</span>Início do aluno</li><li class="" data-si="7"><span class="jr">Aluno</span>Trilha do curso</li><li class="" data-si="8"><span class="jr">Aluno</span>Aula e materiais</li><li class="" data-si="9"><span class="jr">Pais</span>Pais, acompanhamento</li></ol>
+ </aside>
+ </div>
+ </section>
+
+ <!-- 4 fronteiras -->
+ <section class="slide" data-step="4">
+ <p class="act"><span>5 / 7</span> Fronteiras</p>
+ <h2>O que entra agora · o que fica para depois</h2>
+ <p class="lede">Clareza de fronteira evita expectativa errada e mantém o preço de entrada honesto.</p>
+ <div class="grid-2">
+ <div class="hero-card">
+ <h3>Entra na Versão 0</h3>
+ <ul>
+ <li>Acesso e quatro perfis (com visão de pais)</li>
+ <li>Gestão acadêmica essencial e trilha</li>
+ <li>Publicação e consumo de conteúdo (Vimeo + anexos)</li>
+ <li>Progresso e portais web responsivos</li>
+ <li>Fundação técnica absorvida pela Matilha</li>
+ </ul>
+ </div>
+ <div class="warn">
+ <strong><span class="tag out">Fora da Versão 0</span></strong>
+ <ul>
+ <li>Avaliações, banco de questões e notas avançadas</li>
+ <li>Avisos, mensagens, calendário completo e chat</li>
+ <li>Encontros ao vivo (Zoom) e painéis gerenciais</li>
+ <li>Curso online (EAD) e aplicativos nas lojas</li>
+ <li>Checkout, certificados, ERP e inteligência artificial</li>
+ </ul>
+ </div>
+ </div>
+ <p class="links" style="margin-top:14px">Nada disso está esquecido: fica mapeado nas expansões. Inventário completo de telas em <a href="./aecus-v0-telas.html">aecus-v0-telas.html</a>.</p>
+ </section>
+
+ <!-- 5 investimento -->
+ <section class="slide" data-step="5">
+ <p class="act"><span>6 / 7</span> Investimento</p>
+ <h2>Investimento da Versão 0</h2>
+ <p class="lede">Número fechável para começar. Abaixo, a composição em linguagem de negócio, sem detalhe técnico de disciplina.</p>
+ <div class="price-hero">
+ <div>
+ <div class="label">Versão 0 · plataforma web</div>
+ <div class="n">R$ 99.120</div>
+ </div>
+ <p class="sub">560 h cobradas · R$ 177/h · fundação técnica absorvida (48 h) · expansões à parte</p>
+ </div>
+ <div class="budget-mini">
+ <table>
+ <thead>
+ <tr><th>Fatia</th><th>O que cobre</th><th>Investimento</th></tr>
+ </thead>
+ <tbody>
+ <tr class="absorbed"><td>Absorvido</td><td>Fundação técnica (ambientes, deploy, base)</td><td class="money">R$ 0</td></tr>
+ <tr><td>Acesso</td><td>Login, perfil, papéis e vínculo familiar</td><td class="money">R$ 12.036</td></tr>
+ <tr><td>Acadêmico</td><td>Cursos, turmas, matrículas e trilha</td><td class="money">R$ 19.116</td></tr>
+ <tr><td>Conteúdo</td><td>Publicação, Vimeo, materiais e consumo</td><td class="money">R$ 17.700</td></tr>
+ <tr><td>Progresso</td><td>Conclusão, home e visões por perfil</td><td class="money">R$ 12.744</td></tr>
+ <tr><td>Portais</td><td>Interfaces aluno, pais, professor e admin</td><td class="money">R$ 29.736</td></tr>
+ <tr><td>Aceite</td><td>Homologação e estabilização dos fluxos</td><td class="money">R$ 7.788</td></tr>
+ </tbody>
+ <tfoot>
+ <tr><td colspan="2">Total Versão 0</td><td class="money">R$ 99.120</td></tr>
+ </tfoot>
+ </table>
+ </div>
+ <p class="links">Detalhamento Back · Front · UX: <a href="./aecus-estrutura-orcamento-v3.html">aecus-estrutura-orcamento-v3.html</a></p>
+ </section>
+
+ <!-- 6 caminho -->
+ <section class="slide" data-step="6">
+ <p class="act"><span>7 / 7</span> Caminho</p>
+ <h2>Depois da Versão 0 · o que alinhar agora</h2>
+ <p class="lede">A Versão 0 sobe e fica. Cada bloco à direita é opcional e se pluga na mesma base. Valores com “~” são ordem de grandeza.</p>
+ <div class="evo-track" aria-label="Roadmap">
+ <div class="evo-node"><div class="evo-card now"><p class="name">Versão 0</p><p class="goal">Base da plataforma web.</p><div class="approx">R$ 99.120</div></div></div>
+ <div class="evo-arrow">→</div>
+ <div class="evo-node"><div class="evo-card"><p class="name">Avaliações</p><p class="goal">Exercícios, provas e notas.</p><div class="approx">~ R$ 85.000</div></div></div>
+ <div class="evo-arrow">→</div>
+ <div class="evo-node"><div class="evo-card"><p class="name">Comunicação</p><p class="goal">Avisos, mensagens, calendário.</p><div class="approx">~ R$ 40.000</div></div></div>
+ <div class="evo-arrow">→</div>
+ <div class="evo-node"><div class="evo-card"><p class="name">Lives</p><p class="goal">Encontros com link e gravação.</p><div class="approx">~ R$ 15.000</div></div></div>
+ <div class="evo-arrow">→</div>
+ <div class="evo-node"><div class="evo-card"><p class="name">EAD</p><p class="goal">Ofertas assíncronas.</p><div class="approx">~ R$ 45.000</div></div></div>
+ <div class="evo-arrow">→</div>
+ <div class="evo-node"><div class="evo-card"><p class="name">Apps</p><p class="goal">Mobile reusando a mesma base.</p><div class="approx">~ R$ 110.000</div></div></div>
+ </div>
+
+ <div class="grid-2" style="margin-top:16px">
+ <div class="card check">
+ <h3 style="margin:0 0 6px">Validar com a AECUS</h3>
+ <ul>
+ <li>A Versão 0 cobre a dor principal neste momento?</li>
+ <li>A primeira expansão deve ser Avaliações?</li>
+ <li>Algo precisa sair ou entrar na Versão 0 antes do fechamento?</li>
+ <li>Faz sentido plugar expansões depois, em vez de contratar tudo agora?</li>
+ </ul>
+ </div>
+ <div class="promise" style="margin-top:0;height:100%">
+ <strong>Próximo passo</strong>
+ <p>Validar a Versão 0 e o investimento de R$ 99.120, e avançar para o cronograma de entrega.</p>
+ <p class="links" style="margin-top:12px;color:rgba(255,255,255,.55)">
+ Anexos:
+ <a href="./aecus-estrutura-orcamento-v3.html" style="color:var(--brand-yellow)">proposta v3</a> ·
+ <a href="./aecus-v0-telas.html" style="color:var(--brand-yellow)">telas + mapa</a>
+ </p>
+ </div>
+ </div>
+ </section>
+ </div>
+
+ <div class="footer-bar">
+ <div class="footer-inner">
+ <div class="step-label"><b id="foot-step">1 / 7</b> · <span id="foot-name">Por que a V0</span></div>
+ <div class="keys" id="keys-hint">← → ou botões</div>
+ <div class="nav-btns">
+ <button type="button" id="btn-prev">Anterior</button>
+ <button type="button" class="primary" id="btn-next">Próximo</button>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <script>
+ const NAMES = ["Por que a V0", "Valor", "Composição", "Prova visual", "Fronteiras", "Investimento", "Caminho"];
+ const SCREEN_META = [{title:'Login',role:'Acesso',do:'Entrar com e-mail e senha nos quatro papéis.',see:'Uma porta única para escola e família.'},
+{title:'Painel administrativo',role:'Admin',do:'Ver resumo de pessoas, turmas e atividade.',see:'O ponto de partida da operação da escola.'},
+{title:'Pessoas e cadastros',role:'Admin',do:'Cadastrar alunos, responsáveis, professores e admins.',see:'Quem existe na plataforma, com papéis claros.'},
+{title:'Turmas e matrículas',role:'Admin',do:'Criar turma, matricular e vincular professor e família.',see:'A estrutura acadêmica começa a operar.'},
+{title:'Montar / editar aula',role:'Professor',do:'Cadastrar aula, anexar Vimeo/PDF e publicar.',see:'O conteúdo deixa de ficar solto e ganha lugar na trilha.'},
+{title:'Turma, progresso',role:'Professor',do:'Ver quem avançou na trilha da turma.',see:'Acompanhamento sem planilha paralela.'},
+{title:'Início do aluno',role:'Aluno',do:'Ver próximos passos e atalho para a próxima aula.',see:'O aluno sabe o que fazer agora, sem se perder.'},
+{title:'Trilha do curso',role:'Aluno',do:'Navegar módulos e aulas na ordem certa.',see:'A sequência pedagógica fica visível e clara.'},
+{title:'Aula e materiais',role:'Aluno',do:'Assistir vídeo, abrir materiais e marcar conclusão.',see:'Consumo no ambiente AECUS, não em link solto.'},
+{title:'Pais, acompanhamento',role:'Pais',do:'Acompanhar trilha e progresso com visão filtrada.',see:'A família entra na jornada sem virar segundo produto.'}];
+ const SCREEN_STEP = 3;
+ const slides = [...document.querySelectorAll(".slide")];
+ const progress = document.getElementById("progress");
+ let step = 0;
+ let screenIdx = 0;
+ const nScreens = SCREEN_META.length;
+
+ NAMES.forEach((_, i) => {
+ const b = document.createElement("button");
+ b.type = "button";
+ b.title = NAMES[i];
+ b.addEventListener("click", () => go(i));
+ progress.appendChild(b);
+ });
+
+ function go(n) {
+ step = Math.max(0, Math.min(NAMES.length - 1, n));
+ slides.forEach((s, i) => s.classList.toggle("on", i === step));
+ [...progress.children].forEach((b, i) => {
+ b.classList.toggle("on", i === step);
+ b.classList.toggle("done", i < step);
+ });
+ document.getElementById("foot-step").textContent = (step + 1) + " / " + NAMES.length;
+ document.getElementById("foot-name").textContent = NAMES[step];
+ document.getElementById("btn-prev").disabled = step === 0 && screenIdx === 0;
+ document.getElementById("btn-next").textContent = step === NAMES.length - 1? "Fim": "Próximo";
+ document.getElementById("keys-hint").textContent =
+ step === SCREEN_STEP? "← → troca as telas · depois avança o roteiro": "← → ou botões";
+ }
+
+ function showScreen(i) {
+ screenIdx = (i + nScreens) % nScreens;
+ const meta = SCREEN_META[screenIdx];
+ document.querySelectorAll(".screen-slide").forEach((s, idx) => s.classList.toggle("on", idx === screenIdx));
+ document.querySelectorAll(".dot").forEach((d, idx) => d.classList.toggle("on", idx === screenIdx));
+ document.querySelectorAll("#journey-list li").forEach((li, idx) => li.classList.toggle("on", idx === screenIdx));
+ document.getElementById("sell-title").textContent = meta.title;
+ document.getElementById("sell-role").textContent = meta.role;
+ document.getElementById("sell-do").textContent = meta.do;
+ document.getElementById("sell-see").textContent = meta.see;
+ document.getElementById("btn-prev").disabled = step === 0 && screenIdx === 0;
+ }
+
+ document.getElementById("btn-prev").addEventListener("click", () => {
+ if (step === SCREEN_STEP && screenIdx > 0) { showScreen(screenIdx - 1); return; }
+ go(step - 1);
+ });
+ document.getElementById("btn-next").addEventListener("click", () => {
+ if (step === SCREEN_STEP && screenIdx < nScreens - 1) { showScreen(screenIdx + 1); return; }
+ if (step < NAMES.length - 1) go(step + 1);
+ });
+ document.querySelectorAll(".dot").forEach((d) => d.addEventListener("click", () => showScreen(+d.dataset.si)));
+ document.querySelectorAll("#journey-list li").forEach((li) => li.addEventListener("click", () => showScreen(+li.dataset.si)));
+
+ document.addEventListener("keydown", (e) => {
+ if (["ArrowRight", "PageDown", " "].includes(e.key)) {
+ e.preventDefault();
+ document.getElementById("btn-next").click();
+ }
+ if (["ArrowLeft", "PageUp"].includes(e.key)) {
+ e.preventDefault();
+ document.getElementById("btn-prev").click();
+ }
+ });
+
+ go(0);
+ showScreen(0);
+ </script>
+</body>
+</html>

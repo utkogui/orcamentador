@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>AECUS: Versão 0 em telas · Matilha</title>
+ <style>
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Regular.ttf") format("truetype");
+ font-weight: 400;
+ font-style: normal;
+ font-display: swap;
+ }
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Medium.ttf") format("truetype");
+ font-weight: 500;
+ font-style: normal;
+ font-display: swap;
+ }
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Bold.ttf") format("truetype");
+ font-weight: 700;
+ font-style: normal;
+ font-display: swap;
+ }
+
+:root {
+ --brand-yellow: #FBD951;
+ --brand-orange: #EB6239;
+ --brand-blue: #3CA8FB;
+ --brand-black: #000000;
+ --brand-white: #FFFFFF;
+ --ink: #191919;
+ --muted: #595959;
+ --line: #E0E0E0;
+ --bg: #F2F2F2;
+ --paper: #FFFFFF;
+ --soft-yellow: #FFF8DC;
+ --zebra: #FAFAFA;
+ --radius: 4px;
+ --font: "Moderat", "Avenir Next", "Segoe UI", sans-serif;
+ --sk: #E6E6E6;
+ --sk2: #F0F0F0;
+ }
+
+ * { box-sizing: border-box; }
+ html { scroll-behavior: smooth; }
+ body {
+ margin: 0;
+ color: var(--ink);
+ background: var(--bg);
+ font-family: var(--font);
+ font-size: 15px;
+ line-height: 1.5;
+ }
+
+.topbar {
+ background: var(--brand-black);
+ color: var(--brand-white);
+ border-bottom: 4px solid var(--brand-yellow);
+ }
+.topbar-inner {
+ max-width: 1180px;
+ margin: 0 auto;
+ padding: 18px 20px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ gap: 16px;
+ flex-wrap: wrap;
+ }
+.logo svg { height: 36px; width: auto; display: block; }
+.logo svg path { fill: #FFFFFF; }
+.topbar-meta {
+ text-align: right;
+ font-size: 12px;
+ line-height: 1.35;
+ color: rgba(255,255,255,0.72);
+ }
+.topbar-meta strong {
+ display: block;
+ color: var(--brand-yellow);
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ font-size: 11px;
+ margin-bottom: 2px;
+ }
+
+.wrap {
+ max-width: 1180px;
+ margin: 0 auto;
+ padding: 36px 20px 72px;
+ }
+
+ header.hero {
+ margin-bottom: 28px;
+ padding-bottom: 24px;
+ border-bottom: 1px solid var(--line);
+ }
+.eyebrow {
+ display: inline-flex;
+ align-items: center;
+ gap: 8px;
+ font-size: 12px;
+ letter-spacing: 0.06em;
+ text-transform: uppercase;
+ font-weight: 700;
+ color: var(--ink);
+ margin: 0 0 12px;
+ }
+.eyebrow::before {
+ content: "";
+ width: 10px;
+ height: 10px;
+ background: var(--brand-yellow);
+ border: 1.5px solid var(--brand-black);
+ }
+ h1 {
+ font-size: clamp(1.9rem, 4vw, 2.75rem);
+ line-height: 1.1;
+ margin: 0 0 12px;
+ font-weight: 700;
+ letter-spacing: -0.02em;
+ max-width: 22ch;
+ }
+.lede {
+ margin: 0;
+ max-width: 62ch;
+ color: var(--muted);
+ font-size: 1.05rem;
+ }
+.meta {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ margin-top: 16px;
+ }
+.chip {
+ border: 1.5px solid var(--brand-black);
+ background: var(--paper);
+ padding: 6px 10px;
+ border-radius: var(--radius);
+ font-size: 12.5px;
+ }
+.chip strong { margin-right: 4px; }
+
+ nav.toc {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ margin-bottom: 28px;
+ }
+ nav.toc a {
+ text-decoration: none;
+ color: var(--ink);
+ border: 1.5px solid var(--brand-black);
+ background: var(--paper);
+ padding: 8px 12px;
+ border-radius: var(--radius);
+ font-size: 13px;
+ font-weight: 700;
+ }
+ nav.toc a:hover { background: var(--brand-yellow); }
+
+ h2 {
+ font-size: 1.45rem;
+ margin: 0 0 8px;
+ letter-spacing: -0.01em;
+ }
+.section-lead {
+ margin: 0 0 18px;
+ color: var(--muted);
+ max-width: 68ch;
+ }
+ section { margin-bottom: 48px; }
+
+.callout {
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ padding: 14px 16px;
+ background: var(--paper);
+ font-size: 14px;
+ }
+.callout.info { background: var(--soft-yellow); }
+.callout.warn { background: #FDF0EB; }
+.callout strong { display: inline; }
+
+.badge {
+ display: inline-block;
+ border: 1.5px solid var(--brand-black);
+ padding: 2px 8px;
+ font-size: 11px;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ background: var(--paper);
+ }
+.badge.b-v0 { background: var(--brand-yellow); }
+.badge.b-later { background: #E8E8E8; }
+
+ /* Studio */
+.studio {
+ display: grid;
+ grid-template-columns: 220px 1fr 280px;
+ gap: 16px;
+ align-items: start;
+ }
+ @media (max-width: 980px) {
+.studio { grid-template-columns: 1fr; }
+ }
+
+.side {
+ border: 1.5px solid var(--brand-black);
+ background: var(--paper);
+ border-radius: var(--radius);
+ overflow: hidden;
+ max-height: 720px;
+ overflow-y: auto;
+ }
+.side-head {
+ padding: 12px 14px;
+ background: var(--brand-black);
+ color: var(--brand-white);
+ font-size: 12px;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ }
+.role-tabs {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 4px;
+ padding: 10px;
+ border-bottom: 1px solid var(--line);
+ background: var(--zebra);
+ }
+.role-tabs button {
+ border: 1.5px solid var(--brand-black);
+ background: var(--paper);
+ font-family: inherit;
+ font-size: 11px;
+ font-weight: 700;
+ padding: 5px 8px;
+ border-radius: var(--radius);
+ cursor: pointer;
+ }
+.role-tabs button.on { background: var(--brand-yellow); }
+.side-group {
+ padding: 10px 12px 4px;
+ font-size: 11px;
+ font-weight: 700;
+ letter-spacing: 0.05em;
+ text-transform: uppercase;
+ color: var(--muted);
+ }
+.side-item {
+ display: block;
+ width: 100%;
+ text-align: left;
+ border: 0;
+ border-bottom: 1px solid var(--line);
+ background: transparent;
+ padding: 10px 12px;
+ font-family: inherit;
+ font-size: 13.5px;
+ cursor: pointer;
+ color: var(--ink);
+ }
+.side-item:hover { background: var(--soft-yellow); }
+.side-item.on { background: var(--brand-yellow); font-weight: 700; }
+.side-item.dim { opacity: 0.35; }
+
+.stage {
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ background: #D8D8D8;
+ padding: 18px;
+ min-height: 520px;
+ }
+
+.browser {
+ background: var(--paper);
+ border: 1.5px solid var(--brand-black);
+ border-radius: 8px;
+ overflow: hidden;
+ box-shadow: 0 8px 0 rgba(0,0,0,0.06);
+ max-width: 720px;
+ margin: 0 auto;
+ }
+.browser-bar {
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ padding: 10px 12px;
+ background: #F5F5F5;
+ border-bottom: 1px solid var(--line);
+ }
+.dots { display: flex; gap: 5px; }
+.dots i {
+ width: 8px; height: 8px; border-radius: 50%;
+ background: #CFCFCF; border: 1px solid #999;
+ display: block;
+ }
+.url {
+ flex: 1;
+ background: var(--paper);
+ border: 1px solid var(--line);
+ border-radius: 4px;
+ padding: 6px 10px;
+ font-size: 12px;
+ color: var(--muted);
+ display: flex;
+ align-items: center;
+ gap: 6px;
+ }
+.lock {
+ width: 8px; height: 8px;
+ border: 1.5px solid var(--muted);
+ border-radius: 2px;
+ display: inline-block;
+ }
+.browser-body {
+ min-height: 420px;
+ background: var(--paper);
+ }
+
+ /* Skeleton */
+ @keyframes pulse {
+ 0%, 100% { opacity: 1; }
+ 50% { opacity: 0.55; }
+ }
+.sk {
+ background: linear-gradient(90deg, var(--sk) 0%, var(--sk2) 50%, var(--sk) 100%);
+ background-size: 200% 100%;
+ animation: pulse 1.4s ease-in-out infinite;
+ border-radius: 3px;
+ margin: 6px 0;
+ }
+.sk-block {
+ position: relative;
+ background: linear-gradient(90deg, var(--sk) 0%, var(--sk2) 50%, var(--sk) 100%);
+ background-size: 200% 100%;
+ animation: pulse 1.4s ease-in-out infinite;
+ border: 1px dashed #C8C8C8;
+ border-radius: var(--radius);
+ margin: 8px 0;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ }
+.sk-label {
+ position: relative;
+ z-index: 1;
+ font-size: 11px;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ color: #7A7A7A;
+ background: rgba(255,255,255,0.65);
+ padding: 2px 6px;
+ border-radius: 2px;
+ }
+.sk-logo {
+ width: 72px; height: 28px;
+ background: var(--sk);
+ border: 1.5px solid var(--brand-black);
+ margin: 0 auto 12px;
+ animation: pulse 1.4s ease-in-out infinite;
+ }
+.sk-avatar {
+ width: 48px; height: 48px;
+ border-radius: 50%;
+ background: var(--sk);
+ border: 1.5px solid #C8C8C8;
+ flex-shrink: 0;
+ animation: pulse 1.4s ease-in-out infinite;
+ }
+
+.wf-auth {
+ padding: 48px 24px;
+ max-width: 360px;
+ margin: 0 auto;
+ text-align: center;
+ }
+.wf-card {
+ text-align: left;
+ border: 1.5px solid var(--line);
+ padding: 16px;
+ border-radius: var(--radius);
+ margin-top: 12px;
+ }
+.wf-body { padding: 16px 18px 24px; }
+.wf-shell { display: flex; flex-direction: column; min-height: 420px; }
+.wf-nav {
+ display: flex;
+ gap: 0;
+ border-bottom: 1.5px solid var(--brand-black);
+ background: var(--zebra);
+ }
+.wf-nav span {
+ flex: 1;
+ text-align: center;
+ padding: 10px 4px;
+ font-size: 11px;
+ font-weight: 700;
+ color: var(--muted);
+ border-right: 1px solid var(--line);
+ }
+.wf-nav span:last-child { border-right: 0; }
+.wf-nav span.on {
+ background: var(--brand-yellow);
+ color: var(--ink);
+ }
+.wf-top {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ gap: 12px;
+ margin-bottom: 8px;
+ }
+.wf-row { display: flex; align-items: center; gap: 8px; }
+.wf-row.gap > * { flex: 1; }
+.wf-grid2 {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 8px;
+ }
+.wf-grid3 {
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr;
+ gap: 8px;
+ }
+.wf-chip {
+ display: inline-block;
+ font-size: 10px;
+ font-weight: 700;
+ letter-spacing: 0.05em;
+ text-transform: uppercase;
+ border: 1.5px solid var(--brand-black);
+ background: var(--soft-yellow);
+ padding: 3px 8px;
+ margin-bottom: 8px;
+ }
+
+.sell {
+ border: 1.5px solid var(--brand-black);
+ background: var(--brand-black);
+ color: var(--brand-white);
+ border-radius: var(--radius);
+ padding: 16px;
+ position: sticky;
+ top: 16px;
+ }
+.sell.eyebrow-s {
+ color: var(--brand-yellow);
+ font-size: 11px;
+ font-weight: 700;
+ letter-spacing: 0.06em;
+ text-transform: uppercase;
+ margin: 0 0 8px;
+ }
+.sell h3 {
+ margin: 0 0 10px;
+ font-size: 1.15rem;
+ line-height: 1.25;
+ }
+.sell p {
+ margin: 0 0 14px;
+ color: rgba(255,255,255,0.82);
+ font-size: 14px;
+ }
+.sell.path {
+ font-size: 11px;
+ color: rgba(255,255,255,0.5);
+ font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+ margin-bottom: 14px;
+ }
+.sell.hint {
+ border-top: 1px solid rgba(255,255,255,0.18);
+ padding-top: 12px;
+ font-size: 12.5px;
+ color: rgba(255,255,255,0.65);
+ }
+.nav-ctrl {
+ display: flex;
+ gap: 8px;
+ margin-top: 14px;
+ }
+.nav-ctrl button {
+ flex: 1;
+ border: 1.5px solid var(--brand-yellow);
+ background: transparent;
+ color: var(--brand-yellow);
+ font-family: inherit;
+ font-weight: 700;
+ font-size: 13px;
+ padding: 8px;
+ border-radius: var(--radius);
+ cursor: pointer;
+ }
+.nav-ctrl button:hover { background: var(--brand-yellow); color: var(--brand-black); }
+
+ /* Flowchart fold */
+.flow-legend {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px;
+ margin-bottom: 16px;
+ }
+.flow-phase {
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ background: var(--paper);
+ margin-bottom: 16px;
+ overflow: hidden;
+ }
+.flow-phase-head {
+ padding: 12px 14px;
+ background: var(--zebra);
+ border-bottom: 1px solid var(--line);
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+.phase-later.flow-phase-head { background: #EEE; }
+.flow-area {
+ padding: 14px;
+ border-bottom: 1px solid var(--line);
+ }
+.flow-area:last-child { border-bottom: 0; }
+.flow-area-title {
+ font-size: 12px;
+ font-weight: 700;
+ letter-spacing: 0.05em;
+ text-transform: uppercase;
+ margin-bottom: 10px;
+ }
+.flow-nodes {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ align-items: stretch;
+ }
+.flow-node {
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ background: var(--paper);
+ padding: 8px 10px;
+ min-width: 140px;
+ max-width: 200px;
+ flex: 1 1 140px;
+ display: flex;
+ flex-direction: column;
+ gap: 4px;
+ }
+.phase-v0.flow-node { background: var(--soft-yellow); }
+.phase-later.flow-node { background: #F7F7F7; opacity: 0.92; }
+.flow-node.tid {
+ font-size: 10px;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ color: var(--muted);
+ }
+.flow-node.tlab {
+ font-size: 13px;
+ font-weight: 500;
+ line-height: 1.3;
+ }
+
+.flow-arrows {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ align-items: center;
+ margin: 0 0 20px;
+ padding: 14px 16px;
+ border: 1.5px solid var(--brand-black);
+ background: var(--paper);
+ border-radius: var(--radius);
+ font-size: 13px;
+ font-weight: 700;
+ }
+.flow-arrows span.arr { color: var(--muted); }
+.flow-arrows span.step {
+ border: 1.5px solid var(--brand-black);
+ padding: 6px 10px;
+ border-radius: var(--radius);
+ background: var(--soft-yellow);
+ }
+.flow-arrows span.step.dim { background: #EEE; font-weight: 500; color: var(--muted); }
+
+.kpi-row {
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ gap: 10px;
+ margin-bottom: 20px;
+ }
+ @media (max-width: 720px) {
+.kpi-row { grid-template-columns: 1fr 1fr; }
+ }
+.kpi {
+ border: 1.5px solid var(--brand-black);
+ background: var(--paper);
+ border-radius: var(--radius);
+ padding: 12px;
+ }
+.kpi.n { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+.kpi.l { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.doc-footer {
+ margin-top: 48px;
+ padding: 20px;
+ background: var(--brand-black);
+ color: rgba(255,255,255,0.78);
+ border-radius: var(--radius);
+ border-bottom: 4px solid var(--brand-yellow);
+ display: flex;
+ justify-content: space-between;
+ gap: 16px;
+ flex-wrap: wrap;
+ align-items: flex-end;
+ }
+.doc-footer p {
+ margin: 0;
+ font-size: 13px;
+ max-width: 56ch;
+ line-height: 1.45;
+ }
+.doc-footer.tag {
+ color: var(--brand-yellow);
+ font-size: 12px;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ white-space: nowrap;
+ }
+ </style>
+</head>
+<body>
+ <div class="topbar">
+ <div class="topbar-inner">
+ <a class="logo" href="#topo" aria-label="Matilha"><svg width="142" height="64" viewBox="0 0 284 128" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+ <path d="M150.228 52.4676C149.129 52.4676 148.183 52.0749 147.39 51.2895C146.597 50.4887 146.2 49.5569 146.2 48.4943C146.2 47.3701 146.589 46.4229 147.367 45.6529C148.16 44.8675 149.114 44.4748 150.228 44.4748C151.311 44.4748 152.242 44.8675 153.02 45.6529C153.798 46.4229 154.187 47.3701 154.187 48.4943C154.187 49.5569 153.79 50.4887 152.997 51.2895C152.219 52.0749 151.296 52.4676 150.228 52.4676Z"/>
+ <path d="M168.392 44.4793H161.249V82.1861H168.392V44.4793Z"/>
+ <path d="M84.9555 44.9979V82.1861H77.7859V59.5205H77.3311L70.1615 79.5409H61.3332L54.2171 59.5205H53.789V82.1861H46.5926V44.9979H55.9827L65.346 71.346H66.2289L75.5922 44.9979H84.9555Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M115.051 73.2651C115.051 74.7346 115.309 75.7374 115.827 76.2733C116.344 76.8093 117.164 77.0772 118.288 77.0772V82.1861H116.629C113.33 82.1861 111.216 81.0536 110.289 78.7888C108.47 81.2265 105.581 82.4454 101.621 82.4454C98.5357 82.4454 96.0745 81.7366 94.2375 80.3189C92.4005 78.8839 91.482 76.9735 91.482 74.5877C91.482 73.6886 91.6247 72.8588 91.9101 72.0981C92.1954 71.3374 92.5611 70.6804 93.0069 70.1272C93.4528 69.5566 94.0235 69.038 94.7191 68.5712C95.4146 68.1044 96.1013 67.7154 96.779 67.4042C97.4746 67.093 98.2771 66.8164 99.1867 66.5743C100.114 66.315 100.935 66.1162 101.648 65.9779C102.379 65.8395 103.217 65.7272 104.163 65.6407C105.108 65.537 105.857 65.4678 106.41 65.4333C106.981 65.3814 107.649 65.3382 108.416 65.3036C108.327 62.5028 106.775 61.1024 103.761 61.1024C103.03 61.1024 102.388 61.1802 101.835 61.3358C101.3 61.4914 100.89 61.6816 100.605 61.9064C100.337 62.1311 100.123 62.3559 99.9625 62.5806C99.802 62.8054 99.7039 62.9955 99.6683 63.1511L99.6148 63.3845H92.7662C93.0158 60.9641 94.1127 59.0278 96.0567 57.5755C98.0185 56.106 100.64 55.3712 103.922 55.3712C107.364 55.3712 110.075 56.2529 112.055 58.0164C114.052 59.7798 115.051 62.5115 115.051 66.2113V73.2651ZM98.3842 74.3802C98.3842 75.4694 98.9816 76.2387 100.177 76.6882C101.461 77.1723 102.861 77.1205 104.377 76.5326C106.125 75.8584 107.311 74.6655 107.935 72.9539C108.149 72.366 108.274 71.7264 108.309 71.0348V70.4902C107.453 70.5767 106.74 70.6545 106.169 70.7236C105.616 70.7928 104.956 70.8879 104.189 71.0089C103.423 71.1299 102.789 71.2509 102.29 71.3719C101.808 71.493 101.291 71.6572 100.738 71.8647C100.203 72.0548 99.7753 72.271 99.4542 72.513C99.1511 72.7378 98.8924 73.0144 98.6784 73.3429C98.4822 73.6541 98.3842 73.9998 98.3842 74.3802Z"/>
+ <path d="M141.963 80.2151L139.314 75.4953L138.886 75.7287C138.601 75.8843 138.191 76.0399 137.656 76.1955C137.121 76.3338 136.612 76.403 136.131 76.403C135.132 76.403 134.294 76.1004 133.616 75.4953C132.956 74.8729 132.626 74.1122 132.626 73.2132V61.3099H139.528V55.6305H132.626V47.6691H126.018V52.9854C126.018 53.9362 125.733 54.6969 125.162 55.2675C124.591 55.8207 123.833 56.0973 122.888 56.0973H120.133V61.3099H125.617V73.6281C125.617 76.2387 126.571 78.3652 128.479 80.0077C130.388 81.6328 132.706 82.4454 135.435 82.4454C136.22 82.4454 136.987 82.3589 137.736 82.1861C138.485 82.0305 139.091 81.8576 139.555 81.6674C140.019 81.4772 140.456 81.2525 140.866 80.9931C141.294 80.7338 141.561 80.5523 141.668 80.4485C141.793 80.3448 141.891 80.267 141.963 80.2151Z"/>
+ <path d="M153.626 55.6305V82.1861H146.59V55.6305H153.626Z"/>
+ <path d="M192.147 55.3712C195.571 55.3712 198.166 56.495 199.932 58.7425C201.715 60.9728 202.607 63.9896 202.607 67.7932V82.1861H195.277V68.8046C195.259 68.4069 195.259 67.9834 195.277 67.5338C195.295 67.0843 195.268 66.6262 195.197 66.1594C195.143 65.6926 195.063 65.2344 194.956 64.7849C194.867 64.3354 194.706 63.9118 194.474 63.5142C194.26 63.1166 193.993 62.7708 193.672 62.4769C193.369 62.183 192.967 61.9496 192.468 61.7767C191.969 61.6038 191.407 61.5174 190.783 61.5174C190.23 61.5174 189.668 61.5779 189.097 61.6989C188.544 61.8026 187.929 62.036 187.251 62.3991C186.591 62.7621 186.003 63.2376 185.486 63.8254C184.986 64.3959 184.567 65.1912 184.228 66.2113C183.889 67.2313 183.72 68.3983 183.72 69.7122V82.1861H176.363V44.4793H183.319V58.3794H184.255C186.235 56.3739 188.865 55.3712 192.147 55.3712Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M233.826 76.2733C233.309 75.7374 233.05 74.7346 233.05 73.2651V66.2113C233.05 62.5115 232.051 59.7798 230.054 58.0164C228.074 56.2529 225.363 55.3712 221.921 55.3712C218.64 55.3712 216.018 56.106 214.056 57.5755C212.112 59.0278 211.015 60.9641 210.765 63.3845H217.614L217.668 63.1511C217.703 62.9955 217.801 62.8054 217.962 62.5806C218.122 62.3559 218.336 62.1311 218.604 61.9064C218.889 61.6816 219.299 61.4914 219.835 61.3358C220.387 61.1802 221.029 61.1024 221.761 61.1024C224.775 61.1024 226.326 62.5028 226.416 65.3036C225.649 65.3382 224.98 65.3814 224.409 65.4333C223.856 65.4678 223.107 65.537 222.162 65.6407C221.217 65.7272 220.379 65.8395 219.647 65.9779C218.934 66.1162 218.113 66.315 217.186 66.5743C216.276 66.8164 215.474 67.093 214.778 67.4042C214.101 67.7154 213.414 68.1044 212.718 68.5712C212.023 69.038 211.452 69.5566 211.006 70.1272C210.56 70.6804 210.195 71.3374 209.909 72.0981C209.624 72.8588 209.481 73.6886 209.481 74.5877C209.481 76.9735 210.4 78.8839 212.237 80.3189C214.074 81.7366 216.535 82.4454 219.621 82.4454C223.58 82.4454 226.469 81.2265 228.288 78.7888C229.216 81.0536 231.329 82.1861 234.629 82.1861H236.287V77.0772C235.164 77.0772 234.343 76.8093 233.826 76.2733ZM218.176 76.6882C216.981 76.2387 216.383 75.4694 216.383 74.3802C216.383 73.9998 216.482 73.6541 216.678 73.3429C216.892 73.0144 217.15 72.7378 217.454 72.513C217.775 72.271 218.203 72.0548 218.738 71.8647C219.291 71.6572 219.808 71.493 220.289 71.3719C220.789 71.2509 221.422 71.1299 222.189 71.0089C222.956 70.8879 223.616 70.7928 224.168 70.7236C224.739 70.6545 225.453 70.5767 226.309 70.4902V71.0348C226.273 71.7264 226.148 72.366 225.934 72.9539C225.31 74.6655 224.124 75.8584 222.376 76.5326C220.86 77.1205 219.46 77.1723 218.176 76.6882Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H284V128H0V0ZM7.58779 7.59322V120.407H276.412V7.59322H7.58779Z"/>
+ </svg></a>
+ <div class="topbar-meta">
+ <strong>Versão 0 em telas</strong>
+ Cliente AECUS · Julho 2026
+ </div>
+ </div>
+ </div>
+
+ <div class="wrap" id="topo">
+ <header class="hero">
+ <p class="eyebrow">Wireframe de baixa fidelidade · Web</p>
+ <h1>Como a Versão 0 aparece na prática</h1>
+ <p class="lede">
+ Telas em formato web com blocos tipo “carregando”, para o cliente ver a estrutura
+ do produto sem confundir com o design final. O aplicativo mobile entra em fase posterior.
+ </p>
+ <div class="meta">
+ <span class="chip"><strong>Cliente</strong> AECUS</span>
+ <span class="chip"><strong>Foco</strong> Versão 0</span>
+ <span class="chip"><strong>Canal</strong> Web responsiva</span>
+ <span class="chip"><strong>Estilo</strong> Skeleton / lo-fi</span>
+ </div>
+ </header>
+
+ <nav class="toc" aria-label="Navegação">
+ <a href="#como-ler">Como ler</a>
+ <a href="#telas">Telas da Versão 0</a>
+ <a href="#mapa">Mapa completo</a>
+ <a href="#fora">Fora da Versão 0</a>
+ </nav>
+
+ <section id="como-ler">
+ <h2>1. Como ler este documento</h2>
+ <div class="callout info">
+ <strong>Isto não é o visual final.</strong>
+ Os retângulos cinza mostram onde ficam as áreas da tela (títulos, listas, player, botões).
+ O painel preto ao lado explica <em>o que a AECUS consegue fazer</em> naquela tela, 
+ é o gancho de entendimento do produto.
+ </div>
+ <div class="kpi-row" style="margin-top:16px">
+ <div class="kpi"><div class="n">26</div><div class="l">Telas wireframe (V0)</div></div>
+ <div class="kpi"><div class="n">4</div><div class="l">Experiências (perfis)</div></div>
+ <div class="kpi"><div class="n">43</div><div class="l">Telas no mapa V0</div></div>
+ <div class="kpi"><div class="n">69</div><div class="l">Telas no mapa completo</div></div>
+ </div>
+ </section>
+
+ <section id="telas">
+ <h2>2. Telas da Versão 0</h2>
+ <p class="section-lead">
+ Navegue pelos perfis e pelas telas. Cada card à direita responde:
+ “o que a escola passa a conseguir fazer aqui?”
+ </p>
+
+ <div class="studio">
+ <aside class="side" aria-label="Lista de telas">
+ <div class="side-head">Navegação</div>
+ <div class="role-tabs" role="tablist">
+ <button type="button" class="on" data-role-filter="all">Todas</button>
+ <button type="button" data-role-filter="comum">Acesso</button>
+ <button type="button" data-role-filter="aluno">Aluno</button>
+ <button type="button" data-role-filter="pais">Pais</button>
+ <button type="button" data-role-filter="professor">Prof.</button>
+ <button type="button" data-role-filter="admin">Admin</button>
+ </div>
+ <div id="side-list">
+ <div class="side-group">Acesso</div>
+<button type="button" class="side-item" data-go="login" data-role="comum"><span class="side-title">Login</span></button>
+<button type="button" class="side-item" data-go="recuperar" data-role="comum"><span class="side-title">Recuperar senha</span></button>
+<button type="button" class="side-item" data-go="termos" data-role="comum"><span class="side-title">Aceite de termos</span></button>
+<button type="button" class="side-item" data-go="perfil" data-role="comum"><span class="side-title">Meu perfil</span></button>
+<div class="side-group">Aluno</div>
+<button type="button" class="side-item" data-go="aluno-home" data-role="aluno"><span class="side-title">Início do aluno</span></button>
+<button type="button" class="side-item" data-go="aluno-cursos" data-role="aluno"><span class="side-title">Meus cursos</span></button>
+<button type="button" class="side-item" data-go="aluno-trilha" data-role="aluno"><span class="side-title">Trilha do curso</span></button>
+<button type="button" class="side-item" data-go="aluno-aula" data-role="aluno"><span class="side-title">Aula e materiais</span></button>
+<button type="button" class="side-item" data-go="aluno-progresso" data-role="aluno"><span class="side-title">Meu progresso</span></button>
+<div class="side-group">Pais / responsável</div>
+<button type="button" class="side-item" data-go="pais-home" data-role="pais"><span class="side-title">Início do responsável</span></button>
+<button type="button" class="side-item" data-go="pais-filho" data-role="pais"><span class="side-title">Selecionar aluno vinculado</span></button>
+<button type="button" class="side-item" data-go="pais-trilha" data-role="pais"><span class="side-title">Trilha (visão filtrada)</span></button>
+<button type="button" class="side-item" data-go="pais-aula" data-role="pais"><span class="side-title">Aula (somente leitura)</span></button>
+<div class="side-group">Professor</div>
+<button type="button" class="side-item" data-go="prof-turmas" data-role="professor"><span class="side-title">Minhas turmas</span></button>
+<button type="button" class="side-item" data-go="prof-turma" data-role="professor"><span class="side-title">Turma e alunos</span></button>
+<button type="button" class="side-item" data-go="prof-conteudos" data-role="professor"><span class="side-title">Conteúdos</span></button>
+<button type="button" class="side-item" data-go="prof-aula-edit" data-role="professor"><span class="side-title">Montar / editar aula</span></button>
+<button type="button" class="side-item" data-go="prof-preview" data-role="professor"><span class="side-title">Pré-visualizar aula</span></button>
+<button type="button" class="side-item" data-go="prof-aluno" data-role="professor"><span class="side-title">Detalhe do aluno</span></button>
+<div class="side-group">Administrativo</div>
+<button type="button" class="side-item" data-go="admin-home" data-role="admin"><span class="side-title">Painel administrativo</span></button>
+<button type="button" class="side-item" data-go="admin-pessoas" data-role="admin"><span class="side-title">Pessoas</span></button>
+<button type="button" class="side-item" data-go="admin-pessoa" data-role="admin"><span class="side-title">Cadastro de pessoa</span></button>
+<button type="button" class="side-item" data-go="admin-cursos" data-role="admin"><span class="side-title">Cursos</span></button>
+<button type="button" class="side-item" data-go="admin-estrutura" data-role="admin"><span class="side-title">Estrutura do curso</span></button>
+<button type="button" class="side-item" data-go="admin-turmas" data-role="admin"><span class="side-title">Turmas e matrículas</span></button>
+<button type="button" class="side-item" data-go="admin-vinculo" data-role="admin"><span class="side-title">Vínculo familiar</span></button>
+ </div>
+ </aside>
+
+ <div class="stage" id="stage">
+ 
+ <article class="screen-panel active" data-id="login" data-role="comum">
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/entrar</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-auth">
+ <div class="sk-logo"></div>
+ <div class="sk" style="width:40%;height:10px"></div>
+ <div class="wf-card">
+ <div class="sk" style="width:30%;height:10px"></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">E-mail</span></div>
+ <div class="sk" style="width:30%;height:10px"></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Senha</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Entrar</span></div>
+ <div class="sk" style="width:55%;height:8px"></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="recuperar" data-role="comum" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/recuperar-senha</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-auth">
+ <div class="sk-logo"></div>
+ <div class="sk" style="width:50%;height:10px"></div>
+ <div class="wf-card">
+ <div class="sk" style="width:70%;height:10px"></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">E-mail</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Enviar link</span></div>
+ <div class="sk" style="width:35%;height:8px"></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="termos" data-role="comum" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/termos</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:45%;height:14px"></div>
+ <div class="sk-block" style="min-height:160px"><span class="sk-label">Texto dos termos</span></div>
+ <div class="wf-row"><div class="sk-block" style="min-height:20px"></div><div class="sk" style="width:60%;height:10px"></div></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Aceitar e continuar</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="perfil" data-role="comum" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/perfil</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-top"><div class="sk" style="width:30%;height:14px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Sair</span></div></div>
+ <div class="wf-row gap">
+ <div class="sk-avatar"></div>
+ <div style="flex:1"><div class="sk" style="width:50%;height:12px"></div><div class="sk" style="width:70%;height:10px"></div></div>
+ </div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Nome</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">E-mail</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Salvar</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="aluno-home" data-role="aluno" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/aluno</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-shell">
+ <div class="wf-nav">
+ <span class="on">Início</span><span>Trilha</span><span>Progresso</span><span>Perfil</span>
+ </div>
+ <div class="wf-body">
+ <div class="sk" style="width:40%;height:14px"></div>
+ <div class="sk-block" style="min-height:72px"><span class="sk-label">Próxima aula</span></div>
+ <div class="wf-grid2">
+ <div class="sk-block" style="min-height:64px"><span class="sk-label">Progresso</span></div>
+ <div class="sk-block" style="min-height:64px"><span class="sk-label">Pendências</span></div>
+ </div>
+ <div class="sk" style="width:35%;height:10px"></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Atalho trilha</span></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Atalho materiais</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="aluno-cursos" data-role="aluno" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/aluno/cursos</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-top"><div class="sk" style="width:40%;height:14px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Buscar</span></div></div>
+ <div class="sk-block" style="min-height:44px"><span class="sk-label">Item 1</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 2</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 3</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 4</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="aluno-trilha" data-role="aluno" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/aluno/curso/trilha</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-shell">
+ <div class="wf-nav">
+ <span class="on">Início</span><span>Trilha</span><span>Progresso</span><span>Perfil</span>
+ </div>
+ <div class="wf-body">
+ <div class="sk" style="width:50%;height:14px"></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Módulo 1, concluído</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Módulo 2, em andamento</span></div>
+ <div class="sk-block" style="min-height:56px"><span class="sk-label">Aula atual · vídeo + PDF</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Módulo 3, bloqueado</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="aluno-aula" data-role="aluno" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/aluno/aula</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:55%;height:14px"></div>
+ <div class="sk-block" style="min-height:140px"><span class="sk-label">Player Vimeo</span></div>
+ <div class="sk" style="width:30%;height:10px"></div>
+ <div class="wf-grid2">
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">PDF</span></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Áudio</span></div>
+ </div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Marcar como concluída</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="aluno-progresso" data-role="aluno" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/aluno/progresso</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:40%;height:14px"></div>
+ <div class="sk-block" style="min-height:24px"><span class="sk-label">Barra de progresso</span></div>
+ <div class="wf-grid2">
+ <div class="sk-block" style="min-height:72px"><span class="sk-label">Módulo</span></div>
+ <div class="sk-block" style="min-height:72px"><span class="sk-label">Curso</span></div>
+ </div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Marco 1</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Marco 2</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Marco 3</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="pais-home" data-role="pais" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/familia</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-shell">
+ <div class="wf-nav">
+ <span class="on">Início</span><span>Trilha</span><span>Progresso</span><span>Perfil</span>
+ </div>
+ <div class="wf-body">
+ <div class="wf-chip">Visão do responsável</div>
+ <div class="sk" style="width:45%;height:14px"></div>
+ <div class="sk-block" style="min-height:56px"><span class="sk-label">Aluno vinculado</span></div>
+ <div class="sk-block" style="min-height:72px"><span class="sk-label">Progresso do filho</span></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Trilha (somente leitura)</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="pais-filho" data-role="pais" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/familia/filhos</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-top"><div class="sk" style="width:40%;height:14px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Buscar</span></div></div>
+ <div class="sk-block" style="min-height:44px"><span class="sk-label">Item 1</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 2</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 3</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 4</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="pais-trilha" data-role="pais" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/familia/trilha</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-shell">
+ <div class="wf-nav">
+ <span class="on">Início</span><span>Trilha</span><span>Progresso</span><span>Perfil</span>
+ </div>
+ <div class="wf-body">
+ <div class="wf-chip">Somente leitura</div>
+ <div class="sk" style="width:50%;height:14px"></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Módulo 1</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Módulo 2</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Módulo 3</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="pais-aula" data-role="pais" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/familia/aula</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-chip">Sem ações do aluno</div>
+ <div class="sk" style="width:55%;height:14px"></div>
+ <div class="sk-block" style="min-height:140px"><span class="sk-label">Player Vimeo</span></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Materiais</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="prof-turmas" data-role="professor" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/professor/turmas</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-top"><div class="sk" style="width:40%;height:14px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Buscar</span></div></div>
+ <div class="sk-block" style="min-height:44px"><span class="sk-label">Item 1</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 2</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 3</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 4</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="prof-turma" data-role="professor" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/professor/turma</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-shell">
+ <div class="wf-nav">
+ <span class="on">Turmas</span><span>Conteúdos</span><span>Perfil</span>
+ </div>
+ <div class="wf-body">
+ <div class="sk" style="width:45%;height:14px"></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Resumo da turma</span></div>
+ <div class="sk" style="width:30%;height:10px"></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Aluno A · progresso</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Aluno B · progresso</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Aluno C · progresso</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="prof-conteudos" data-role="professor" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/professor/conteudos</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-top"><div class="sk" style="width:40%;height:14px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Buscar</span></div></div>
+ <div class="sk-block" style="min-height:44px"><span class="sk-label">Item 1</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 2</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 3</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 4</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="prof-aula-edit" data-role="professor" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/professor/aula/editar</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:40%;height:14px"></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Título da aula</span></div>
+ <div class="sk-block" style="min-height:56px"><span class="sk-label">Objetivos</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Link Vimeo</span></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Anexos</span></div>
+ <div class="wf-row gap">
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Rascunho</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Publicar</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="prof-preview" data-role="professor" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/professor/aula/preview</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:55%;height:14px"></div>
+ <div class="sk-block" style="min-height:140px"><span class="sk-label">Player Vimeo</span></div>
+ <div class="sk" style="width:30%;height:10px"></div>
+ <div class="wf-grid2">
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">PDF</span></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Áudio</span></div>
+ </div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Marcar como concluída</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="prof-aluno" data-role="professor" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/professor/aluno</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:40%;height:14px"></div>
+ <div class="sk-block" style="min-height:24px"><span class="sk-label">Barra de progresso</span></div>
+ <div class="wf-grid2">
+ <div class="sk-block" style="min-height:72px"><span class="sk-label">Módulo</span></div>
+ <div class="sk-block" style="min-height:72px"><span class="sk-label">Curso</span></div>
+ </div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Marco 1</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Marco 2</span></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Marco 3</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="admin-home" data-role="admin" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/admin</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-shell">
+ <div class="wf-nav">
+ <span class="on">Painel</span><span>Pessoas</span><span>Cursos</span><span>Turmas</span>
+ </div>
+ <div class="wf-body">
+ <div class="sk" style="width:35%;height:14px"></div>
+ <div class="wf-grid3">
+ <div class="sk-block" style="min-height:64px"><span class="sk-label">Pessoas</span></div>
+ <div class="sk-block" style="min-height:64px"><span class="sk-label">Turmas</span></div>
+ <div class="sk-block" style="min-height:64px"><span class="sk-label">Cursos</span></div>
+ </div>
+ <div class="sk-block" style="min-height:80px"><span class="sk-label">Atividade recente</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="admin-pessoas" data-role="admin" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/admin/pessoas</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-top"><div class="sk" style="width:35%;height:14px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Novo</span></div></div>
+ <div class="sk-block" style="min-height:28px"><span class="sk-label">Filtros</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Linha 1</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Linha 2</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Linha 3</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Linha 4</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="admin-pessoa" data-role="admin" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/admin/pessoas/nova</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:40%;height:14px"></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Campo</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Campo</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Campo</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Seleção de papel / vínculo</span></div>
+ <div class="wf-row gap">
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Cancelar</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Salvar</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="admin-cursos" data-role="admin" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/admin/cursos</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-top"><div class="sk" style="width:40%;height:14px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Buscar</span></div></div>
+ <div class="sk-block" style="min-height:44px"><span class="sk-label">Item 1</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 2</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 3</span></div><div class="sk-block" style="min-height:44px"><span class="sk-label">Item 4</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="admin-estrutura" data-role="admin" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/admin/curso/estrutura</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:45%;height:14px"></div>
+ <div class="sk-block" style="min-height:40px"><span class="sk-label">Curso</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">+ Módulo</span></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Módulo 1 · aulas</span></div>
+ <div class="sk-block" style="min-height:48px"><span class="sk-label">Módulo 2 · aulas</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Reordenar trilha</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="admin-turmas" data-role="admin" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/admin/turmas</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="wf-top"><div class="sk" style="width:35%;height:14px"></div><div class="sk-block" style="min-height:28px"><span class="sk-label">Novo</span></div></div>
+ <div class="sk-block" style="min-height:28px"><span class="sk-label">Filtros</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Linha 1</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Linha 2</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Linha 3</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Linha 4</span></div>
+ </div>
+ </div>
+ </div>
+ </article>
+ <article class="screen-panel" data-id="admin-vinculo" data-role="admin" hidden>
+ <div class="browser">
+ <div class="browser-bar">
+ <span class="dots"><i></i><i></i><i></i></span>
+ <div class="url"><span class="lock"></span> app.aecus.escola/admin/vinculos</div>
+ </div>
+ <div class="browser-body">
+ 
+ <div class="wf-body">
+ <div class="sk" style="width:40%;height:14px"></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Campo</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Campo</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Campo</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Seleção de papel / vínculo</span></div>
+ <div class="wf-row gap">
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Cancelar</span></div>
+ <div class="sk-block" style="min-height:36px"><span class="sk-label">Salvar</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ </div>
+
+ <aside class="sell" id="sell">
+ <p class="eyebrow-s">O ouro da tela</p>
+ <h3 id="sell-title">Login</h3>
+ <div class="path" id="sell-path">app.aecus.escola/entrar</div>
+ <p id="sell-text">Entrar com e-mail e senha nos quatro papéis (aluno, responsável, professor, admin).</p>
+ <div class="hint">
+ Use as setas ou a lista à esquerda. A sequência sugerida segue a jornada:
+ acesso → admin monta → professor publica → aluno consome → família acompanha.
+ </div>
+ <div class="nav-ctrl">
+ <button type="button" id="prev">← Anterior</button>
+ <button type="button" id="next">Próxima →</button>
+ </div>
+ </aside>
+ </div>
+ </section>
+
+ <section id="mapa">
+ <h2>3. Mapa completo de telas</h2>
+ <p class="section-lead">
+ Visão de fluxo com descritivo de cada tela necessária no produto, primeiro a Versão 0,
+ depois as expansões. Aqui não há skeleton: só o inventário para alinhamento de escopo.
+ </p>
+
+ <div class="flow-arrows" aria-label="Fluxo macro">
+ <span class="step">Acesso</span><span class="arr">→</span>
+ <span class="step">Admin estrutura</span><span class="arr">→</span>
+ <span class="step">Professor publica</span><span class="arr">→</span>
+ <span class="step">Aluno consome</span><span class="arr">→</span>
+ <span class="step">Família acompanha</span><span class="arr">→</span>
+ <span class="step dim">Avaliações…</span><span class="arr">→</span>
+ <span class="step dim">Mobile</span>
+ </div>
+
+ <div class="flow-legend">
+ <span class="badge b-v0">V0 · no contrato agora</span>
+ <span class="badge b-later">Depois · expansões</span>
+ </div>
+
+ <div class="flow-phase phase-v0"><div class="flow-phase-head"><span class="badge b-v0">V0</span> <strong>Telas da Versão 0</strong></div><div class="flow-area"><div class="flow-area-title">Acesso</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T01</span><span class="tlab">Login</span></div><div class="flow-node"><span class="tid">T02</span><span class="tlab">Recuperar senha, pedir e-mail</span></div><div class="flow-node"><span class="tid">T03</span><span class="tlab">Recuperar senha, definir nova</span></div><div class="flow-node"><span class="tid">T04</span><span class="tlab">Aceite de termos e privacidade</span></div><div class="flow-node"><span class="tid">T05</span><span class="tlab">Perfil, visualizar</span></div><div class="flow-node"><span class="tid">T06</span><span class="tlab">Perfil, editar dados</span></div><div class="flow-node"><span class="tid">T07</span><span class="tlab">Encerrar sessão</span></div></div></div><div class="flow-area"><div class="flow-area-title">Aluno</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T08</span><span class="tlab">Início, próximos passos</span></div><div class="flow-node"><span class="tid">T09</span><span class="tlab">Meus cursos / matrículas</span></div><div class="flow-node"><span class="tid">T10</span><span class="tlab">Trilha do curso</span></div><div class="flow-node"><span class="tid">T11</span><span class="tlab">Detalhe do módulo</span></div><div class="flow-node"><span class="tid">T12</span><span class="tlab">Aula, player e materiais</span></div><div class="flow-node"><span class="tid">T13</span><span class="tlab">Marcar aula como concluída</span></div><div class="flow-node"><span class="tid">T14</span><span class="tlab">Meu progresso</span></div><div class="flow-node"><span class="tid">T15</span><span class="tlab">Estado vazio, sem matrícula</span></div></div></div><div class="flow-area"><div class="flow-area-title">Pais</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T16</span><span class="tlab">Início do responsável</span></div><div class="flow-node"><span class="tid">T17</span><span class="tlab">Selecionar filho vinculado</span></div><div class="flow-node"><span class="tid">T18</span><span class="tlab">Trilha do aluno (filtrada)</span></div><div class="flow-node"><span class="tid">T19</span><span class="tlab">Aula somente leitura</span></div><div class="flow-node"><span class="tid">T20</span><span class="tlab">Progresso do filho</span></div><div class="flow-node"><span class="tid">T21</span><span class="tlab">Sem vínculo, estado de bloqueio</span></div></div></div><div class="flow-area"><div class="flow-area-title">Professor</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T22</span><span class="tlab">Minhas turmas</span></div><div class="flow-node"><span class="tid">T23</span><span class="tlab">Turma, lista de alunos</span></div><div class="flow-node"><span class="tid">T24</span><span class="tlab">Aluno, detalhe de progresso</span></div><div class="flow-node"><span class="tid">T25</span><span class="tlab">Biblioteca de conteúdos</span></div><div class="flow-node"><span class="tid">T26</span><span class="tlab">Nova aula / editar aula</span></div><div class="flow-node"><span class="tid">T27</span><span class="tlab">Anexar materiais (vídeo, PDF…)</span></div><div class="flow-node"><span class="tid">T28</span><span class="tlab">Publicar ou salvar rascunho</span></div><div class="flow-node"><span class="tid">T29</span><span class="tlab">Pré-visualização da aula</span></div><div class="flow-node"><span class="tid">T30</span><span class="tlab">Ordenar trilha / pré-requisitos</span></div></div></div><div class="flow-area"><div class="flow-area-title">Admin</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T31</span><span class="tlab">Painel administrativo</span></div><div class="flow-node"><span class="tid">T32</span><span class="tlab">Lista de pessoas</span></div><div class="flow-node"><span class="tid">T33</span><span class="tlab">Cadastro / edição de pessoa</span></div><div class="flow-node"><span class="tid">T34</span><span class="tlab">Ativar, bloquear ou desativar conta</span></div><div class="flow-node"><span class="tid">T35</span><span class="tlab">Lista de cursos</span></div><div class="flow-node"><span class="tid">T36</span><span class="tlab">Estrutura: módulos e aulas</span></div><div class="flow-node"><span class="tid">T37</span><span class="tlab">Lista de turmas</span></div><div class="flow-node"><span class="tid">T38</span><span class="tlab">Criar turma e período</span></div><div class="flow-node"><span class="tid">T39</span><span class="tlab">Matrícula individual</span></div><div class="flow-node"><span class="tid">T40</span><span class="tlab">Matrícula em lote</span></div><div class="flow-node"><span class="tid">T41</span><span class="tlab">Vincular professor à turma</span></div><div class="flow-node"><span class="tid">T42</span><span class="tlab">Vínculo responsável ↔ aluno</span></div><div class="flow-node"><span class="tid">T43</span><span class="tlab">Arquivar turma (histórico)</span></div></div></div></div><div class="flow-phase phase-later"><div class="flow-phase-head"><span class="badge b-later">Depois</span> <strong>Telas das expansões (depois)</strong></div><div class="flow-area"><div class="flow-area-title">Avaliações</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T44</span><span class="tlab">Banco de questões</span></div><div class="flow-node"><span class="tid">T45</span><span class="tlab">Criar avaliação</span></div><div class="flow-node"><span class="tid">T46</span><span class="tlab">Aluno, realizar avaliação</span></div><div class="flow-node"><span class="tid">T47</span><span class="tlab">Fila de correção manual</span></div><div class="flow-node"><span class="tid">T48</span><span class="tlab">Notas e histórico</span></div></div></div><div class="flow-area"><div class="flow-area-title">Comunicação</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T49</span><span class="tlab">Avisos segmentados</span></div><div class="flow-node"><span class="tid">T50</span><span class="tlab">Mensagens assíncronas</span></div><div class="flow-node"><span class="tid">T51</span><span class="tlab">Central de notificações</span></div><div class="flow-node"><span class="tid">T52</span><span class="tlab">Calendário</span></div></div></div><div class="flow-area"><div class="flow-area-title">Lives</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T53</span><span class="tlab">Cadastro de encontro (Zoom)</span></div><div class="flow-node"><span class="tid">T54</span><span class="tlab">Exibição na aula / calendário</span></div></div></div><div class="flow-area"><div class="flow-area-title">Painéis</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T55</span><span class="tlab">Dashboard gerencial</span></div><div class="flow-node"><span class="tid">T56</span><span class="tlab">Exportações e relatórios</span></div></div></div><div class="flow-area"><div class="flow-area-title">Operação</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T57</span><span class="tlab">Importação de usuários</span></div><div class="flow-node"><span class="tid">T58</span><span class="tlab">Duplicar curso / aula</span></div></div></div><div class="flow-area"><div class="flow-area-title">EAD</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T59</span><span class="tlab">Oferta assíncrona</span></div><div class="flow-node"><span class="tid">T60</span><span class="tlab">Liberação por trilha / data</span></div><div class="flow-node"><span class="tid">T61</span><span class="tlab">Biblioteca da oferta</span></div></div></div><div class="flow-area"><div class="flow-area-title">Mobile</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T62</span><span class="tlab">App aluno, início</span></div><div class="flow-node"><span class="tid">T63</span><span class="tlab">App aluno, trilha e aula</span></div><div class="flow-node"><span class="tid">T64</span><span class="tlab">Push notifications</span></div><div class="flow-node"><span class="tid">T65</span><span class="tlab">App professor (reduzido)</span></div></div></div><div class="flow-area"><div class="flow-area-title">Expansão</div><div class="flow-nodes"><div class="flow-node"><span class="tid">T66</span><span class="tlab">Checkout e matrícula automática</span></div><div class="flow-node"><span class="tid">T67</span><span class="tlab">Certificados</span></div><div class="flow-node"><span class="tid">T68</span><span class="tlab">Chat em tempo real</span></div><div class="flow-node"><span class="tid">T69</span><span class="tlab">IA (tutoria / correção)</span></div></div></div></div>
+ </section>
+
+ <section id="fora">
+ <h2>4. Explicitamente fora das telas da Versão 0</h2>
+ <div class="callout warn">
+ Avaliações e banco de questões · comunicação (avisos, chat, calendário completo) ·
+ encontros ao vivo · relatórios avançados · curso online (EAD) · aplicativos nas lojas ·
+ checkout, certificados, ERP e inteligência artificial.
+ Essas telas aparecem no mapa acima como <strong>Depois</strong>.
+ </div>
+ <div class="callout" style="margin-top:12px">
+ <strong>Próximo passo:</strong> validar se as telas da Versão 0 cobrem o entendimento do cliente;
+ em seguida, cruzar com o documento de proposta (investimento e módulos).
+ </div>
+ </section>
+
+ <footer class="doc-footer">
+ <p>
+ Documento de telas elaborado a partir do Briefing AECUS com a metodologia Matilha.
+ Wireframes de baixa fidelidade para validação de escopo da Versão 0, canal web.
+ </p>
+ <div class="tag">Matilha · Julho 2026</div>
+ </footer>
+ </div>
+
+ <script>
+ const SELL = {"login": {"title": "Login", "sell": "Entrar com e-mail e senha nos quatro papéis (aluno, responsável, professor, admin).", "group": "Acesso", "path": "/entrar"}, "recuperar": {"title": "Recuperar senha", "sell": "Pedir redefinição e receber link temporário por e-mail.", "group": "Acesso", "path": "/recuperar-senha"}, "termos": {"title": "Aceite de termos", "sell": "Registrar aceite de termos, privacidade e consentimentos no primeiro acesso.", "group": "Acesso", "path": "/termos"}, "perfil": {"title": "Meu perfil", "sell": "Ver e editar dados básicos da conta; encerrar sessão.", "group": "Acesso", "path": "/perfil"}, "aluno-home": {"title": "Início do aluno", "sell": "Ver próximos passos, pendências e atalho para a próxima aula, sem se perder.", "group": "Aluno", "path": "/aluno"}, "aluno-cursos": {"title": "Meus cursos", "sell": "Listar matrículas ativas e entrar na trilha de cada curso.", "group": "Aluno", "path": "/aluno/cursos"}, "aluno-trilha": {"title": "Trilha do curso", "sell": "Navegar a sequência de módulos e aulas, com o que já foi concluído.", "group": "Aluno", "path": "/aluno/curso/trilha"}, "aluno-aula": {"title": "Aula e materiais", "sell": "Consumir vídeo (Vimeo), PDF, áudio e links no ambiente AECUS.", "group": "Aluno", "path": "/aluno/aula"}, "aluno-progresso": {"title": "Meu progresso", "sell": "Acompanhar avanço por aula, módulo e curso com marcos visuais.", "group": "Aluno", "path": "/aluno/progresso"}, "pais-home": {"title": "Início do responsável", "sell": "Acompanhar o filho com a mesma jornada do aluno, sem ações exclusivas dele.", "group": "Pais / responsável", "path": "/familia"}, "pais-filho": {"title": "Selecionar aluno vinculado", "sell": "Escolher qual filho acompanhar quando há mais de um vínculo.", "group": "Pais / responsável", "path": "/familia/filhos"}, "pais-trilha": {"title": "Trilha (visão filtrada)", "sell": "Ver a trilha e o progresso do aluno com informações filtradas.", "group": "Pais / responsável", "path": "/familia/trilha"}, "pais-aula": {"title": "Aula (somente leitura)", "sell": "Consultar materiais relevantes sem marcar conclusão nem editar.", "group": "Pais / responsável", "path": "/familia/aula"}, "prof-turmas": {"title": "Minhas turmas", "sell": "Ver turmas vinculadas e abrir o acompanhamento de cada uma.", "group": "Professor", "path": "/professor/turmas"}, "prof-turma": {"title": "Turma e alunos", "sell": "Ver lista de alunos da turma e quem avançou na trilha.", "group": "Professor", "path": "/professor/turma"}, "prof-conteudos": {"title": "Conteúdos", "sell": "Listar cursos/módulos sob sua responsabilidade editorial.", "group": "Professor", "path": "/professor/conteudos"}, "prof-aula-edit": {"title": "Montar / editar aula", "sell": "Cadastrar aula, anexar materiais e definir status rascunho ou publicado.", "group": "Professor", "path": "/professor/aula/editar"}, "prof-preview": {"title": "Pré-visualizar aula", "sell": "Ver como o aluno enxerga a aula antes de publicar.", "group": "Professor", "path": "/professor/aula/preview"}, "prof-aluno": {"title": "Detalhe do aluno", "sell": "Abrir progresso individual de um aluno na turma.", "group": "Professor", "path": "/professor/aluno"}, "admin-home": {"title": "Painel administrativo", "sell": "Visão resumida de pessoas, turmas e atividade recente.", "group": "Administrativo", "path": "/admin"}, "admin-pessoas": {"title": "Pessoas", "sell": "Cadastrar e gerir alunos, responsáveis, professores e admins.", "group": "Administrativo", "path": "/admin/pessoas"}, "admin-pessoa": {"title": "Cadastro de pessoa", "sell": "Criar conta, definir papel e dados básicos.", "group": "Administrativo", "path": "/admin/pessoas/nova"}, "admin-cursos": {"title": "Cursos", "sell": "Organizar a estrutura acadêmica: cursos e níveis.", "group": "Administrativo", "path": "/admin/cursos"}, "admin-estrutura": {"title": "Estrutura do curso", "sell": "Montar módulos, aulas e ordem da trilha.", "group": "Administrativo", "path": "/admin/curso/estrutura"}, "admin-turmas": {"title": "Turmas e matrículas", "sell": "Criar turma, matricular alunos e vincular professores.", "group": "Administrativo", "path": "/admin/turmas"}, "admin-vinculo": {"title": "Vínculo familiar", "sell": "Associar responsável ao aluno para a visão da família.", "group": "Administrativo", "path": "/admin/vinculos"}};
+ const ORDER = ["login", "recuperar", "termos", "perfil", "aluno-home", "aluno-cursos", "aluno-trilha", "aluno-aula", "aluno-progresso", "pais-home", "pais-filho", "pais-trilha", "pais-aula", "prof-turmas", "prof-turma", "prof-conteudos", "prof-aula-edit", "prof-preview", "prof-aluno", "admin-home", "admin-pessoas", "admin-pessoa", "admin-cursos", "admin-estrutura", "admin-turmas", "admin-vinculo"];
+ let current = ORDER[0];
+ let roleFilter = "all";
+
+ const panels = [...document.querySelectorAll(".screen-panel")];
+ const sideItems = [...document.querySelectorAll(".side-item")];
+ const roleBtns = [...document.querySelectorAll("[data-role-filter]")];
+
+ function show(id) {
+ current = id;
+ const meta = SELL[id];
+ panels.forEach((p) => {
+ const on = p.dataset.id === id;
+ p.hidden =!on;
+ p.classList.toggle("active", on);
+ });
+ sideItems.forEach((b) => b.classList.toggle("on", b.dataset.go === id));
+ document.getElementById("sell-title").textContent = meta.title;
+ document.getElementById("sell-text").textContent = meta.sell;
+ document.getElementById("sell-path").textContent = "app.aecus.escola" + meta.path;
+ }
+
+ function applyRoleFilter() {
+ sideItems.forEach((b) => {
+ const match = roleFilter === "all" || b.dataset.role === roleFilter;
+ b.classList.toggle("dim",!match);
+ b.style.display = match? "": "none";
+ const group = b.previousElementSibling;
+ });
+ // hide empty groups
+ document.querySelectorAll(".side-group").forEach((g) => {
+ let el = g.nextElementSibling;
+ let any = false;
+ while (el &&!el.classList.contains("side-group")) {
+ if (el.classList.contains("side-item") && el.style.display!== "none") any = true;
+ el = el.nextElementSibling;
+ }
+ g.style.display = any? "": "none";
+ });
+ // if current hidden, jump to first visible
+ const curBtn = sideItems.find((b) => b.dataset.go === current);
+ if (curBtn && curBtn.style.display === "none") {
+ const first = sideItems.find((b) => b.style.display!== "none");
+ if (first) show(first.dataset.go);
+ }
+ }
+
+ sideItems.forEach((b) => b.addEventListener("click", () => show(b.dataset.go)));
+ roleBtns.forEach((b) => b.addEventListener("click", () => {
+ roleFilter = b.dataset.roleFilter;
+ roleBtns.forEach((x) => x.classList.toggle("on", x === b));
+ applyRoleFilter();
+ }));
+
+ document.getElementById("prev").addEventListener("click", () => {
+ const visible = ORDER.filter((id) => {
+ const btn = sideItems.find((b) => b.dataset.go === id);
+ return btn && btn.style.display!== "none";
+ });
+ const i = visible.indexOf(current);
+ show(visible[(i - 1 + visible.length) % visible.length]);
+ });
+ document.getElementById("next").addEventListener("click", () => {
+ const visible = ORDER.filter((id) => {
+ const btn = sideItems.find((b) => b.dataset.go === id);
+ return btn && btn.style.display!== "none";
+ });
+ const i = visible.indexOf(current);
+ show(visible[(i + 1) % visible.length]);
+ });
+
+ show(current);
+ </script>
+</body>
+</html>

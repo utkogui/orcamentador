@@ -29,6 +29,8 @@ export function BriefingKnowledgeLab() {
     () => (result ? generateApplicationFlowFromBlocks(result) : null),
     [result]
   );
+  const hasCalculableBlocks =
+    result !== null && (result.explicitlyRequested.length > 0 || result.likelyNeeded.length > 0);
 
   function handleInterpret() {
     setError(null);
@@ -184,7 +186,10 @@ export function BriefingKnowledgeLab() {
           </ListCard>
 
           <div className="flex justify-end border-t pt-6">
-            <Button onClick={handleCreateEstimate} disabled={isCreating || isPending}>
+            <Button
+              onClick={handleCreateEstimate}
+              disabled={isCreating || isPending || !hasCalculableBlocks}
+            >
               {isCreating ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -195,6 +200,12 @@ export function BriefingKnowledgeLab() {
               )}
             </Button>
           </div>
+          {!hasCalculableBlocks && (
+            <p className="text-right text-sm text-muted-foreground">
+              Nenhum Building Block calculável foi identificado. Revise o briefing ou use a
+              estimativa manual.
+            </p>
+          )}
         </div>
       )}
     </div>

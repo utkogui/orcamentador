@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>AECUS: Escopo estruturado · Matilha</title>
+ <style>
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Regular.ttf") format("truetype");
+ font-weight: 400;
+ font-style: normal;
+ font-display: swap;
+ }
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Medium.ttf") format("truetype");
+ font-weight: 500;
+ font-style: normal;
+ font-display: swap;
+ }
+ @font-face {
+ font-family: "Moderat";
+ src: url("./matilha-ds/fonts/Moderat/Moderat-Bold.ttf") format("truetype");
+ font-weight: 700;
+ font-style: normal;
+ font-display: swap;
+ }
+
+:root {
+ --brand-yellow: #FBD951;
+ --brand-orange: #EB6239;
+ --brand-blue: #3CA8FB;
+ --brand-purple: #BC83F3;
+ --brand-green: #A5E6BA;
+ --brand-black: #000000;
+ --brand-white: #FFFFFF;
+ --ink: #191919;
+ --muted: #595959;
+ --line: #E0E0E0;
+ --bg: #F2F2F2;
+ --paper: #FFFFFF;
+ --soft-yellow: #FFF8DC;
+ --soft-blue: #EAF5FE;
+ --soft-green: #EEF9F2;
+ --soft-orange: #FDF0EB;
+ --zebra: #FAFAFA;
+ --radius: 4px;
+ --font: "Moderat", "Avenir Next", "Segoe UI", sans-serif;
+ }
+
+ * { box-sizing: border-box; }
+ html { scroll-behavior: smooth; }
+
+ body {
+ margin: 0;
+ color: var(--ink);
+ background: var(--bg);
+ font-family: var(--font);
+ font-size: 15px;
+ line-height: 1.5;
+ }
+
+.topbar {
+ background: var(--brand-black);
+ color: var(--brand-white);
+ border-bottom: 4px solid var(--brand-yellow);
+ }
+
+.topbar-inner {
+ max-width: 1120px;
+ margin: 0 auto;
+ padding: 18px 20px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ gap: 16px;
+ flex-wrap: wrap;
+ }
+
+.logo {
+ display: block;
+ height: 36px;
+ width: auto;
+ }
+
+.logo svg {
+ height: 36px;
+ width: auto;
+ display: block;
+ }
+
+.logo svg path { fill: #FFFFFF; }
+
+.topbar-meta {
+ text-align: right;
+ font-size: 12px;
+ line-height: 1.35;
+ color: rgba(255,255,255,0.72);
+ }
+
+.topbar-meta strong {
+ display: block;
+ color: var(--brand-yellow);
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ font-size: 11px;
+ margin-bottom: 2px;
+ }
+
+.wrap {
+ max-width: 1120px;
+ margin: 0 auto;
+ padding: 36px 20px 72px;
+ }
+
+ header.hero {
+ margin-bottom: 28px;
+ padding-bottom: 24px;
+ border-bottom: 1px solid var(--line);
+ }
+
+.eyebrow {
+ display: inline-flex;
+ align-items: center;
+ gap: 8px;
+ font-size: 12px;
+ letter-spacing: 0.06em;
+ text-transform: uppercase;
+ font-weight: 700;
+ color: var(--ink);
+ margin: 0 0 12px;
+ }
+
+.eyebrow::before {
+ content: "";
+ width: 10px;
+ height: 10px;
+ background: var(--brand-yellow);
+ border: 1.5px solid var(--brand-black);
+ }
+
+ h1 {
+ font-size: clamp(1.9rem, 4vw, 2.75rem);
+ line-height: 1.1;
+ margin: 0 0 12px;
+ font-weight: 700;
+ letter-spacing: -0.02em;
+ max-width: 18ch;
+ }
+
+.lede {
+ max-width: 62ch;
+ color: var(--muted);
+ margin: 0 0 20px;
+ font-size: 1.05rem;
+ }
+
+.meta {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ }
+
+.chip {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ padding: 6px 10px;
+ border: 1.5px solid var(--brand-black);
+ background: var(--paper);
+ font-size: 12px;
+ color: var(--muted);
+ border-radius: var(--radius);
+ }
+
+.chip strong { color: var(--ink); font-weight: 700; }
+
+ nav.toc {
+ position: sticky;
+ top: 0;
+ z-index: 20;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 6px;
+ padding: 10px 0;
+ margin: 0 0 28px;
+ background: color-mix(in srgb, var(--bg) 92%, transparent);
+ backdrop-filter: blur(8px);
+ border-bottom: 1px solid var(--line);
+ }
+
+ nav.toc a {
+ text-decoration: none;
+ color: var(--muted);
+ font-size: 12.5px;
+ font-weight: 600;
+ padding: 6px 10px;
+ border: 1.5px solid transparent;
+ border-radius: var(--radius);
+ }
+
+ nav.toc a:hover {
+ color: var(--ink);
+ background: var(--paper);
+ border-color: var(--brand-black);
+ }
+
+ section {
+ margin-bottom: 40px;
+ scroll-margin-top: 64px;
+ }
+
+ h2 {
+ font-size: 1.4rem;
+ margin: 0 0 8px;
+ letter-spacing: -0.01em;
+ }
+
+ h3 {
+ font-size: 1.05rem;
+ margin: 22px 0 8px;
+ }
+
+.section-lead {
+ color: var(--muted);
+ margin: 0 0 14px;
+ max-width: 70ch;
+ }
+
+.callout {
+ border: 1.5px solid var(--brand-black);
+ border-left: 6px solid var(--brand-yellow);
+ background: var(--soft-yellow);
+ padding: 12px 14px;
+ border-radius: var(--radius);
+ margin: 12px 0 16px;
+ }
+
+.callout.warn {
+ border-left-color: var(--brand-orange);
+ background: var(--soft-orange);
+ }
+
+.callout.info {
+ border-left-color: var(--brand-blue);
+ background: var(--soft-blue);
+ }
+
+.callout.ok {
+ border-left-color: #478F65;
+ background: var(--soft-green);
+ }
+
+.grid-2 {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 12px;
+ }
+
+ @media (max-width: 760px) {
+.grid-2 { grid-template-columns: 1fr; }
+ nav.toc { position: static; }
+.topbar-meta { text-align: left; }
+ h1 { max-width: none; }
+ }
+
+.card {
+ background: var(--paper);
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ padding: 14px 16px;
+ }
+
+.card h4 {
+ margin: 0 0 6px;
+ font-size: 0.95rem;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ flex-wrap: wrap;
+ }
+
+.card p {
+ margin: 0;
+ color: var(--muted);
+ font-size: 13.5px;
+ }
+
+.badge {
+ display: inline-block;
+ font-size: 11px;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ padding: 3px 7px;
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ vertical-align: middle;
+ background: var(--paper);
+ }
+
+.b-a { background: var(--brand-yellow); }
+.b-b { background: var(--brand-blue); color: var(--brand-white); border-color: var(--brand-black); }
+.b-c { background: var(--brand-purple); color: var(--brand-white); }
+.b-opt { background: var(--paper); }
+.b-p { background: var(--brand-green); }
+.b-m { background: var(--soft-blue); }
+.b-g { background: var(--soft-yellow); }
+.b-gg { background: var(--soft-orange); }
+
+.toolbar {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ align-items: center;
+ margin: 0 0 12px;
+ }
+
+.toolbar label {
+ font-size: 12.5px;
+ color: var(--muted);
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ background: var(--paper);
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ padding: 6px 10px;
+ cursor: pointer;
+ user-select: none;
+ }
+
+.toolbar input { accent-color: var(--brand-black); }
+
+ input[type="search"] {
+ flex: 1;
+ min-width: 180px;
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ padding: 8px 12px;
+ font: inherit;
+ background: var(--paper);
+ color: var(--ink);
+ }
+
+ input[type="search"]:focus {
+ outline: 2px solid var(--brand-yellow);
+ outline-offset: 1px;
+ }
+
+.table-wrap {
+ overflow: auto;
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ background: var(--paper);
+ }
+
+ table {
+ width: 100%;
+ border-collapse: collapse;
+ min-width: 720px;
+ font-size: 13.5px;
+ }
+
+ th, td {
+ padding: 10px 12px;
+ text-align: left;
+ border-bottom: 1px solid var(--line);
+ vertical-align: top;
+ }
+
+ th {
+ background: var(--brand-black);
+ color: var(--brand-white);
+ font-size: 11.5px;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ font-weight: 700;
+ position: sticky;
+ top: 0;
+ z-index: 1;
+ }
+
+ tbody tr:nth-child(even) { background: var(--zebra); }
+ tbody tr:hover { background: var(--soft-yellow); }
+ tbody tr.hidden { display: none; }
+
+ td.code {
+ font-variant-numeric: tabular-nums;
+ font-size: 12.5px;
+ white-space: nowrap;
+ font-weight: 700;
+ }
+
+ td.ids {
+ font-size: 12px;
+ color: var(--muted);
+ max-width: 240px;
+ }
+
+ ul.tight {
+ margin: 0;
+ padding-left: 1.15rem;
+ }
+
+ ul.tight li { margin: 4px 0; }
+
+.cols {
+ columns: 2;
+ column-gap: 24px;
+ }
+
+ @media (max-width: 700px) {
+.cols { columns: 1; }
+ }
+
+.kpi-row {
+ display: grid;
+ grid-template-columns: repeat(4, minmax(0, 1fr));
+ gap: 10px;
+ margin: 0 0 28px;
+ }
+
+ @media (max-width: 800px) {
+.kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ }
+
+.kpi {
+ background: var(--paper);
+ border: 1.5px solid var(--brand-black);
+ border-radius: var(--radius);
+ padding: 14px;
+ position: relative;
+ overflow: hidden;
+ }
+
+.kpi::after {
+ content: "";
+ position: absolute;
+ left: 0;
+ top: 0;
+ bottom: 0;
+ width: 5px;
+ background: var(--brand-yellow);
+ }
+
+.kpi.n {
+ font-size: 1.7rem;
+ font-weight: 700;
+ line-height: 1;
+ margin-bottom: 6px;
+ letter-spacing: -0.03em;
+ }
+
+.kpi.l {
+ font-size: 12px;
+ color: var(--muted);
+ }
+
+ ol.steps {
+ margin: 0;
+ padding-left: 1.2rem;
+ }
+
+ ol.steps li { margin: 6px 0; }
+
+.doc-footer {
+ margin-top: 48px;
+ padding: 20px;
+ background: var(--brand-black);
+ color: rgba(255,255,255,0.78);
+ border-radius: var(--radius);
+ border-bottom: 4px solid var(--brand-yellow);
+ display: flex;
+ justify-content: space-between;
+ gap: 16px;
+ flex-wrap: wrap;
+ align-items: flex-end;
+ }
+
+.doc-footer p {
+ margin: 0;
+ font-size: 13px;
+ max-width: 56ch;
+ line-height: 1.45;
+ }
+
+.doc-footer.tag {
+ color: var(--brand-yellow);
+ font-size: 12px;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ white-space: nowrap;
+ }
+
+.legend {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ align-items: center;
+ margin: 0 0 12px;
+ font-size: 12.5px;
+ color: var(--muted);
+ }
+
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+ </style>
+</head>
+<body>
+ <div class="topbar">
+ <div class="topbar-inner">
+ <a class="logo" href="#topo" aria-label="Matilha">
+ <svg width="142" height="64" viewBox="0 0 284 128" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+ <path d="M150.228 52.4676C149.129 52.4676 148.183 52.0749 147.39 51.2895C146.597 50.4887 146.2 49.5569 146.2 48.4943C146.2 47.3701 146.589 46.4229 147.367 45.6529C148.16 44.8675 149.114 44.4748 150.228 44.4748C151.311 44.4748 152.242 44.8675 153.02 45.6529C153.798 46.4229 154.187 47.3701 154.187 48.4943C154.187 49.5569 153.79 50.4887 152.997 51.2895C152.219 52.0749 151.296 52.4676 150.228 52.4676Z"/>
+ <path d="M168.392 44.4793H161.249V82.1861H168.392V44.4793Z"/>
+ <path d="M84.9555 44.9979V82.1861H77.7859V59.5205H77.3311L70.1615 79.5409H61.3332L54.2171 59.5205H53.789V82.1861H46.5926V44.9979H55.9827L65.346 71.346H66.2289L75.5922 44.9979H84.9555Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M115.051 73.2651C115.051 74.7346 115.309 75.7374 115.827 76.2733C116.344 76.8093 117.164 77.0772 118.288 77.0772V82.1861H116.629C113.33 82.1861 111.216 81.0536 110.289 78.7888C108.47 81.2265 105.581 82.4454 101.621 82.4454C98.5357 82.4454 96.0745 81.7366 94.2375 80.3189C92.4005 78.8839 91.482 76.9735 91.482 74.5877C91.482 73.6886 91.6247 72.8588 91.9101 72.0981C92.1954 71.3374 92.5611 70.6804 93.0069 70.1272C93.4528 69.5566 94.0235 69.038 94.7191 68.5712C95.4146 68.1044 96.1013 67.7154 96.779 67.4042C97.4746 67.093 98.2771 66.8164 99.1867 66.5743C100.114 66.315 100.935 66.1162 101.648 65.9779C102.379 65.8395 103.217 65.7272 104.163 65.6407C105.108 65.537 105.857 65.4678 106.41 65.4333C106.981 65.3814 107.649 65.3382 108.416 65.3036C108.327 62.5028 106.775 61.1024 103.761 61.1024C103.03 61.1024 102.388 61.1802 101.835 61.3358C101.3 61.4914 100.89 61.6816 100.605 61.9064C100.337 62.1311 100.123 62.3559 99.9625 62.5806C99.802 62.8054 99.7039 62.9955 99.6683 63.1511L99.6148 63.3845H92.7662C93.0158 60.9641 94.1127 59.0278 96.0567 57.5755C98.0185 56.106 100.64 55.3712 103.922 55.3712C107.364 55.3712 110.075 56.2529 112.055 58.0164C114.052 59.7798 115.051 62.5115 115.051 66.2113V73.2651ZM98.3842 74.3802C98.3842 75.4694 98.9816 76.2387 100.177 76.6882C101.461 77.1723 102.861 77.1205 104.377 76.5326C106.125 75.8584 107.311 74.6655 107.935 72.9539C108.149 72.366 108.274 71.7264 108.309 71.0348V70.4902C107.453 70.5767 106.74 70.6545 106.169 70.7236C105.616 70.7928 104.956 70.8879 104.189 71.0089C103.423 71.1299 102.789 71.2509 102.29 71.3719C101.808 71.493 101.291 71.6572 100.738 71.8647C100.203 72.0548 99.7753 72.271 99.4542 72.513C99.1511 72.7378 98.8924 73.0144 98.6784 73.3429C98.4822 73.6541 98.3842 73.9998 98.3842 74.3802Z"/>
+ <path d="M141.963 80.2151L139.314 75.4953L138.886 75.7287C138.601 75.8843 138.191 76.0399 137.656 76.1955C137.121 76.3338 136.612 76.403 136.131 76.403C135.132 76.403 134.294 76.1004 133.616 75.4953C132.956 74.8729 132.626 74.1122 132.626 73.2132V61.3099H139.528V55.6305H132.626V47.6691H126.018V52.9854C126.018 53.9362 125.733 54.6969 125.162 55.2675C124.591 55.8207 123.833 56.0973 122.888 56.0973H120.133V61.3099H125.617V73.6281C125.617 76.2387 126.571 78.3652 128.479 80.0077C130.388 81.6328 132.706 82.4454 135.435 82.4454C136.22 82.4454 136.987 82.3589 137.736 82.1861C138.485 82.0305 139.091 81.8576 139.555 81.6674C140.019 81.4772 140.456 81.2525 140.866 80.9931C141.294 80.7338 141.561 80.5523 141.668 80.4485C141.793 80.3448 141.891 80.267 141.963 80.2151Z"/>
+ <path d="M153.626 55.6305V82.1861H146.59V55.6305H153.626Z"/>
+ <path d="M192.147 55.3712C195.571 55.3712 198.166 56.495 199.932 58.7425C201.715 60.9728 202.607 63.9896 202.607 67.7932V82.1861H195.277V68.8046C195.259 68.4069 195.259 67.9834 195.277 67.5338C195.295 67.0843 195.268 66.6262 195.197 66.1594C195.143 65.6926 195.063 65.2344 194.956 64.7849C194.867 64.3354 194.706 63.9118 194.474 63.5142C194.26 63.1166 193.993 62.7708 193.672 62.4769C193.369 62.183 192.967 61.9496 192.468 61.7767C191.969 61.6038 191.407 61.5174 190.783 61.5174C190.23 61.5174 189.668 61.5779 189.097 61.6989C188.544 61.8026 187.929 62.036 187.251 62.3991C186.591 62.7621 186.003 63.2376 185.486 63.8254C184.986 64.3959 184.567 65.1912 184.228 66.2113C183.889 67.2313 183.72 68.3983 183.72 69.7122V82.1861H176.363V44.4793H183.319V58.3794H184.255C186.235 56.3739 188.865 55.3712 192.147 55.3712Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M233.826 76.2733C233.309 75.7374 233.05 74.7346 233.05 73.2651V66.2113C233.05 62.5115 232.051 59.7798 230.054 58.0164C228.074 56.2529 225.363 55.3712 221.921 55.3712C218.64 55.3712 216.018 56.106 214.056 57.5755C212.112 59.0278 211.015 60.9641 210.765 63.3845H217.614L217.668 63.1511C217.703 62.9955 217.801 62.8054 217.962 62.5806C218.122 62.3559 218.336 62.1311 218.604 61.9064C218.889 61.6816 219.299 61.4914 219.835 61.3358C220.387 61.1802 221.029 61.1024 221.761 61.1024C224.775 61.1024 226.326 62.5028 226.416 65.3036C225.649 65.3382 224.98 65.3814 224.409 65.4333C223.856 65.4678 223.107 65.537 222.162 65.6407C221.217 65.7272 220.379 65.8395 219.647 65.9779C218.934 66.1162 218.113 66.315 217.186 66.5743C216.276 66.8164 215.474 67.093 214.778 67.4042C214.101 67.7154 213.414 68.1044 212.718 68.5712C212.023 69.038 211.452 69.5566 211.006 70.1272C210.56 70.6804 210.195 71.3374 209.909 72.0981C209.624 72.8588 209.481 73.6886 209.481 74.5877C209.481 76.9735 210.4 78.8839 212.237 80.3189C214.074 81.7366 216.535 82.4454 219.621 82.4454C223.58 82.4454 226.469 81.2265 228.288 78.7888C229.216 81.0536 231.329 82.1861 234.629 82.1861H236.287V77.0772C235.164 77.0772 234.343 76.8093 233.826 76.2733ZM218.176 76.6882C216.981 76.2387 216.383 75.4694 216.383 74.3802C216.383 73.9998 216.482 73.6541 216.678 73.3429C216.892 73.0144 217.15 72.7378 217.454 72.513C217.775 72.271 218.203 72.0548 218.738 71.8647C219.291 71.6572 219.808 71.493 220.289 71.3719C220.789 71.2509 221.422 71.1299 222.189 71.0089C222.956 70.8879 223.616 70.7928 224.168 70.7236C224.739 70.6545 225.453 70.5767 226.309 70.4902V71.0348C226.273 71.7264 226.148 72.366 225.934 72.9539C225.31 74.6655 224.124 75.8584 222.376 76.5326C220.86 77.1205 219.46 77.1723 218.176 76.6882Z"/>
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H284V128H0V0ZM7.58779 7.59322V120.407H276.412V7.59322H7.58779Z"/>
+ </svg>
+ </a>
+ <div class="topbar-meta">
+ <strong>Documento de escopo</strong>
+ Cliente AECUS · Julho 2026
+ </div>
+ </div>
+ </div>
+
+ <div class="wrap" id="topo">
+ <header class="hero">
+ <p class="eyebrow">Plataforma educacional integrada</p>
+ <h1>Escopo AECUS para validação</h1>
+ <p class="lede">
+ Estrutura de entrega da plataforma web/mobile da AECUS, organizada em pacotes,
+ módulos e critérios de aceite, para alinhamento de escopo antes da proposta comercial.
+ </p>
+ <div class="meta">
+ <span class="chip"><strong>Cliente</strong> AECUS – Escola de Inglês</span>
+ <span class="chip"><strong>Versão</strong> 1.0</span>
+ <span class="chip"><strong>MVP</strong> Web responsiva · 3 perfis</span>
+ <span class="chip"><strong>Evolução</strong> EAD → Mobile → Expansão</span>
+ </div>
+ </header>
+
+ <nav class="toc" aria-label="Navegação do documento">
+ <a href="#cenarios">Pacotes</a>
+ <a href="#mvp">MVP Web</a>
+ <a href="#should">Complementos MVP</a>
+ <a href="#ead">EAD</a>
+ <a href="#mobile">Mobile</a>
+ <a href="#opcionais">Opcionais</a>
+ <a href="#aceite">Aceite</a>
+ <a href="#exclusoes">Fora do escopo</a>
+ <a href="#pendencias">Decisões abertas</a>
+ <a href="#reqs">Requisitos Must</a>
+ </nav>
+
+ <div class="kpi-row">
+ <div class="kpi"><div class="n">3</div><div class="l">Pacotes de entrega</div></div>
+ <div class="kpi"><div class="n">14</div><div class="l">Módulos do MVP Web</div></div>
+ <div class="kpi"><div class="n">~55</div><div class="l">Requisitos essenciais no MVP</div></div>
+ <div class="kpi"><div class="n">4</div><div class="l">Fluxos críticos de aceite</div></div>
+ </div>
+
+ <section id="cenarios">
+ <h2>1. Pacotes de entrega</h2>
+ <p class="section-lead">
+ Recomendamos validar o <strong>Pacote A</strong> como baseline. Os pacotes B e C,
+ e os opcionais, entram como evoluções sob a mesma arquitetura.
+ </p>
+
+ <div class="grid-2">
+ <div class="card">
+ <h4><span class="badge b-a">A</span> MVP Web</h4>
+ <p>Discovery/UX + plataforma web para aluno, professor e administrativo. Integração simples com Vimeo e Zoom. Sem aplicativo nativo, checkout, ERP, chat em tempo real ou IA.</p>
+ </div>
+ <div class="card">
+ <h4><span class="badge b-b">B</span> A + EAD</h4>
+ <p>Ofertas assíncronas, liberação por trilha, biblioteca e encontros opcionais. A venda pode permanecer em ferramenta externa ou matrícula manual nesta fase.</p>
+ </div>
+ <div class="card">
+ <h4><span class="badge b-c">C</span> B + Mobile</h4>
+ <p>Aplicativos Android/iOS focados no aluno, com notificações push. Visão reduzida para professor. Administração permanece no web.</p>
+ </div>
+ <div class="card">
+ <h4><span class="badge b-opt">+</span> Opcionais</h4>
+ <p>Migração de dados, checkout próprio, ERP, certificados, chat, IA, gamificação avançada e suporte gerenciado, cada um com decisão e escopo próprios.</p>
+ </div>
+ </div>
+
+ <div class="callout info" style="margin-top:16px">
+ <strong>Diretriz de solução:</strong> lançar primeiro a plataforma web responsiva, com backend único e APIs reutilizáveis. O aplicativo móvel entra depois, sem reconstrução da camada acadêmica.
+ </div>
+ </section>
+
+ <section id="mvp">
+ <h2>2. MVP Web, módulos de entrega</h2>
+ <p class="section-lead">
+ Cada módulo abaixo compõe o Pacote A. O porte indica a dimensão relativa do trabalho
+ (Pequeno, Médio, Grande, Muito grande) para orientar priorização e discussão.
+ </p>
+
+ <div class="legend">
+ Porte:
+ <span><span class="badge b-p">P</span> Pequeno</span>
+ <span><span class="badge b-m">M</span> Médio</span>
+ <span><span class="badge b-g">G</span> Grande</span>
+ <span><span class="badge b-gg">GG</span> Muito grande</span>
+ </div>
+
+ <div class="callout warn">
+ <strong>Atenção de escopo:</strong> os módulos de avaliações (A5/A6), a gestão acadêmica (A3)
+ e as interfaces dos três perfis (A12) concentram a maior parte do esforço.
+ Se for necessário reduzir o MVP, o caminho mais seguro é limitar os tipos de questão no lançamento.
+ </div>
+
+ <div class="toolbar">
+ <input type="search" id="filter-mvp" placeholder="Filtrar módulos, IDs ou entregas…" aria-label="Filtrar módulos do MVP" />
+ </div>
+
+ <div class="table-wrap">
+ <table id="table-mvp">
+ <thead>
+ <tr>
+ <th style="width:64px">Módulo</th>
+ <th>Entrega</th>
+ <th>Referências</th>
+ <th style="width:72px">Porte</th>
+ <th>Observação</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td class="code">A0</td>
+ <td><strong>Discovery + UX + arquitetura</strong><br>Workshops, jornadas, protótipo, backlog e plano de conteúdo/dados</td>
+ <td class="ids">Fase 0</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Alinha escopo e critérios de aceite</td>
+ </tr>
+ <tr>
+ <td class="code">A1</td>
+ <td><strong>Fundação técnica</strong><br>API modular, ambientes, CI, logs, armazenamento e base de autenticação</td>
+ <td class="ids">: </td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Base reutilizável para web e mobile</td>
+ </tr>
+ <tr>
+ <td class="code">A2</td>
+ <td><strong>Identidade e acesso</strong><br>Login, recuperação de senha, permissões, gestão de contas e termos</td>
+ <td class="ids">AUT-01…05, 07</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Três papéis com controle de acesso</td>
+ </tr>
+ <tr>
+ <td class="code">A3</td>
+ <td><strong>Gestão acadêmica</strong><br>Cursos, turmas, trilhas, pré-requisitos, matrículas, vínculos e públicos</td>
+ <td class="ids">ACA-01…06, 08, 10</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Inclui infantil, teen, adulto e empresas</td>
+ </tr>
+ <tr>
+ <td class="code">A4</td>
+ <td><strong>Conteúdo e mídia</strong><br>Aulas, anexos, publicação, escopos e integração Vimeo</td>
+ <td class="ids">CON-01…04, 06, 08</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Vídeo, PDF, áudio, link e arquivo</td>
+ </tr>
+ <tr>
+ <td class="code">A5</td>
+ <td><strong>Banco de questões e tipos</strong><br>Questões reutilizáveis: objetiva, lacunas, ordenação, associação, listening, leitura e escrita</td>
+ <td class="ids">ATV-01…06</td>
+ <td><span class="badge b-gg">GG</span></td>
+ <td>Principal ponto de calibração do MVP</td>
+ </tr>
+ <tr>
+ <td class="code">A6</td>
+ <td><strong>Avaliações e execução</strong><br>Prática, homework, prova e diagnóstica; tentativas, prazos e histórico</td>
+ <td class="ids">ATV-08…11, 13</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Inclui autosave e liberação de resultado</td>
+ </tr>
+ <tr>
+ <td class="code">A7</td>
+ <td><strong>Correção e notas</strong><br>Fila de correção manual, feedback e consolidação de notas</td>
+ <td class="ids">ATV-06, PRO-06</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Sem correção por IA no MVP</td>
+ </tr>
+ <tr>
+ <td class="code">A8</td>
+ <td><strong>Progresso e acompanhamento</strong><br>Conclusão, agregados, painel do aluno e visão por turma</td>
+ <td class="ids">PRO-01…04, 07</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Visibilidade para os três perfis</td>
+ </tr>
+ <tr>
+ <td class="code">A9</td>
+ <td><strong>Comunicação e agenda</strong><br>Avisos, mensagens assíncronas, notificações na plataforma e calendário</td>
+ <td class="ids">COM-01…03, 05</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Sem chat em tempo real</td>
+ </tr>
+ <tr>
+ <td class="code">A10</td>
+ <td><strong>Encontros ao vivo</strong><br>Cadastro com link Zoom, exibição no calendário/aula e gravação associada</td>
+ <td class="ids">LIVE-01, 02, 04</td>
+ <td><span class="badge b-p">P</span></td>
+ <td>Integração por link</td>
+ </tr>
+ <tr>
+ <td class="code">A11</td>
+ <td><strong>Administração e painéis</strong><br>Pessoas, parâmetros, dashboard e auditoria de ações críticas</td>
+ <td class="ids">ADM-01, 03…05</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Sem cobrança ou ERP no MVP</td>
+ </tr>
+ <tr>
+ <td class="code">A12</td>
+ <td><strong>Interfaces dos três perfis</strong><br>Navegação e telas de Aluno, Professor e Administrativo</td>
+ <td class="ids">Portais web</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Web responsiva desktop, tablet e mobile</td>
+ </tr>
+ <tr>
+ <td class="code">A13</td>
+ <td><strong>Progresso visual</strong><br>Barra de progresso e marcos de conclusão</td>
+ <td class="ids">GAM-02</td>
+ <td><span class="badge b-p">P</span></td>
+ <td>Sem ranking no MVP</td>
+ </tr>
+ <tr>
+ <td class="code">A14</td>
+ <td><strong>Qualidade, segurança e aceite</strong><br>Requisitos não funcionais, testes dos fluxos críticos e operação inicial</td>
+ <td class="ids">Aceite MVP</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Parte integrante do Pacote A</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <section id="should">
+ <h2>3. Complementos do MVP</h2>
+ <p class="section-lead">Itens importantes que podem entrar no Pacote A ou ser negociados como aditivos, sem bloquear o essencial.</p>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th>Item</th>
+ <th style="width:100px">ID</th>
+ <th>Nota</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td>Duplicar curso, módulo ou aula</td><td class="code">ACA-07</td><td>Acelera a operação editorial</td></tr>
+ <tr><td>Homework com envio de arquivo</td><td class="code">ATV-07</td><td>Amplia os tipos de entrega</td></tr>
+ <tr><td>E-mails transacionais críticos</td><td class="code">COM-04</td><td>Convite, recuperação de senha e avisos</td></tr>
+ <tr><td>Importação de usuários e matrículas</td><td class="code">ADM-02</td><td>Reduz operação manual</td></tr>
+ <tr><td>Pontos por conclusão</td><td class="code">GAM-01</td><td>Sem ranking associado</td></tr>
+ <tr><td>Status financeiro informativo</td><td class="code">ADM-07</td><td>Sem cobrança ou conciliação</td></tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <section id="ead">
+ <h2>4. Pacote B: EAD</h2>
+ <p class="section-lead">Evolução sobre o MVP. Premissa desta fase: matrícula manual ou venda em ferramenta externa.</p>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th style="width:64px">Módulo</th>
+ <th>Entrega</th>
+ <th>Referências</th>
+ <th style="width:72px">Porte</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td class="code">B1</td><td>Oferta assíncrona sem turma presencial obrigatória</td><td class="ids">EAD-01</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">B2</td><td>Liberação por pré-requisito, data ou conclusão</td><td class="ids">EAD-02</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">B3</td><td>Biblioteca por oferta e encontros opcionais</td><td class="ids">EAD-03, 04</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">B4</td><td>Relatórios e automações da operação EAD</td><td class="ids">: </td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">B5</td><td>Aprimoramentos de F2 (MFA, versionamento, busca, alertas, rubrica, exportações)</td><td class="ids">AUT-06, ACA-09, CON-05/07, PRO-05/08, ATV-12, ADM-06</td><td><span class="badge b-g">G</span></td></tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <section id="mobile">
+ <h2>5. Pacote C: Mobile</h2>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th style="width:64px">Módulo</th>
+ <th>Entrega</th>
+ <th>Referências</th>
+ <th style="width:72px">Porte</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td class="code">C1</td><td>App do aluno: login, trilha, mídia, atividades e progresso</td><td class="ids">MOB-01…04</td><td><span class="badge b-gg">GG</span></td></tr>
+ <tr><td class="code">C2</td><td>Notificações push</td><td class="ids">MOB-03</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">C3</td><td>Política de offline, a definir antes da implementação</td><td class="ids">MOB-05</td><td><span class="badge b-opt">?</span></td></tr>
+ <tr><td class="code">C4</td><td>App do professor (avisos, mensagens e acompanhamento)</td><td class="ids">MOB-07</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">C5</td><td>Administração completa permanece no web</td><td class="ids">MOB-06</td><td><span class="badge b-p">: </span></td></tr>
+ </tbody>
+ </table>
+ </div>
+ <div class="callout" style="margin-top:12px">
+ <strong>Navegação recomendada no app do aluno:</strong> Início · Trilha · Atividades · Agenda · Perfil
+ </div>
+ </section>
+
+ <section id="opcionais">
+ <h2>6. Opcionais</h2>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th>Item</th>
+ <th>Referência</th>
+ <th>Momento</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td>Checkout, pagamento e matrícula automática</td><td class="ids">EAD-06, 07</td><td>Expansão</td></tr>
+ <tr><td>Certificados</td><td class="ids">EAD-05</td><td>Expansão</td></tr>
+ <tr><td>ERP e conciliação financeira</td><td class="ids">ADM-08</td><td>Expansão</td></tr>
+ <tr><td>Chat em tempo real</td><td class="ids">COM-07</td><td>Expansão</td></tr>
+ <tr><td>Ranking e conquistas avançadas</td><td class="ids">GAM-03…05</td><td>EAD / Expansão</td></tr>
+ <tr><td>IA para tutoria ou correção</td><td class="ids">Fora do MVP</td><td>Expansão</td></tr>
+ <tr><td>Migração de conteúdos e históricos de terceiros</td><td class="ids">Depende de licenças</td><td>Sob demanda</td></tr>
+ <tr><td>Videoconferência própria</td><td class="ids">Fora de escopo</td><td>: </td></tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <section id="aceite">
+ <h2>7. Critérios de aceite do MVP</h2>
+ <p class="section-lead">O Pacote A será considerado funcionalmente concluído quando estes fluxos operarem corretamente nos três perfis.</p>
+ <div class="grid-2">
+ <div class="card">
+ <h4>1. Entrada do aluno presencial</h4>
+ <p>Cadastro ou importação, matrícula, convite de acesso e dashboard com agenda e pendências.</p>
+ </div>
+ <div class="card">
+ <h4>2. Publicação de aula</h4>
+ <p>Montagem de conteúdo, pré-requisitos, publicação, consumo pelo aluno e registro de progresso.</p>
+ </div>
+ <div class="card">
+ <h4>3. Avaliação e correção</h4>
+ <p>Criação da avaliação, tentativa do aluno, correção automática/manual e liberação de nota.</p>
+ </div>
+ <div class="card">
+ <h4>4. Comunicação e encontro ao vivo</h4>
+ <p>Avisos, mensagens, calendário, vídeo protegido e link do Zoom no contexto correto.</p>
+ </div>
+ </div>
+ </section>
+
+ <section id="exclusoes">
+ <h2>8. Fora do escopo do MVP</h2>
+ <div class="callout warn">
+ Aplicativos nas lojas, push e offline · chat ou fórum em tempo real · IA ·
+ checkout, gateway e ERP · certificados e marketplace · streaming ou videoconferência própria ·
+ uso de conteúdos de terceiros sem licença formal.
+ </div>
+ </section>
+
+ <section id="pendencias">
+ <h2>9. Decisões abertas para validação</h2>
+ <p class="section-lead">Pontos que precisam de alinhamento com a AECUS antes do fechamento comercial do Pacote A.</p>
+ <div class="cols">
+ <ul class="tight">
+ <li>Quais tipos de exercício são obrigatórios no lançamento?</li>
+ <li>Quais conteúdos e históricos serão migrados?</li>
+ <li>Responsáveis de menores terão conta própria?</li>
+ <li>O MVP exibe status financeiro informativo?</li>
+ <li>A venda online permanece em ferramenta externa na fase EAD?</li>
+ <li>O aplicativo precisará de modo offline?</li>
+ <li>Qual volume esperado em 24 meses?</li>
+ <li>Há identidade visual e diretrizes de acessibilidade já definidas?</li>
+ <li>Como calcular nota, recuperação e aprovação por público?</li>
+ <li>Quais SLA e canais de suporte pós-lançamento?</li>
+ <li>Qual provedor de nuvem e região de dados?</li>
+ <li>Mensagens serão apenas assíncronas nesta fase?</li>
+ </ul>
+ </div>
+ </section>
+
+ <section id="reqs">
+ <h2>10. Requisitos essenciais do MVP</h2>
+ <p class="section-lead">Checklist rastreável dos itens Must do Pacote A, para validação conjunta.</p>
+
+ <div class="toolbar">
+ <input type="search" id="filter-req" placeholder="Buscar requisito…" aria-label="Filtrar requisitos" />
+ <label><input type="checkbox" class="mod-filter" value="AUT" checked /> Acesso</label>
+ <label><input type="checkbox" class="mod-filter" value="ACA" checked /> Acadêmico</label>
+ <label><input type="checkbox" class="mod-filter" value="CON" checked /> Conteúdo</label>
+ <label><input type="checkbox" class="mod-filter" value="ATV" checked /> Atividades</label>
+ <label><input type="checkbox" class="mod-filter" value="PRO" checked /> Progresso</label>
+ <label><input type="checkbox" class="mod-filter" value="COM" checked /> Comunicação</label>
+ <label><input type="checkbox" class="mod-filter" value="LIVE" checked /> Lives</label>
+ <label><input type="checkbox" class="mod-filter" value="GAM" checked /> Progresso visual</label>
+ <label><input type="checkbox" class="mod-filter" value="ADM" checked /> Admin</label>
+ </div>
+
+ <div class="table-wrap">
+ <table id="table-req">
+ <thead>
+ <tr>
+ <th style="width:90px">ID</th>
+ <th>Requisito</th>
+ <th style="width:80px">Módulo</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr data-mod="AUT"><td class="code">AUT-01</td><td>Login por e-mail e senha para os três perfis</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-02</td><td>Recuperação e redefinição segura de senha</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-03</td><td>Controle de acesso por perfil e permissão</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-04</td><td>Ativação, bloqueio e desativação de contas</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-05</td><td>Sessões seguras, expiração e encerramento remoto</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-07</td><td>Aceite de termos, privacidade e consentimentos</td><td class="ids">A2</td></tr>
+
+ <tr data-mod="ACA"><td class="code">ACA-01</td><td>Programas, cursos, níveis, turmas e períodos</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-02</td><td>Módulos, unidades, aulas e itens de aprendizagem</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-03</td><td>Ordem, pré-requisitos e desbloqueio da trilha</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-04</td><td>Matrícula individual ou em lote</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-05</td><td>Vínculo de professores a turmas e componentes</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-06</td><td>Datas, disponibilidade e prazos</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-08</td><td>Trilhas por público (infantil, teen, adulto, empresas)</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-10</td><td>Arquivamento de turmas com preservação de histórico</td><td class="ids">A3</td></tr>
+
+ <tr data-mod="CON"><td class="code">CON-01</td><td>Cadastro de aula com objetivos e duração</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-02</td><td>Anexos de vídeo, PDF, áudio, links e arquivos</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-03</td><td>Incorporação segura de vídeos do Vimeo</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-04</td><td>Materiais por curso, módulo, aula ou turma</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-06</td><td>Status de rascunho, agendado, publicado e arquivado</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-08</td><td>Proteção de URLs privadas e links temporários</td><td class="ids">A4</td></tr>
+
+ <tr data-mod="ATV"><td class="code">ATV-01</td><td>Banco de questões reutilizável e categorizado</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-02</td><td>Múltipla escolha e seleção múltipla com correção automática</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-03</td><td>Lacunas, ordenação e associação de pares</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-04</td><td>Questões de escuta (listening)</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-05</td><td>Leitura com texto-base e conjunto de questões</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-06</td><td>Produção escrita com correção manual</td><td class="ids">A5 / A7</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-08</td><td>Tentativas, tempo, nota mínima, peso e embaralhamento</td><td class="ids">A6</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-09</td><td>Diferenciação entre prática, homework, prova e diagnóstica</td><td class="ids">A6</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-10</td><td>Salvar respostas e permitir retomada</td><td class="ids">A6</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-11</td><td>Resultado imediato ou após liberação do professor</td><td class="ids">A6</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-13</td><td>Histórico de tentativas, notas e correções</td><td class="ids">A6</td></tr>
+
+ <tr data-mod="PRO"><td class="code">PRO-01</td><td>Progresso por aula, módulo, curso e trilha</td><td class="ids">A8</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-02</td><td>Conclusão de conteúdo com regras configuráveis</td><td class="ids">A8</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-03</td><td>Próximos passos, pendências e prazos para o aluno</td><td class="ids">A8</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-04</td><td>Visão por turma e detalhe individual para o professor</td><td class="ids">A8</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-06</td><td>Consolidação de notas objetivas e manuais</td><td class="ids">A7</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-07</td><td>Histórico acadêmico</td><td class="ids">A8</td></tr>
+
+ <tr data-mod="COM"><td class="code">COM-01</td><td>Avisos segmentados</td><td class="ids">A9</td></tr>
+ <tr data-mod="COM"><td class="code">COM-02</td><td>Mensagens assíncronas entre professor e aluno</td><td class="ids">A9</td></tr>
+ <tr data-mod="COM"><td class="code">COM-03</td><td>Central de notificações na plataforma</td><td class="ids">A9</td></tr>
+ <tr data-mod="COM"><td class="code">COM-05</td><td>Calendário com aulas, prazos, provas e lives</td><td class="ids">A9</td></tr>
+
+ <tr data-mod="LIVE"><td class="code">LIVE-01</td><td>Cadastro de encontro ao vivo com link do Zoom</td><td class="ids">A10</td></tr>
+ <tr data-mod="LIVE"><td class="code">LIVE-02</td><td>Exibição no calendário e na aula correspondente</td><td class="ids">A10</td></tr>
+
+ <tr data-mod="GAM"><td class="code">GAM-02</td><td>Barra de progresso e marcos de conclusão</td><td class="ids">A13</td></tr>
+
+ <tr data-mod="ADM"><td class="code">ADM-01</td><td>Cadastro de alunos, professores e administradores</td><td class="ids">A11</td></tr>
+ <tr data-mod="ADM"><td class="code">ADM-03</td><td>Gestão de cursos, turmas, calendários e permissões</td><td class="ids">A11</td></tr>
+ <tr data-mod="ADM"><td class="code">ADM-04</td><td>Painel com ativos, progresso, pendências e uso</td><td class="ids">A11</td></tr>
+ <tr data-mod="ADM"><td class="code">ADM-05</td><td>Auditoria de ações administrativas críticas</td><td class="ids">A11</td></tr>
+ </tbody>
+ </table>
+ </div>
+
+ <div class="callout ok" style="margin-top:16px">
+ <strong>Próximo passo:</strong> validar com a AECUS o Pacote A (módulos e exclusões),
+ responder às decisões abertas e, em seguida, detalhar a proposta comercial.
+ </div>
+ </section>
+
+ <footer class="doc-footer">
+ <p>
+ Documento de escopo elaborado a partir do Briefing AECUS com a metodologia Matilha.
+ Destinado à validação conjunta de escopo e fronteiras de entrega.
+ </p>
+ <div class="tag">Matilha · Julho 2026</div>
+ </footer>
+ </div>
+
+ <script>
+ const filterMvp = document.getElementById("filter-mvp");
+ const tableMvp = document.getElementById("table-mvp");
+ filterMvp.addEventListener("input", () => {
+ const q = filterMvp.value.trim().toLowerCase();
+ for (const row of tableMvp.tBodies[0].rows) {
+ const text = row.textContent.toLowerCase();
+ row.classList.toggle("hidden", q!== "" &&!text.includes(q));
+ }
+ });
+
+ const filterReq = document.getElementById("filter-req");
+ const tableReq = document.getElementById("table-req");
+ const modFilters = [...document.querySelectorAll(".mod-filter")];
+
+ function applyReqFilter() {
+ const q = filterReq.value.trim().toLowerCase();
+ const enabled = new Set(modFilters.filter((c) => c.checked).map((c) => c.value));
+ for (const row of tableReq.tBodies[0].rows) {
+ const mod = row.dataset.mod;
+ const text = row.textContent.toLowerCase();
+ const okMod = enabled.has(mod);
+ const okText = q === "" || text.includes(q);
+ row.classList.toggle("hidden",!(okMod && okText));
+ }
+ }
+
+ filterReq.addEventListener("input", applyReqFilter);
+ modFilters.forEach((c) => c.addEventListener("change", applyReqFilter));
+ </script>
+</body>
+</html>

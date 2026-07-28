@@ -1,0 +1,401 @@
+{
+  "version": "1.0.0",
+  "name": "Fontes de esforço Matilha",
+  "description": "Referências externas e práticas de mercado usadas para calibrar horas, reuso e risco dos Building Blocks. Não substituem o perfil de engenharia — ancoram e justificam.",
+  "lastReviewed": "2026-07-27",
+  "sources": [
+    {
+      "id": "isbsg_de",
+      "title": "ISBSG Development & Enhancement Repository",
+      "shortTitle": "ISBSG",
+      "type": "benchmark_db",
+      "publisher": "International Software Benchmarking Standards Group",
+      "year": 2025,
+      "url": "https://www.isbsg.org/development-and-enhancement-data/",
+      "language": "en",
+      "reliability": "high",
+      "whatItGives": "Base com 13.000+ projetos reais: esforço, tamanho funcional, duração, qualidade e produtividade (PDR = horas por function point).",
+      "howWeUseIt": "Referência macro para checar se a soma de horas dos Building Blocks de um projeto está na faixa de produtividade de mercado (horas/FP ou horas totais vs. porte).",
+      "keyTakeaways": [
+        "PDR (Project Delivery Rate) é a métrica-chave: horas gastas por function point.",
+        "Em amostras web/business, medianas de PDR costumam ficar na faixa de ~7–10 h/FP (varia por stack e qualidade dos dados).",
+        "Use percentis (P25/P50/P75), não só a média — projetos outliers distorcem.",
+        "Melhor para validar escopos grandes do que um único bloco isolado."
+      ],
+      "metrics": [
+        {
+          "label": "Projetos no repositório D&E",
+          "value": "13000+",
+          "note": "Ordem de grandeza pública ISBSG 2024/2025"
+        },
+        {
+          "label": "Exemplo PDR mediano (amostra publicada)",
+          "value": "7.9",
+          "unit": "h/FP",
+          "note": "Short paper ISBSG 2023 (amostra filtrada; não aplicar cegamente)"
+        },
+        {
+          "label": "Exemplo PDR P25–P75",
+          "value": "6.8–9.4",
+          "unit": "h/FP",
+          "note": "Mesma amostra ilustrativa do short paper"
+        }
+      ],
+      "relatedCategoryIds": [
+        "authentication",
+        "crud_forms",
+        "dashboard_analytics",
+        "integrations",
+        "saas_essentials",
+        "finance_payments",
+        "workflow"
+      ],
+      "tags": ["benchmark", "pdr", "function-points", "calibração"]
+    },
+    {
+      "id": "cocomo_ii",
+      "title": "COCOMO II (Constructive Cost Model)",
+      "shortTitle": "COCOMO II",
+      "type": "parametric_model",
+      "publisher": "USC Center for Systems and Software Engineering / Barry Boehm",
+      "year": 2000,
+      "url": "https://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.pdf",
+      "language": "en",
+      "reliability": "high",
+      "whatItGives": "Modelo paramétrico de esforço e prazo a partir de tamanho (SLOC/FP), drivers de custo e calendário. Define pessoa-mês nominal.",
+      "howWeUseIt": "Âncora conceitual: esforço = f(tamanho, drivers). Nos BB, dificuldade/risco/reuso fazem o papel dos cost drivers; 152 h/pessoa-mês ajuda a traduzir PM ↔ horas.",
+      "keyTakeaways": [
+        "1 pessoa-mês COCOMO II ≈ 152 horas produtivas (ajustável).",
+        "Tamanho sozinho não basta: equipe, processo e complexidade multiplicam o esforço.",
+        "Útil para projetos médios/grandes; para blocos commodity, activity-based costura melhor.",
+        "Não substitui catálogo por feature — complementa a visão top-down."
+      ],
+      "metrics": [
+        {
+          "label": "Horas por pessoa-mês (nominal)",
+          "value": "152",
+          "unit": "h/PM"
+        }
+      ],
+      "relatedCategoryIds": ["saas_essentials", "integrations", "ai", "finance_payments"],
+      "tags": ["parametric", "pm", "drivers"]
+    },
+    {
+      "id": "ifpug_fp",
+      "title": "IFPUG Function Point Counting Practices",
+      "shortTitle": "IFPUG FP",
+      "type": "sizing_standard",
+      "publisher": "International Function Point Users Group",
+      "year": 2023,
+      "url": "https://www.ifpug.org/",
+      "language": "en",
+      "reliability": "high",
+      "whatItGives": "Padrão ISO de tamanho funcional (inputs, outputs, consultas, arquivos). Permite comparar esforço entre projetos com escopos diferentes.",
+      "howWeUseIt": "Quando quisermos sizing objetivo de um pacote de BB: estimar FP do escopo e cruzar com PDR (ISBSG) para faixa de horas totais.",
+      "keyTakeaways": [
+        "Function points medem funcionalidade entregue, não linhas de código.",
+        "Telas + regras + integrações viram tipos de função (EI/EO/EQ/ILF/EIF).",
+        "Combina com ISBSG: tamanho (FP) × produtividade (h/FP) ≈ esforço.",
+        "Exige treino para contar com consistência — use em calibração, não em toda proposta."
+      ],
+      "relatedCategoryIds": ["crud_forms", "workflow", "reports_exports", "integrations"],
+      "tags": ["sizing", "fp", "iso"]
+    },
+    {
+      "id": "cosmic_fsm",
+      "title": "COSMIC Functional Size Measurement",
+      "shortTitle": "COSMIC",
+      "type": "sizing_standard",
+      "publisher": "Common Software Measurement International Consortium",
+      "year": 2019,
+      "url": "https://cosmic-sizing.org/",
+      "language": "en",
+      "reliability": "high",
+      "whatItGives": "Método de sizing por movimentos de dados (Entry/Exit/Read/Write), adequado a software moderno, APIs e tempo real.",
+      "howWeUseIt": "Alternativa ao IFPUG para blocos de integração, webhooks e fluxos data-heavy — ajuda a não subestimar backend/integração.",
+      "keyTakeaways": [
+        "Bom para sistemas orientados a dados e serviços.",
+        "Há benchmarks COSMIC×ISBSG para business applications.",
+        "Útil quando o escopo é mais API/evento do que tela."
+      ],
+      "relatedCategoryIds": ["integrations", "communication", "ai", "files_documents"],
+      "relatedBlockIds": ["api_integration_simple", "api_integration_complex", "api_webhook"],
+      "tags": ["sizing", "cosmic", "api"]
+    },
+    {
+      "id": "capers_jones_benchmarks",
+      "title": "Capers Jones — Software Benchmarks / Backfiring",
+      "shortTitle": "Capers Jones",
+      "type": "industry_report",
+      "publisher": "Capers Jones & Associates / Namcook Analytics",
+      "year": 2012,
+      "url": "https://www.namcook.com/",
+      "language": "en",
+      "reliability": "medium",
+      "whatItGives": "Tabelas históricas de produtividade, defeitos e conversão FP↔SLOC (backfiring) por linguagem e tipo de aplicação.",
+      "howWeUseIt": "Referência qualitativa de ordem de grandeza e de complexidade relativa entre tipos de sistema (commodity vs. product).",
+      "keyTakeaways": [
+        "Linguagem e tipo de app mudam drasticamente o esforço por FP.",
+        "Backfiring é aproximação — não misturar com contagem FP real sem cuidado.",
+        "Ajuda a justificar difficulty=product em blocos de baixo reuso (IA, marketplace)."
+      ],
+      "relatedCategoryIds": ["ai", "finance_payments", "saas_essentials"],
+      "tags": ["benchmark", "backfiring", "produtividade"]
+    },
+    {
+      "id": "qsm_slim",
+      "title": "QSM SLIM (Software Lifecycle Management)",
+      "shortTitle": "QSM SLIM",
+      "type": "parametric_model",
+      "publisher": "Quantitative Software Management",
+      "year": 2020,
+      "url": "https://www.qsm.com/",
+      "language": "en",
+      "reliability": "medium",
+      "whatItGives": "Ferramenta/modelo comercial de estimativa e benchmarking com base histórica própria (curva de produtividade vs. tamanho).",
+      "howWeUseIt": "Referência de que esforço não escala linear com tamanho — projetos maiores têm dinâmica diferente (lei de Putnam/Norden).",
+      "keyTakeaways": [
+        "Produtividade cai com o tamanho do projeto (comunicação, integração).",
+        "Prazo comprimido aumenta esforço (trade-off clássico).",
+        "Reforça buffers de risco em escopos grandes e multi-bloco."
+      ],
+      "relatedCategoryIds": ["saas_essentials", "dashboard_analytics", "finance_payments"],
+      "tags": ["parametric", "schedule", "risco"]
+    },
+    {
+      "id": "mstech_repertorio",
+      "title": "Repertório de estimativas MSTECH (atividades → horas)",
+      "shortTitle": "MSTECH repertório",
+      "type": "activity_catalog",
+      "publisher": "MSTECH",
+      "year": 2020,
+      "url": "https://wiki.mstech.com.br/index.php/Repert%C3%B3rio_de_estimativas",
+      "language": "pt",
+      "reliability": "medium",
+      "whatItGives": "Catálogo brasileiro de atividades típicas (tela, template, CRUD, análise, implantação) com pontos e horas.",
+      "howWeUseIt": "Âncora bottom-up para telas e atividades próximas aos Building Blocks commodity/configurable (login, CRUD, design de tela).",
+      "keyTakeaways": [
+        "Tela HTML/CSS em template existente ≈ 5,5 h; com diagramação especial ≈ 11 h.",
+        "Template novo de sistema ≈ 44 h; adaptação de template ≈ 22 h.",
+        "Protótipo de tela ≈ 5,5 h; user story + protótipo ≈ 22 h.",
+        "Arquitetura de solução nova ≈ 33 h — justifica horas de architecture/pm em blocos novos."
+      ],
+      "metrics": [
+        { "label": "Tela em template", "value": "5.5", "unit": "h" },
+        { "label": "Tela com diagramação única", "value": "11", "unit": "h" },
+        { "label": "Template novo (sistema)", "value": "44", "unit": "h" },
+        { "label": "Arquitetura de solução nova", "value": "33", "unit": "h" }
+      ],
+      "relatedCategoryIds": [
+        "authentication",
+        "crud_forms",
+        "landing_institutional",
+        "users_permissions",
+        "saas_essentials"
+      ],
+      "relatedBlockIds": [
+        "auth_basic_login",
+        "crud_simple",
+        "form_complex",
+        "lp_hero",
+        "site_home",
+        "account_settings"
+      ],
+      "tags": ["brasil", "atividades", "telas", "bottom-up"]
+    },
+    {
+      "id": "neryx_br_2026",
+      "title": "Custo de desenvolvimento de software no Brasil 2026 (Neryx)",
+      "shortTitle": "Neryx BR 2026",
+      "type": "industry_report",
+      "publisher": "Neryx",
+      "year": 2026,
+      "url": "https://www.neryx.com.br/blog/custo-desenvolvimento-software-brasil-2026/",
+      "language": "pt",
+      "reliability": "medium",
+      "whatItGives": "Faixas de preço/prazo por tipo de sistema e distribuição típica de esforço por disciplina em projetos BR.",
+      "howWeUseIt": "Checagem da proporção de horas entre disciplinas (backend vs front vs UX/QA) nos perfis de engenharia.",
+      "keyTakeaways": [
+        "Backend costuma ser 30–35% do esforço; frontend 20–25%; UX/UI+discovery 20–30%; QA 10–15%; DevOps 5–8%.",
+        "SaaS B2B MVP e sistemas internos têm faixas e prazos muito diferentes — difficulty/risk devem refletir isso.",
+        "Manutenção evolutiva pós-go-live precisa de buffer comercial (não só build)."
+      ],
+      "metrics": [
+        { "label": "Backend (faixa típica)", "value": "30–35", "unit": "%" },
+        { "label": "Frontend", "value": "20–25", "unit": "%" },
+        { "label": "UX/UI + discovery", "value": "20–30", "unit": "%" },
+        { "label": "QA", "value": "10–15", "unit": "%" },
+        { "label": "DevOps", "value": "5–8", "unit": "%" }
+      ],
+      "relatedCategoryIds": [
+        "dashboard_analytics",
+        "saas_essentials",
+        "finance_payments",
+        "integrations",
+        "ai"
+      ],
+      "tags": ["brasil", "mix-disciplinas", "preço"]
+    },
+    {
+      "id": "huios_sob_medida_2026",
+      "title": "Quanto custa um software sob medida (Huios Web, 2026)",
+      "shortTitle": "Huios sob medida",
+      "type": "agency_practice",
+      "publisher": "Huios Web",
+      "year": 2026,
+      "url": "https://huiosweb.com.br/blog/quanto-custa-desenvolver-um-software-sob-medida",
+      "language": "pt",
+      "reliability": "medium",
+      "whatItGives": "Faixas de projeto (interno simples → SaaS) e regra prática: tela complexa custa 2–4× um CRUD genérico.",
+      "howWeUseIt": "Justifica multipliers entre crud_simple vs dashboard_charts / form_complex / AI — e faixas comerciais de pacotes.",
+      "keyTakeaways": [
+        "CRUD genérico é barato; calendário, kanban, mapa, gráfico interativo ou editor custam 2–4×.",
+        "Sistema interno simples (5–10 telas) ≠ plataforma multi-tenant.",
+        "Hora avulsa e squad mensal são modelos diferentes — o estimador Matilha é escopo fechado por blocos."
+      ],
+      "metrics": [
+        {
+          "label": "Tela complexa vs CRUD",
+          "value": "2–4×",
+          "note": "Regra prática de entrega (não norma científica)"
+        }
+      ],
+      "relatedCategoryIds": ["crud_forms", "dashboard_analytics", "workflow", "ai"],
+      "relatedBlockIds": [
+        "crud_simple",
+        "table_advanced_filters",
+        "form_complex",
+        "dashboard_charts",
+        "dashboard_bi"
+      ],
+      "tags": ["brasil", "telas", "multiplicador"]
+    },
+    {
+      "id": "mind_precificacao_agencia_2026",
+      "title": "Precificação de tech em agência (Mind Group, 2026)",
+      "shortTitle": "Mind precificação",
+      "type": "agency_practice",
+      "publisher": "Mind Group",
+      "year": 2026,
+      "url": "https://mindconsulting.com.br/2026/04/como-precificar-projeto-tecnologia-agencia-2026/",
+      "language": "pt",
+      "reliability": "medium",
+      "whatItGives": "Custo fully-loaded da hora, overhead, tempo não-faturável e faixas de margem para agências BR.",
+      "howWeUseIt": "Calibração de valor-hora e margem no motor comercial — não das horas do BB, mas do preço sugerido.",
+      "keyTakeaways": [
+        "Hora faturável real (pleno) frequentemente R$ 215–310 após overhead e não-faturável.",
+        "Cobrar abaixo do fully-loaded gera prejuízo invisível.",
+        "Provisão de retrabalho (ex.: 15%) alinha com riskFactor dos blocos."
+      ],
+      "metrics": [
+        {
+          "label": "Hora fully-loaded (pleno, faixa)",
+          "value": "215–310",
+          "unit": "R$/h"
+        },
+        {
+          "label": "Hora cobrada mid-market (faixa)",
+          "value": "250–650",
+          "unit": "R$/h"
+        }
+      ],
+      "tags": ["brasil", "preço", "margem", "overhead"]
+    },
+    {
+      "id": "shadcn_blocks_reuse",
+      "title": "shadcn/ui Blocks — padrões prontos de interface",
+      "shortTitle": "shadcn Blocks",
+      "type": "reuse_library",
+      "publisher": "shadcn/ui",
+      "year": 2025,
+      "url": "https://ui.shadcn.com/blocks",
+      "language": "en",
+      "reliability": "medium",
+      "whatItGives": "Blocos de UI prontos (login, dashboard, forms) que reduzem esforço de UI/Frontend quando o Design Intelligence aplica o padrão.",
+      "howWeUseIt": "Suporta reuseFactor alto e % de redução de UI/Front na aba Design reutilizável — não zera UX/QA.",
+      "keyTakeaways": [
+        "Reuso de UI ≠ reuso de regra de negócio.",
+        "Login/dashboard commodity ganham mais; IA/OCR/marketplace ganham menos.",
+        "As reduções do Design Intelligence ainda são orientação, não desconto automático."
+      ],
+      "relatedCategoryIds": ["authentication", "dashboard_analytics", "crud_forms", "saas_essentials"],
+      "relatedBlockIds": ["auth_basic_login", "dashboard_simple", "crud_simple"],
+      "tags": ["reuso", "ui", "design-intelligence"]
+    },
+    {
+      "id": "mountain_goat_story_points",
+      "title": "Agile estimating (Mike Cohn) — story points vs horas",
+      "shortTitle": "Story points (Cohn)",
+      "type": "agency_practice",
+      "publisher": "Mountain Goat Software / Mike Cohn",
+      "year": 2016,
+      "url": "https://www.mountaingoatsoftware.com/blog/why-the-fibonacci-sequence-works-well-for-estimating",
+      "language": "en",
+      "reliability": "exploratory",
+      "whatItGives": "Estimativa relativa (story points) e velocidade — não horas absolutas por feature.",
+      "howWeUseIt": "Lembrete: BB usam horas absolutas para proposta comercial; points servem a sprints internas, não substituem o catálogo.",
+      "keyTakeaways": [
+        "Points medem esforço relativo; horas medem custo comercial.",
+        "Velocidade histórica da equipe calibra sprint — não o preço do cliente.",
+        "Não misturar SP da squad com horas do Building Block sem conversão explícita."
+      ],
+      "tags": ["agile", "story-points", "cuidado"]
+    },
+    {
+      "id": "matilha_internal_actuals",
+      "title": "Histórico interno Matilha (projetos entregues)",
+      "shortTitle": "Matilha interno",
+      "type": "internal",
+      "publisher": "Matilha Estúdio",
+      "year": 2026,
+      "language": "pt",
+      "reliability": "exploratory",
+      "whatItGives": "Espaço reservado para horas reais vs. estimadas por Building Block nos projetos Matilha (Shadow Mode + pós-mortem).",
+      "howWeUseIt": "Fonte prioritária no médio prazo: cada estimativa com BB deve alimentar actuals e recalibrar engineeringProfile.",
+      "keyTakeaways": [
+        "Fonte ainda em construção — priorize preencher após go-live.",
+        "Shadow Mode já compara oficial vs Engineering Engine; o próximo passo é oficial vs actuals.",
+        "Comece pelos blocos mais vendidos: auth, CRUD, dashboard, billing."
+      ],
+      "relatedCategoryIds": [
+        "authentication",
+        "crud_forms",
+        "dashboard_analytics",
+        "saas_essentials",
+        "finance_payments"
+      ],
+      "relatedBlockIds": [
+        "auth_basic_login",
+        "crud_simple",
+        "dashboard_simple",
+        "billing_subscription",
+        "payment_gateway"
+      ],
+      "tags": ["interno", "actuals", "calibração", "prioridade"]
+    }
+  ],
+  "blockLinks": {
+    "auth_basic_login": ["mstech_repertorio", "shadcn_blocks_reuse", "isbsg_de", "matilha_internal_actuals"],
+    "auth_forgot_password": ["mstech_repertorio", "isbsg_de"],
+    "auth_user_signup": ["mstech_repertorio", "isbsg_de"],
+    "auth_social_login": ["cocomo_ii", "isbsg_de", "cosmic_fsm"],
+    "crud_simple": ["mstech_repertorio", "huios_sob_medida_2026", "shadcn_blocks_reuse", "neryx_br_2026"],
+    "table_advanced_filters": ["huios_sob_medida_2026", "mstech_repertorio", "ifpug_fp"],
+    "form_complex": ["huios_sob_medida_2026", "mstech_repertorio"],
+    "dashboard_simple": ["shadcn_blocks_reuse", "neryx_br_2026", "huios_sob_medida_2026"],
+    "dashboard_charts": ["huios_sob_medida_2026", "neryx_br_2026", "qsm_slim"],
+    "dashboard_bi": ["huios_sob_medida_2026", "capers_jones_benchmarks", "qsm_slim"],
+    "api_integration_simple": ["cosmic_fsm", "isbsg_de", "neryx_br_2026"],
+    "api_integration_complex": ["cosmic_fsm", "cocomo_ii", "isbsg_de"],
+    "api_webhook": ["cosmic_fsm", "isbsg_de"],
+    "ai_chat": ["capers_jones_benchmarks", "cocomo_ii", "neryx_br_2026"],
+    "ai_text_analysis": ["capers_jones_benchmarks", "cocomo_ii"],
+    "ocr_document": ["capers_jones_benchmarks", "cosmic_fsm"],
+    "billing_subscription": ["isbsg_de", "neryx_br_2026", "matilha_internal_actuals"],
+    "payment_gateway": ["isbsg_de", "cosmic_fsm", "neryx_br_2026"],
+    "lp_hero": ["mstech_repertorio", "shadcn_blocks_reuse"],
+    "site_home": ["mstech_repertorio"],
+    "roles_permissions": ["ifpug_fp", "isbsg_de"],
+    "workflow_approval": ["ifpug_fp", "isbsg_de", "huios_sob_medida_2026"]
+  }
+}

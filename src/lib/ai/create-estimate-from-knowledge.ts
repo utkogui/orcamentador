@@ -13,6 +13,12 @@ export async function createEstimateFromKnowledgeInterpretation(
   result: BriefingInterpretationResult
 ) {
   const mappedItems = await mapKnowledgeInterpretationToCatalog(result);
+  if (mappedItems.length === 0) {
+    throw new Error(
+      "Nenhum Building Block calculável foi identificado. Revise o briefing ou crie a estimativa manualmente."
+    );
+  }
+
   const estimateName = buildEstimateName(result.summary);
   const applicationFlow = generateApplicationFlowFromBlocks(result, estimateName);
 

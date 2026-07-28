@@ -1,0 +1,72 @@
+{
+  "libraries": {
+    "shadcn": {
+      "id": "shadcn",
+      "name": "shadcn/ui",
+      "type": "registry",
+      "url": "https://ui.shadcn.com/blocks"
+    }
+  },
+  "profiles": {
+    "auth_basic_login": {
+      "id": "auth_basic_login",
+      "patterns": [
+        {
+          "id": "login-screen",
+          "library": "shadcn",
+          "type": "block",
+          "reference": "login-01",
+          "complexityReduction": 0.30,
+          "frontendReduction": 0.40,
+          "uiReduction": 0.35,
+          "description": "Tela de login pronta baseada em shadcn/ui"
+        }
+      ]
+    },
+    "dashboard_simple": {
+      "id": "dashboard_simple",
+      "patterns": [
+        {
+          "id": "dashboard-screen",
+          "library": "shadcn",
+          "type": "block",
+          "reference": "dashboard-01",
+          "complexityReduction": 0.15,
+          "frontendReduction": 0.25,
+          "uiReduction": 0.20,
+          "description": "Dashboard básico com métricas e gráficos simples"
+        }
+      ]
+    },
+    "crud_simple": {
+      "id": "crud_simple",
+      "patterns": [
+        {
+          "id": "crud-form",
+          "library": "shadcn",
+          "type": "block",
+          "reference": "form-01",
+          "complexityReduction": 0.10,
+          "frontendReduction": 0.15,
+          "uiReduction": 0.15,
+          "description": "Formulário padrão para operações CRUD"
+        }
+      ]
+    },
+    "table_advanced_filters": {
+      "id": "table_advanced_filters",
+      "patterns": [
+        {
+          "id": "data-table",
+          "library": "shadcn",
+          "type": "block",
+          "reference": "table-01",
+          "complexityReduction": 0.20,
+          "frontendReduction": 0.30,
+          "uiReduction": 0.25,
+          "description": "Tabela de dados complexa com paginação, ordenação e filtros"
+        }
+      ]
+    }
+  }
+}

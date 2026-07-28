@@ -1,0 +1,548 @@
+{
+  "kind": "matilha-deck-export",
+  "version": 1,
+  "exportedAt": "2026-07-14T15:39:29.000Z",
+  "slug": "aecus-850",
+  "published": true,
+  "deck": {
+    "meta": {
+      "studio": "Matilha Estúdio",
+      "year": "2026",
+      "client": "AECUS",
+      "contact": "AECUS",
+      "proposalNumber": "850",
+      "project": "Plataforma Educacional Integrada — Versão 0",
+      "creativeLine": "Plataforma Educacional Integrada — Versão 0",
+      "tagline": "Operar conteúdo e trilha em ambiente próprio da AECUS"
+    },
+    "chapters": [
+      {
+        "id": "s01",
+        "slide": 1,
+        "layout": "hero-opening",
+        "theme": "light",
+        "chapter": "Matilha",
+        "title": "Matilha Estúdio de Design",
+        "subtitle": "2026",
+        "refImage": 1
+      },
+      {
+        "id": "s02",
+        "slide": 2,
+        "layout": "client-cover",
+        "theme": "dark",
+        "chapter": "Proposta",
+        "title": "Proposta comercial",
+        "fields": {
+          "Cliente": "AECUS",
+          "Contato": "A definir",
+          "Proposta #": "850",
+          "Projeto": "Plataforma Educacional Integrada — Versão 0"
+        }
+      },
+      {
+        "id": "s03",
+        "slide": 3,
+        "layout": "stats-split",
+        "theme": "dark",
+        "chapter": "Histórico",
+        "title": "Nosso histórico",
+        "paragraphs": [
+          "Já fundamos e ajudamos startups a participarem dos programas das maiores aceleradoras do Brasil e do mundo.",
+          "Também apoiamos empresas de todos os portes com seus projetos mais desafiadores."
+        ],
+        "stats": [
+          {
+            "label": "Clientes",
+            "value": "+ de 130",
+            "color": "#3CA8FB"
+          },
+          {
+            "label": "Projetos",
+            "value": "+ de 300",
+            "color": "#F9C80E"
+          },
+          {
+            "label": "Participação em projetos de empresas unicórnio",
+            "value": "2",
+            "color": "#FEA0FB",
+            "wide": true
+          },
+          {
+            "label": "Empresas que receberam aporte milionário",
+            "value": "10",
+            "color": "#A5E6BA"
+          },
+          {
+            "label": "Avaliação Google",
+            "value": "5★",
+            "color": "#FD9C27"
+          }
+        ]
+      },
+      {
+        "id": "s04",
+        "slide": 4,
+        "layout": "manifesto",
+        "theme": "dark",
+        "chapter": "Como fazemos",
+        "title": "E mais importante:",
+        "subtitle": "como fazemos",
+        "emphasis": "com",
+        "bullets": [
+          "Colaborativamente",
+          "De forma multidisciplinar",
+          "Baseado em dados",
+          "Com olhar para as pessoas",
+          "Focado em usabilidade"
+        ],
+        "closing": [
+          "Não fazemos para o cliente,"
+        ],
+        "refImage": 4
+      },
+      {
+        "id": "s05",
+        "slide": 5,
+        "layout": "process-rail",
+        "theme": "light",
+        "chapter": "Processo",
+        "title": "Por trás das criações",
+        "steps": [
+          {
+            "title": "Descoberta",
+            "text": "Coletamos informações sobre o problema e conversamos com outras pessoas envolvidas.",
+            "color": "#FEA0FB",
+            "icon": "💡"
+          },
+          {
+            "title": "Definição",
+            "text": "Observamos as informações coletadas e definimos exatamente qual problema resolver.",
+            "color": "#3CA8FB",
+            "icon": "✓"
+          },
+          {
+            "title": "Desenvolvimento",
+            "text": "Criamos e aprimoramos ideias até encontrar a melhor solução.",
+            "color": "#FD9C27",
+            "icon": "⚙"
+          },
+          {
+            "title": "Entrega",
+            "text": "Colocamos a solução em prática, testamos e validamos a implementação.",
+            "color": "#F9C80E",
+            "icon": "✈"
+          }
+        ]
+      },
+      {
+        "id": "s06",
+        "slide": 6,
+        "layout": "value-cards",
+        "theme": "light",
+        "chapter": "Design",
+        "title": "Como entendemos o design",
+        "cards": [
+          {
+            "title": "CENTRADO NO USUÁRIO",
+            "text": "Todas nossas decisões são tomadas pensando no benefício das pessoas.",
+            "icon": "target"
+          },
+          {
+            "title": "COCRIATIVO",
+            "text": "Todas as pessoas e departamentos envolvidos participam do processo para criar uma experiência perfeita.",
+            "icon": "users"
+          }
+        ]
+      },
+      {
+        "id": "s07",
+        "slide": 7,
+        "layout": "logos-grid",
+        "theme": "dark",
+        "chapter": "Clientes",
+        "title": "Marcando Presença",
+        "subtitle": "Clientes que confiam em nossa experiência",
+        "logos": [
+          {
+            "src": "visa.svg",
+            "alt": "Visa"
+          },
+          {
+            "src": "meuplaystation.svg",
+            "alt": "Meu PlayStation"
+          },
+          {
+            "src": "mondelez.svg",
+            "alt": "Mondelēz International"
+          },
+          {
+            "src": "pubg.svg",
+            "alt": "PUBG"
+          },
+          {
+            "src": "pucpr.svg",
+            "alt": "PUCPR Grupo Marista"
+          },
+          {
+            "src": "volvo.svg",
+            "alt": "Volvo"
+          },
+          {
+            "src": "bello.svg",
+            "alt": "Bello",
+            "invert": false
+          },
+          {
+            "src": "juno.svg",
+            "alt": "Juno"
+          },
+          {
+            "src": "mon.svg",
+            "alt": "MON"
+          },
+          {
+            "src": "pipefy.svg",
+            "alt": "Pipefy"
+          },
+          {
+            "src": "syx.svg",
+            "alt": "SYX"
+          },
+          {
+            "src": "ftd.svg",
+            "alt": "FTD Educação"
+          },
+          {
+            "src": "sebrae.svg",
+            "alt": "SEBRAE"
+          },
+          {
+            "src": "boticario.svg",
+            "alt": "Grupo Boticário"
+          },
+          {
+            "src": "mapfre.svg",
+            "alt": "Mapfre"
+          },
+          {
+            "src": "bancodobrasil.svg",
+            "alt": "Banco do Brasil"
+          },
+          {
+            "src": "apolar.svg",
+            "alt": "Apolar"
+          },
+          {
+            "src": "cormora.svg",
+            "alt": "Cormora"
+          },
+          {
+            "src": "eunerd.svg",
+            "alt": "Eu Nerd"
+          },
+          {
+            "src": "neodent.svg",
+            "alt": "Neodent"
+          },
+          {
+            "src": "vanguard.svg",
+            "alt": "Vanguard"
+          },
+          {
+            "src": "lal-logo.svg",
+            "alt": "LAL"
+          },
+          {
+            "src": "logo-crf.svg",
+            "alt": "CRF"
+          },
+          {
+            "src": "logo-scriba.svg",
+            "alt": "Scriba"
+          },
+          {
+            "src": "logo15anos.svg",
+            "alt": "Logo 15 Anos"
+          }
+        ]
+      },
+      {
+        "id": "s08",
+        "slide": 8,
+        "layout": "global-map",
+        "theme": "blue",
+        "chapter": "Global",
+        "title": "Nosso trabalho não tem fronteiras",
+        "highlight": {
+          "label": "Países que já realizamos projetos",
+          "value": "8"
+        },
+        "countries": [
+          "Argentina",
+          "Brasil",
+          "Coréia do Sul",
+          "EUA",
+          "França",
+          "Inglaterra",
+          "Israel",
+          "Alemanha"
+        ],
+        "offices": [
+          {
+            "name": "Escritório Brasil",
+            "region": "br",
+            "address": "Curitiba, PR — Rua Emiliano Perneta, 680"
+          },
+          {
+            "name": "Escritório EUA",
+            "region": "us",
+            "address": "Orlando, FL — 7345 W Sand Lake RD STE 210"
+          }
+        ]
+      },
+      {
+        "id": "s09",
+        "slide": 9,
+        "layout": "narrative-flow",
+        "theme": "dark",
+        "chapter": "Conexão",
+        "title": "O que nos conecta à AECUS?",
+        "projectBlock": "site",
+        "paragraphs": [
+          "Contextualização: A AECUS é uma escola de inglês em Pernambuco que precisa unificar a experiência acadêmica presencial e preparar a expansão do ensino online. Hoje, conteúdo, materiais, encontros ao vivo e acompanhamento do aluno ainda dependem de ferramentas fragmentadas.",
+          "A escola opera com turmas presenciais e híbridas, públicos infantil, teen, adulto e empresas, e busca um ambiente próprio — com identidade AECUS — para publicar aulas, organizar trilhas, matricular alunos e dar visibilidade de progresso para a equipe e para as famílias.",
+          "Neste projeto, propomos a Versão 0 da Plataforma Educacional Integrada: a base utilizável do produto, com investimento acessível, pronta para evoluir com expansões opcionais (avaliações, comunicação, aplicativos e demais capacidades) sem reconstruir a camada acadêmica."
+        ]
+      },
+      {
+        "id": "s10",
+        "slide": 10,
+        "layout": "dual-list",
+        "theme": "light",
+        "chapter": "Fases",
+        "title": "Desafios e oportunidades",
+        "projectBlock": "site",
+        "columns": [
+          {
+            "title": "Principais desafios identificados:",
+            "items": [
+              "Conteúdo, materiais e acompanhamento espalhados em ferramentas diferentes\n",
+              "Falta de um ambiente próprio com identidade AECUS para a jornada do aluno\n",
+              "Dificuldade de acompanhar progresso por turma e por aluno de forma centralizada\n",
+              "Famílias sem canal claro para acompanhar a trilha, sem expor ações exclusivas do aluno\n",
+              "Risco de contratar um sistema completo demais no primeiro ciclo, inflando prazo e investimento\n"
+            ]
+          },
+          {
+            "title": "Oportunidade:",
+            "items": [
+              "Lançar a Versão 0 com o núcleo de valor: gestão acadêmica, conteúdo, progresso e portais\n",
+              "Unificar aluno, responsável, professor e administrativo em uma única plataforma web\n",
+              "Preparar APIs reutilizáveis para expansões futuras, sem reconstruir a base\n",
+              "Começar com investimento controlado e plugar avaliações, comunicação e apps depois\n"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "s11",
+        "slide": 11,
+        "layout": "narrative-flow",
+        "theme": "light",
+        "chapter": "Solução",
+        "title": "O que oferecemos como solução",
+        "projectBlock": "site",
+        "paragraphs": [
+          "Ao final da Versão 0, a AECUS opera conteúdo e trilha em plataforma própria: o administrativo organiza pessoas, cursos e matrículas; o professor publica aulas; o aluno consome a trilha; e o responsável acompanha com visão filtrada.",
+          "Principais resultados:\nAmbiente web responsivo com login, perfil e papéis (aluno, responsável, professor e administrativo)\nGestão acadêmica essencial: cursos, módulos, aulas, turmas, matrículas e trilha ordenada\nPublicação e consumo de conteúdo (vídeo via Vimeo, PDF, áudio, links e arquivos)\nProgresso na trilha com próximos passos para o aluno e visão básica por turma\nPortais enxutos para os quatro papéis, reaproveitando a jornada aluno/responsável com rotas e permissões próprias\nBase técnica absorvida pela Matilha (ambientes, deploy, monitoramento) e pronta para expansões"
+        ]
+      },
+      {
+        "id": "s12",
+        "slide": 12,
+        "layout": "narrative-flow",
+        "theme": "light",
+        "chapter": "Objetivo",
+        "title": "Objetivo do Projeto",
+        "projectBlock": "site",
+        "paragraphs": [
+          "Entregar a Versão 0 da Plataforma Educacional Integrada AECUS: uma base web utilizável que permita à escola operar a jornada digital do aluno — publicar conteúdo, organizar trilhas, matricular turmas e acompanhar progresso — em um ambiente próprio, com identidade AECUS.",
+          "O projeto prioriza o núcleo de valor no primeiro ciclo, com investimento acessível, e deixa avaliações, comunicação avançada, aplicativos, curso online assíncrono e demais capacidades como expansões opcionais a serem plugadas depois, sobre a mesma arquitetura."
+        ]
+      },
+      {
+        "id": "s13",
+        "slide": 13,
+        "layout": "phase-steps",
+        "theme": "light",
+        "chapter": "Escopo",
+        "title": "Escopo do Projeto",
+        "projectBlock": "site",
+        "intro": "Propomos a construção da Versão 0 da plataforma, com fundação técnica absorvida e foco nas funcionalidades que geram valor imediato para a escola.\nA atuação será organizada nas seguintes frentes:\n",
+        "steps": [
+          "01 — Fundação técnica (absorvida)\nAmbientes, CI/CD, banco, armazenamento, monitoramento, HTTPS e backups\nArquitetura de API reutilizável para expansões futuras\n",
+          "02 — Conta e acesso\nLogin, logout, sessão, perfil e recuperação de senha\nPapéis: aluno, responsável (pais), professor e administrativo\nVínculo familiar responsável ↔ aluno\n",
+          "03 — Núcleo acadêmico e conteúdo\nCursos, módulos, aulas, turmas, matrículas e trilha ordenada\nPublicação e consumo de vídeo (Vimeo), PDF, áudio, links e arquivos\nProgresso na trilha e próximos passos\n",
+          "04 — Portais e aceite\nInterfaces web enxutas para aluno, responsável, professor e administrativo\nDesign das telas da Versão 0 e homologação dos fluxos críticos\n"
+        ]
+      },
+      {
+        "id": "s14",
+        "slide": 14,
+        "layout": "deliverables",
+        "theme": "light",
+        "chapter": "Entregáveis",
+        "title": "Atividades Entregáveis",
+        "projectBlock": "site",
+        "items": [
+          "Kickoff e alinhamento de escopo: validar Versão 0, premissas, papéis e critérios de aceite\n",
+          "UX das telas da Versão 0: fluxos críticos de aluno, responsável, professor e administrativo\n",
+          "Fundação técnica: ambientes, deploy, base de dados, armazenamento e monitoramento\n",
+          "Conta e acesso: autenticação, perfis, papéis e vínculo familiar\n",
+          "Gestão acadêmica: cursos, módulos, aulas, turmas, matrículas e trilha\n",
+          "Conteúdo e consumo: publicação, integração Vimeo e materiais\n",
+          "Progresso: conclusão de aulas, agregados e home com próximos passos\n",
+          "Portais web: experiências enxutas para os quatro papéis\n",
+          "Homologação e estabilização: testes dos fluxos críticos e ajustes finais da Versão 0\n"
+        ],
+        "background": {
+          "src": "/uploads/1782309709318-vu9w03.jpg",
+          "treatment": "grain"
+        }
+      },
+      {
+        "id": "s15",
+        "slide": 15,
+        "layout": "deliverables",
+        "theme": "light",
+        "chapter": "Escopo",
+        "title": "Premissas do Projeto",
+        "projectBlock": "site",
+        "items": [
+          "* Para garantir a qualidade das entregas e o cumprimento dos prazos, consideramos as seguintes premissas:\n",
+          "* Sponsor do projeto: definição de um responsável na AECUS com autonomia para decisões e remoção de impedimentos\n",
+          "* Engajamento dos stakeholders: disponibilidade de administrativo, coordenação e professores-chave para validação dos fluxos\n",
+          "* Acesso a conteúdos e contas: compartilhamento de materiais de referência e acesso ao Vimeo (ou equivalente) para embed seguro\n",
+          "* Escopo da Versão 0: fora desta entrega ficam avaliações/banco de questões, comunicação completa, Zoom, painéis avançados, aplicativos, curso online assíncrono, checkout/ERP, chat e inteligência artificial\n",
+          "* Portal do responsável: mesma jornada do aluno, com informações filtradas e rotas de API próprias — não um segundo produto\n",
+          "* Expansões futuras: avaliações, comunicação, lives, painéis, operação, curso online e aplicativos podem ser contratadas depois, sobre a mesma base\n",
+          "* Gestão de escopo: alterações relevantes poderão impactar prazo e investimento; demandas adicionais serão tratadas como evolução do projeto\n",
+          "* Ritmo de acompanhamento: alinhamentos periódicos e canal central de comunicação durante a execução\n",
+          "* O cronograma poderá ser ajustado conforme descobertas ao longo do projeto, preservando a qualidade das entregas\n"
+        ]
+      },
+      {
+        "id": "s16",
+        "slide": 16,
+        "layout": "cronograma",
+        "theme": "light",
+        "chapter": "Cronograma",
+        "title": "Cronograma resumido",
+        "tracks": [
+          {
+            "label": "Plataforma Educacional Integrada — Versão 0",
+            "duration": "16 semanas",
+            "amount": "R$ 99.120,00",
+            "rows": [
+              {
+                "etapa": "1",
+                "nome": "Imersão / UX (fluxos, telas e critérios de aceite da Versão 0)",
+                "tempo": "~ 3 semanas"
+              },
+              {
+                "etapa": "2",
+                "nome": "Desenvolvimento do núcleo (acesso, acadêmico, conteúdo e progresso)",
+                "tempo": "~ 8 semanas"
+              },
+              {
+                "etapa": "3",
+                "nome": "Portais, ajustes e homologação",
+                "tempo": "~ 5 semanas"
+              }
+            ]
+          }
+        ],
+        "duration": "16 semanas",
+        "teamTitle": "Time Envolvido",
+        "team": [
+          "Gerente de Projetos",
+          "Designer UX/UI",
+          "Desenvolvedor Backend",
+          "Desenvolvedor Frontend"
+        ],
+        "note": "Este prazo não contempla tempo de aprovação com o cliente. Estimativa com base em 560 horas de esforço (back, front e UX)."
+      },
+      {
+        "id": "s17",
+        "slide": 17,
+        "layout": "investment",
+        "theme": "light",
+        "chapter": "Investimento",
+        "title": "Proposta AECUS: Qual é o investimento?",
+        "intro": "Para a Versão 0 da Plataforma Educacional Integrada, o Matilha Estúdio propõe o seguinte investimento:",
+        "packages": [
+          {
+            "label": "Versão 0 — base da plataforma",
+            "amount": "R$ 99.120,00"
+          }
+        ],
+        "payments": [
+          {
+            "label": "Entrada 45% ",
+            "text": "R$ 44.604,00 no aceite da proposta."
+          },
+          {
+            "label": "Parcela 1 20%",
+            "text": "R$ 19.824,00 em 30 dias do aceite."
+          },
+          {
+            "label": "Parcela 2 20%",
+            "text": "R$ 19.824,00 em 60 dias do aceite."
+          },
+          {
+            "label": "Parcela final 15%",
+            "text": "R$ 14.868,00 na entrega final do projeto."
+          }
+        ],
+        "totalLabel": "Investimento total",
+        "total": "R$ 99.120,00",
+        "validity": "Validade da Proposta: 30 dias",
+        "background": {
+          "src": "/uploads/1782309615065-je8dlk.jpg",
+          "treatment": "grain"
+        }
+      },
+      {
+        "id": "s18",
+        "slide": 18,
+        "layout": "closing",
+        "theme": "dark",
+        "chapter": "Fechamento",
+        "title": "Proposta comercial",
+        "paragraphs": [
+          "Entregar a Versão 0 da Plataforma Educacional Integrada da AECUS é colocar a escola para operar conteúdo e trilha em ambiente próprio — com identidade AECUS — unindo administrativo, professores, alunos e famílias em uma jornada digital clara e utilizável desde o primeiro ciclo.",
+          "O projeto contempla fundação técnica absorvida, conta e acesso, gestão acadêmica essencial, publicação e consumo de conteúdo, progresso na trilha e portais enxutos para os quatro papéis. Avaliações, comunicação avançada, aplicativos e demais capacidades ficam como expansões opcionais sobre a mesma base.",
+          "O resultado é uma plataforma sólida para o dia a dia da escola, com investimento controlado agora e caminho aberto para evoluir no ritmo da AECUS — sem reconstruir o que já estiver no ar."
+        ],
+        "brand": "Matilha.digital",
+        "contact": {
+          "email": "talk@matilha.digital",
+          "whatsapp": "+55 41 999737-6060",
+          "site": "matilha.digital",
+          "social": [
+            "LinkedIn",
+            "Behance",
+            "Instagram",
+            "Medium"
+          ],
+          "offices": [
+            "Curitiba, PR — Brasil",
+            "Orlando, FL — EUA"
+          ]
+        },
+        "legal": "© 2026 Matilha Estúdio de Design Ltda. · CNPJ 17.296.371/0001-65"
+      }
+    ]
+  }
+}

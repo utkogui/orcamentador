@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "name": "Jornadas de Building Blocks Matilha",
+  "description": "Cadeias ordenadas de Building Blocks (jornada do usuário) com indicação opcional de pacote comercial.",
+  "lastReviewed": "2026-07-27",
+  "journeys": [
+    {
+      "id": "journey_saas_content",
+      "name": "SaaS com conteúdo",
+      "description": "Entra com login, cai no dashboard de gráficos e gerencia conteúdo no CMS.",
+      "blockIds": [
+        "auth_basic_login",
+        "dashboard_charts",
+        "cms_simple"
+      ],
+      "commercialBundle": true,
+      "notes": "Exemplo seed: login → dashboard com charts → CMS simples."
+    },
+    {
+      "id": "journey_teste_gui",
+      "name": "Teste Gui",
+      "description": "Primeira jornada",
+      "blockIds": [
+        "auth_social_login",
+        "dashboard_simple",
+        "form_complex",
+        "cms_simple",
+        "whatsapp_sms"
+      ],
+      "commercialBundle": true,
+      "notes": "nada a declarar"
+    }
+  ]
+}

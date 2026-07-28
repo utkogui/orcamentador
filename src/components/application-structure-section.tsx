@@ -1,6 +1,6 @@
 "use client";
 
-import { ApplicationStructureFlow } from "@/components/application-structure-flow";
+import { UmlJourneyDiagram } from "@/components/uml-journey-diagram";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ApplicationFlowGraph } from "@/lib/application-flow/types";
 
@@ -15,14 +15,14 @@ export function ApplicationStructureSection({ flow }: Props) {
         <CardHeader>
           <CardTitle>Estrutura provável da aplicação</CardTitle>
           <CardDescription>
-            Jornada visual inferida a partir dos Building Blocks — use com o cliente para mostrar a
-            amplitude do produto (login, navegação, módulos e integrações).
+            Diagramas UML inferidos a partir dos Building Blocks — atividade (fluxo) e estados
+            (transições) para alinhar escopo com o cliente.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ApplicationStructureFlow flow={flow} />
+          <UmlJourneyDiagram flow={flow} />
           <p className="mt-3 text-xs text-muted-foreground">
-            {flow.nodes.length} telas/fluxos mapeados · visualização interativa (React Flow)
+            {flow.nodes.length} elementos mapeados · notação UML (atividade / estados)
           </p>
         </CardContent>
       </Card>

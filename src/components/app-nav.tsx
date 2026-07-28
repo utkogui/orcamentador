@@ -29,6 +29,11 @@ const links = [
     label: "Multiplicadores",
     match: (pathname: string) => pathname.startsWith("/multipliers"),
   },
+  {
+    href: "/knowledge",
+    label: "Knowledge",
+    match: (pathname: string) => pathname.startsWith("/knowledge"),
+  },
 ];
 
 export function AppNav() {

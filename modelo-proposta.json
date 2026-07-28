@@ -1,0 +1,545 @@
+{
+  "kind": "matilha-deck-export",
+  "version": 1,
+  "exportedAt": "2026-07-14T15:03:50.733Z",
+  "slug": "tequaly-846",
+  "published": true,
+  "deck": {
+    "meta": {
+      "studio": "Matilha Estúdio",
+      "year": "2026",
+      "client": "Tequaly",
+      "contact": "André Camlot",
+      "proposalNumber": "846",
+      "project": "Mapeamento da Jornada do Cliente",
+      "creativeLine": "Mapeamento da Jornada do Cliente",
+      "tagline": "Mapear e aprimorar a jornada do cliente Tequaly"
+    },
+    "chapters": [
+      {
+        "id": "s01",
+        "slide": 1,
+        "layout": "hero-opening",
+        "theme": "light",
+        "chapter": "Matilha",
+        "title": "Matilha Estúdio de Design",
+        "subtitle": "2026",
+        "refImage": 1
+      },
+      {
+        "id": "s02",
+        "slide": 2,
+        "layout": "client-cover",
+        "theme": "dark",
+        "chapter": "Proposta",
+        "title": "Proposta comercial",
+        "fields": {
+          "Cliente": "Tequaly",
+          "Contato": "André Camlot · andre.camlot@tequaly.com.br",
+          "Proposta #": "846",
+          "Projeto": "Mapeamento da Jornada do Cliente "
+        }
+      },
+      {
+        "id": "s03",
+        "slide": 3,
+        "layout": "stats-split",
+        "theme": "dark",
+        "chapter": "Histórico",
+        "title": "Nosso histórico",
+        "paragraphs": [
+          "Já fundamos e ajudamos startups a participarem dos programas das maiores aceleradoras do Brasil e do mundo.",
+          "Também apoiamos empresas de todos os portes com seus projetos mais desafiadores."
+        ],
+        "stats": [
+          {
+            "label": "Clientes",
+            "value": "+ de 130",
+            "color": "#3CA8FB"
+          },
+          {
+            "label": "Projetos",
+            "value": "+ de 300",
+            "color": "#F9C80E"
+          },
+          {
+            "label": "Participação em projetos de empresas unicórnio",
+            "value": "2",
+            "color": "#FEA0FB",
+            "wide": true
+          },
+          {
+            "label": "Empresas que receberam aporte milionário",
+            "value": "10",
+            "color": "#A5E6BA"
+          },
+          {
+            "label": "Avaliação Google",
+            "value": "5★",
+            "color": "#FD9C27"
+          }
+        ]
+      },
+      {
+        "id": "s04",
+        "slide": 4,
+        "layout": "manifesto",
+        "theme": "dark",
+        "chapter": "Como fazemos",
+        "title": "E mais importante:",
+        "subtitle": "como fazemos",
+        "emphasis": "com",
+        "bullets": [
+          "Colaborativamente",
+          "De forma multidisciplinar",
+          "Baseado em dados",
+          "Com olhar para as pessoas",
+          "Focado em usabilidade"
+        ],
+        "closing": [
+          "Não fazemos para o cliente,"
+        ],
+        "refImage": 4
+      },
+      {
+        "id": "s05",
+        "slide": 5,
+        "layout": "process-rail",
+        "theme": "light",
+        "chapter": "Processo",
+        "title": "Por trás das criações",
+        "steps": [
+          {
+            "title": "Descoberta",
+            "text": "Coletamos informações sobre o problema e conversamos com outras pessoas envolvidas.",
+            "color": "#FEA0FB",
+            "icon": "💡"
+          },
+          {
+            "title": "Definição",
+            "text": "Observamos as informações coletadas e definimos exatamente qual problema resolver.",
+            "color": "#3CA8FB",
+            "icon": "✓"
+          },
+          {
+            "title": "Desenvolvimento",
+            "text": "Criamos e aprimoramos ideias até encontrar a melhor solução.",
+            "color": "#FD9C27",
+            "icon": "⚙"
+          },
+          {
+            "title": "Entrega",
+            "text": "Colocamos a solução em prática, testamos e validamos a implementação.",
+            "color": "#F9C80E",
+            "icon": "✈"
+          }
+        ]
+      },
+      {
+        "id": "s06",
+        "slide": 6,
+        "layout": "value-cards",
+        "theme": "light",
+        "chapter": "Design",
+        "title": "Como entendemos o design",
+        "cards": [
+          {
+            "title": "CENTRADO NO USUÁRIO",
+            "text": "Todas nossas decisões são tomadas pensando no benefício das pessoas.",
+            "icon": "target"
+          },
+          {
+            "title": "COCRIATIVO",
+            "text": "Todas as pessoas e departamentos envolvidos participam do processo para criar uma experiência perfeita.",
+            "icon": "users"
+          }
+        ]
+      },
+      {
+        "id": "s07",
+        "slide": 7,
+        "layout": "logos-grid",
+        "theme": "dark",
+        "chapter": "Clientes",
+        "title": "Marcando Presença",
+        "subtitle": "Clientes que confiam em nossa experiência",
+        "logos": [
+          {
+            "src": "visa.svg",
+            "alt": "Visa"
+          },
+          {
+            "src": "meuplaystation.svg",
+            "alt": "Meu PlayStation"
+          },
+          {
+            "src": "mondelez.svg",
+            "alt": "Mondelēz International"
+          },
+          {
+            "src": "pubg.svg",
+            "alt": "PUBG"
+          },
+          {
+            "src": "pucpr.svg",
+            "alt": "PUCPR Grupo Marista"
+          },
+          {
+            "src": "volvo.svg",
+            "alt": "Volvo"
+          },
+          {
+            "src": "bello.svg",
+            "alt": "Bello",
+            "invert": false
+          },
+          {
+            "src": "juno.svg",
+            "alt": "Juno"
+          },
+          {
+            "src": "mon.svg",
+            "alt": "MON"
+          },
+          {
+            "src": "pipefy.svg",
+            "alt": "Pipefy"
+          },
+          {
+            "src": "syx.svg",
+            "alt": "SYX"
+          },
+          {
+            "src": "ftd.svg",
+            "alt": "FTD Educação"
+          },
+          {
+            "src": "sebrae.svg",
+            "alt": "SEBRAE"
+          },
+          {
+            "src": "boticario.svg",
+            "alt": "Grupo Boticário"
+          },
+          {
+            "src": "mapfre.svg",
+            "alt": "Mapfre"
+          },
+          {
+            "src": "bancodobrasil.svg",
+            "alt": "Banco do Brasil"
+          },
+          {
+            "src": "apolar.svg",
+            "alt": "Apolar"
+          },
+          {
+            "src": "cormora.svg",
+            "alt": "Cormora"
+          },
+          {
+            "src": "eunerd.svg",
+            "alt": "Eu Nerd"
+          },
+          {
+            "src": "neodent.svg",
+            "alt": "Neodent"
+          },
+          {
+            "src": "vanguard.svg",
+            "alt": "Vanguard"
+          },
+          {
+            "src": "lal-logo.svg",
+            "alt": "LAL"
+          },
+          {
+            "src": "logo-crf.svg",
+            "alt": "CRF"
+          },
+          {
+            "src": "logo-scriba.svg",
+            "alt": "Scriba"
+          },
+          {
+            "src": "logo15anos.svg",
+            "alt": "Logo 15 Anos"
+          }
+        ]
+      },
+      {
+        "id": "s08",
+        "slide": 8,
+        "layout": "global-map",
+        "theme": "blue",
+        "chapter": "Global",
+        "title": "Nosso trabalho não tem fronteiras",
+        "highlight": {
+          "label": "Países que já realizamos projetos",
+          "value": "8"
+        },
+        "countries": [
+          "Argentina",
+          "Brasil",
+          "Coréia do Sul",
+          "EUA",
+          "França",
+          "Inglaterra",
+          "Israel",
+          "Alemanha"
+        ],
+        "offices": [
+          {
+            "name": "Escritório Brasil",
+            "region": "br",
+            "address": "Curitiba, PR — Rua Emiliano Perneta, 680"
+          },
+          {
+            "name": "Escritório EUA",
+            "region": "us",
+            "address": "Orlando, FL — 7345 W Sand Lake RD STE 210"
+          }
+        ]
+      },
+      {
+        "id": "s09",
+        "slide": 9,
+        "layout": "narrative-flow",
+        "theme": "dark",
+        "chapter": "Conexão",
+        "title": "O que nos conecta a Tequaly ?",
+        "projectBlock": "site",
+        "paragraphs": [
+          "Contextualização: A Tequaly atua em projetos EPC de alta complexidade, longa duração e múltiplos stakeholders ao longo da execução. Nesse cenário, a experiência do cliente é construída em diversas interações, da prospecção ao pós-venda, e não em um único ponto de contato.",
+          "Referência no desenvolvimento e execução de projetos industriais complexos, a Tequaly oferece soluções integradas de engenharia, suprimentos e construção. Sua trajetória é marcada pela excelência técnica e pela entrega de projetos de alto impacto, consolidando sua atuação como parceira estratégica em diferentes segmentos industriais.",
+          "Neste projeto, buscamos mapear, estruturar e aprimorar a jornada do cliente em todo o ciclo EPC. A proposta visa compreender e qualificar cada etapa da experiência, criando uma visão integrada e mensurável dos pontos de contato, processos e interações, conectando pessoas, áreas e sistemas de forma eficiente, previsível e orientada à geração de valor."
+        ]
+      },
+      {
+        "id": "s10",
+        "slide": 10,
+        "layout": "dual-list",
+        "theme": "light",
+        "chapter": "Fases",
+        "title": "Desafios e oportunidades",
+        "projectBlock": "site",
+        "columns": [
+          {
+            "title": "Principais desafios identificados:",
+            "items": [
+              "Jornada do cliente fragmentada e pouco padronizada \n",
+              "Baixa visibilidade e mensuração da experiência ao longo das etapas \n",
+              "Processos ainda orientados por uma visão interna (e não do cliente)\n",
+              "Dificuldade em garantir previsibilidade e consistência na comunicação \n"
+            ]
+          },
+          {
+            "title": "Oportunidade:",
+            "items": [
+              "Estruturar uma jornada integrada, mensurável e orientada ao cliente, capaz de aumentar previsibilidade, transparência e eficiência, além de preparar a operação para escala por meio de tecnologia e automação.\n",
+              "Padronizar e mensurar os principais touchpoints",
+              "Aumentar previsibilidade, eficiência e qualidade da experiência\n",
+              "Viabilizar escala por meio de automação e uso estratégico de CRM\n"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "s11",
+        "slide": 11,
+        "layout": "narrative-flow",
+        "theme": "light",
+        "chapter": "Solução",
+        "title": "O que oferecemos como solução",
+        "projectBlock": "site",
+        "paragraphs": [
+          "Ao final do projeto, a Tequaly estará preparada para operar com uma jornada mais estruturada, previsível e orientada ao cliente, a partir das entregas realizadas pelo Matilha\n",
+          "Principais resultados:\nVisão clara e integrada da jornada do cliente ponta a ponta\nPadronização dos principais pontos de contato \nIdentificação e gestão dos momentos críticos da experiência \nDefinição de métricas para tomada de decisão \nMelhoria na comunicação e transparência com clientes\nBase estruturada para automação e escala via CRM \nRedução de desalinhamentos e aumento de eficiência operacional\n \n"
+        ]
+      },
+      {
+        "id": "s12",
+        "slide": 12,
+        "layout": "narrative-flow",
+        "theme": "light",
+        "chapter": "Objetivo",
+        "title": "Objetivo do Projeto",
+        "projectBlock": "site",
+        "paragraphs": [
+          "Desenvolver um Mapeamento Estratégico da Jornada do Cliente que permita organizar, compreender, monitorar e aprimorar toda a experiência dos clientes da Tequaly ao longo do ciclo de projetos EPC, desde os primeiros contatos comerciais até o pós-venda, integrando processos, indicadores, sistemas e pontos de interação.",
+          "O projeto tem como objetivo oferecer uma visão completa e orientada ao cliente, permitindo identificar etapas, momentos-chave, responsáveis, canais de comunicação e oportunidades de melhoria. A proposta contempla a construção da jornada atual e da jornada futura, com definição de métricas de acompanhamento, integração ao CRM Zoho e recomendações de automação e monitoramento, promovendo uma experiência mais fluida, previsível e alinhada às expectativas dos clientes."
+        ]
+      },
+      {
+        "id": "s13",
+        "slide": 13,
+        "layout": "phase-steps",
+        "theme": "light",
+        "chapter": "Escopo",
+        "title": "Escopo do Projeto",
+        "projectBlock": "site",
+        "intro": "Propomos a construção de um modelo estruturado de jornada do cliente B2B, conectando estratégia, operação e tecnologia.\nA atuação será dividida em quatro frentes principais:\n",
+        "steps": [
+          "01 - Imersão e Diagnóstico\nEntendimento do contexto de negócio e operação\nEntrevistas com stakeholders\nLevantamento de processos, sistemas e touchpoints\nMapeamento da jornada atual (As Is)\n",
+          "02 - Estruturação da Jornada\nIdentificação dos momentos críticos da experiência\nDesenho da jornada futura (To Be)\nDefinição de papéis, responsabilidades e fluxos\nConstrução de blueprint de serviço\n",
+          "03 – Métricas e Performance \nDefinição de indicadores por etapa da jornada\nAvaliação de maturidade de Customer Success\nEstruturação de modelo de acompanhamento e gestão\n",
+          "04 – Estratégia de Ativação (CRM e Omnichannel) \nDiagnóstico do uso atual do CRM (Zoho)\nProposição de automações e fluxos de comunicação\nRoadmap de implantação (curto, médio e longo prazo)\n"
+        ]
+      },
+      {
+        "id": "s14",
+        "slide": 14,
+        "layout": "deliverables",
+        "theme": "light",
+        "chapter": "Entregáveis",
+        "title": "Atividades Entregáveis",
+        "projectBlock": "site",
+        "items": [
+          "Kickoff : Mapear stakeholders, validar desafios, entregáveis e cronograma de projeto. \n",
+          "Entrevistas com Stakeholders : Entrevistar e analisar achados da pesquisa  \n\n",
+          "Desenho da jornada As Is  : Framework com etapas da jornada, responsáveis\n\n",
+          "Mapeamento de indicadores e maturidade de CS (Gartner) : Entender se existem métricas e quais são utilizadas para avaliar a experiência do cliente e estabelecer grau de maturidade de CS (Gartner)\n\n",
+          "Workshop : Planejar e preparar apresentações, frameworks e ferramentas. Aplicar workshop e concluir as definições\n\n",
+          "Roadmap omnichannel (CS) : Priorizar as jornadas e ações a serem feitas em curto, médio e longo prazo\n\n",
+          "Propor soluções de CRM automatizadas : Entender quais os recursos do CRM e maneiras de automatização e definir ações de automação\n\n",
+          "Relatório de entregáveis e Apresentação executiva : Plano de ação para implantação das soluções propostas e relatório final e Apresentação executiva \n\n"
+        ],
+        "background": {
+          "src": "/uploads/1782309709318-vu9w03.jpg",
+          "treatment": "grain"
+        }
+      },
+      {
+        "id": "s15",
+        "slide": 15,
+        "layout": "deliverables",
+        "theme": "light",
+        "chapter": "Escopo",
+        "title": "Premissas do Projeto",
+        "projectBlock": "site",
+        "items": [
+          "* Para garantir a qualidade das entregas e o cumprimento dos prazos, consideramos as seguintes premissas:\n",
+          "* Sponsor do projeto: definição de um responsável com autonomia para tomada de decisão, priorização de demandas e remoção de impedimentos ao longo da execução \n",
+          "* Engajamento dos stakeholders: disponibilidade das áreas envolvidas (negócio, operações, tecnologia, comercial, entre outras) para participação em entrevistas, workshops e checkpoints \n",
+          "* Articulação interna: apoio da equipe da Tequaly na convocação de participantes e organização das agendas \n",
+          "* Acesso à informação: compartilhamento de dados, relatórios, materiais e acesso a sistemas necessários para entendimento da operação atual \n",
+          "* Participação dos decisores nos momentos-chave do projeto, como kickoff, workshops e apresentação executiva \n",
+          "* Transparência de contexto: visibilidade sobre limitações, restrições e direcionadores internos que impactem a jornada \n",
+          "* Gestão de escopo: alterações relevantes poderão impactar prazo e investimento; demandas adicionais serão tratadas como evolução do projeto \n",
+          "* Ritmo de acompanhamento: definição de um modelo de governança com alinhamentos periódicos (ex: weekly, status report) e canal central de comunicação\n",
+          "* O planejamento/cronograma será definido com base no escopo inicial, podendo ser ajustado ao longo do projeto conforme novas descobertas ou necessidades, garantindo a qualidade das entregas.\n"
+        ]
+      },
+      {
+        "id": "s16",
+        "slide": 16,
+        "layout": "cronograma",
+        "theme": "light",
+        "chapter": "Cronograma",
+        "title": "Cronograma resumido",
+        "tracks": [
+          {
+            "label": "Memorial Expositivo Digital",
+            "duration": "16 semanas",
+            "amount": "R$ 91.660,00",
+            "rows": [
+              {
+                "etapa": "1",
+                "nome": "Imersão / Discovery (pesquisa, entrevista e análise)",
+                "tempo": "~ 4 semanas"
+              },
+              {
+                "etapa": "2",
+                "nome": "Definição / Diagnóstico (síntese de insights e definição de problemas)",
+                "tempo": "~ 4 semanas"
+              },
+              {
+                "etapa": "3",
+                "nome": "Ideação / Desenvolvimento (criação de soluções e priorização)",
+                "tempo": "~ 8 semanas"
+              }
+            ]
+          }
+        ],
+        "duration": "16 semanas",
+        "teamTitle": "Time Envolvido",
+        "team": [
+          "Gerente de Projetos",
+          "Designer Sênior",
+          "Desenvolvedor Sênior"
+        ],
+        "note": "Este prazo não contempla tempo de aprovação com o cliente."
+      },
+      {
+        "id": "s17",
+        "slide": 17,
+        "layout": "investment",
+        "theme": "light",
+        "chapter": "Investimento",
+        "title": "Proposta Tequaly: Qual é o investimento?",
+        "intro": "Para este projeto, o Matilha Estúdio propõe o seguinte investimento:",
+        "packages": [
+          {
+            "label": "Mapeamento de jornada",
+            "amount": "R$ 91.660,00"
+          }
+        ],
+        "payments": [
+          {
+            "label": "Entrada 45% ",
+            "text": "R$ 41.247,00 no aceite da proposta."
+          },
+          {
+            "label": "Parcela 1 20%",
+            "text": "R$ 18.332,00 em 30 dias do aceite."
+          },
+          {
+            "label": "Parcela 2 20%",
+            "text": "R$ 18.332,00 em 60 dias do aceite."
+          },
+          {
+            "label": "Parcela final 15%",
+            "text": "R$ 13.749,00 na entrega final do projeto."
+          }
+        ],
+        "totalLabel": "Investimento total",
+        "total": "R$ 91.660,00",
+        "validity": "Validade da Proposta: 30 dias",
+        "background": {
+          "src": "/uploads/1782309615065-je8dlk.jpg",
+          "treatment": "grain"
+        }
+      },
+      {
+        "id": "s18",
+        "slide": 18,
+        "layout": "closing",
+        "theme": "dark",
+        "chapter": "Fechamento",
+        "title": "Proposta comercial",
+        "paragraphs": [
+          "Desenvolver o Mapeamento Estratégico da Jornada do Cliente da Tequaly é transformar a experiência dos seus clientes em um processo estruturado, mensurável e orientado à geração de valor, unindo estratégia, processos, dados e tecnologia para ampliar a eficiência operacional, a previsibilidade e a satisfação ao longo de todo o ciclo dos projetos EPC.",
+          "O projeto contempla a entrega de um diagnóstico completo da jornada atual, o desenho da jornada futura, a definição de indicadores de desempenho, a identificação dos momentos-chave da experiência do cliente e recomendações de integração com o CRM Zoho, automações e monitoramento contínuo. Tudo isso por meio de uma abordagem prática, colaborativa e alinhada à realidade dos projetos da Tequaly.",
+          "O resultado é uma jornada do cliente sólida, padronizada e orientada a dados, preparada para evoluir continuamente e fortalecer o relacionamento com os clientes em todas as etapas do projeto, sem divisões por fases no contrato."
+        ],
+        "brand": "Matilha.digital",
+        "contact": {
+          "email": "talk@matilha.digital",
+          "whatsapp": "+55 41 999737-6060",
+          "site": "matilha.digital",
+          "social": [
+            "LinkedIn",
+            "Behance",
+            "Instagram",
+            "Medium"
+          ],
+          "offices": [
+            "Curitiba, PR — Brasil",
+            "Orlando, FL — EUA"
+          ]
+        },
+        "legal": "© 2026 Matilha Estúdio de Design Ltda. · CNPJ 17.296.371/0001-65"
+      }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Calculator, Layers, Sparkles, Users, Zap } from "lucide-react";
+import { Calculator, Layers, Sparkles, Users, Zap, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -58,6 +58,12 @@ export function HomeTabs() {
           title="Multiplicadores"
           description="Ajuste riscos como prazo curto, LGPD e legado."
           href="/multipliers"
+        />
+        <FeatureCard
+          icon={<BookOpen className="h-5 w-5" />}
+          title="Knowledge"
+          description="Base de conhecimento de Building Blocks e Design Intelligence."
+          href="/knowledge"
         />
       </section>
     </div>

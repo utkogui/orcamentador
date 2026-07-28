@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>AECUS: Estrutura para orçamento</title>
+ <style>
+:root {
+ --ink: #1a1f2e;
+ --muted: #5c6578;
+ --line: #d8dde8;
+ --bg: #f6f4ef;
+ --paper: #fffcf7;
+ --accent: #0f5c4c;
+ --accent-soft: #e4f0ec;
+ --amber: #8a5a00;
+ --amber-soft: #f7edd8;
+ --red-soft: #f5e6e4;
+ --red: #8b3a32;
+ --blue-soft: #e7eef5;
+ --blue: #2a4a6b;
+ --zebra: #faf8f3;
+ --shadow: 0 1px 0 rgba(26, 31, 46, 0.06);
+ --radius: 10px;
+ --font: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+ --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+ }
+
+ * { box-sizing: border-box; }
+ html { scroll-behavior: smooth; }
+ body {
+ margin: 0;
+ color: var(--ink);
+ background:
+ radial-gradient(ellipse 120% 80% at 10% -10%, #e8efe9 0%, transparent 50%),
+ radial-gradient(ellipse 80% 60% at 100% 0%, #efe8dc 0%, transparent 45%),
+ var(--bg);
+ font-family: var(--sans);
+ font-size: 15px;
+ line-height: 1.5;
+ }
+
+.wrap {
+ max-width: 1120px;
+ margin: 0 auto;
+ padding: 32px 20px 80px;
+ }
+
+ header.hero {
+ padding: 28px 0 20px;
+ border-bottom: 1px solid var(--line);
+ margin-bottom: 28px;
+ }
+
+.eyebrow {
+ font-size: 12px;
+ letter-spacing: 0.08em;
+ text-transform: uppercase;
+ color: var(--accent);
+ font-weight: 700;
+ margin: 0 0 8px;
+ }
+
+ h1 {
+ font-family: var(--font);
+ font-size: clamp(1.85rem, 4vw, 2.6rem);
+ line-height: 1.15;
+ margin: 0 0 10px;
+ color: var(--ink);
+ font-weight: 700;
+ }
+
+.lede {
+ max-width: 62ch;
+ color: var(--muted);
+ margin: 0 0 18px;
+ font-size: 1.05rem;
+ }
+
+.meta {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ }
+
+.chip {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ padding: 5px 10px;
+ border-radius: 999px;
+ border: 1px solid var(--line);
+ background: var(--paper);
+ font-size: 12px;
+ color: var(--muted);
+ }
+
+.chip strong { color: var(--ink); font-weight: 650; }
+
+ nav.toc {
+ position: sticky;
+ top: 0;
+ z-index: 20;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 6px;
+ padding: 10px 0;
+ margin: 0 0 28px;
+ background: color-mix(in srgb, var(--bg) 88%, transparent);
+ backdrop-filter: blur(8px);
+ border-bottom: 1px solid var(--line);
+ }
+
+ nav.toc a {
+ text-decoration: none;
+ color: var(--muted);
+ font-size: 12.5px;
+ font-weight: 600;
+ padding: 6px 10px;
+ border-radius: 8px;
+ border: 1px solid transparent;
+ }
+
+ nav.toc a:hover {
+ color: var(--ink);
+ background: var(--paper);
+ border-color: var(--line);
+ }
+
+ section {
+ margin-bottom: 36px;
+ scroll-margin-top: 64px;
+ }
+
+ h2 {
+ font-family: var(--font);
+ font-size: 1.45rem;
+ margin: 0 0 8px;
+ color: var(--ink);
+ }
+
+ h3 {
+ font-family: var(--font);
+ font-size: 1.1rem;
+ margin: 22px 0 8px;
+ color: var(--ink);
+ }
+
+.section-lead {
+ color: var(--muted);
+ margin: 0 0 14px;
+ max-width: 70ch;
+ }
+
+.callout {
+ border-left: 3px solid var(--accent);
+ background: var(--accent-soft);
+ padding: 12px 14px;
+ border-radius: 0 var(--radius) var(--radius) 0;
+ margin: 12px 0 16px;
+ color: var(--ink);
+ }
+
+.callout.warn {
+ border-left-color: var(--amber);
+ background: var(--amber-soft);
+ }
+
+.callout.danger {
+ border-left-color: var(--red);
+ background: var(--red-soft);
+ }
+
+.callout.info {
+ border-left-color: var(--blue);
+ background: var(--blue-soft);
+ }
+
+.callout strong { display: inline; }
+
+.grid-2 {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 12px;
+ }
+
+ @media (max-width: 760px) {
+.grid-2 { grid-template-columns: 1fr; }
+ nav.toc { position: static; }
+ }
+
+.card {
+ background: var(--paper);
+ border: 1px solid var(--line);
+ border-radius: var(--radius);
+ padding: 14px 16px;
+ box-shadow: var(--shadow);
+ }
+
+.card h4 {
+ margin: 0 0 6px;
+ font-size: 0.95rem;
+ }
+
+.card p {
+ margin: 0;
+ color: var(--muted);
+ font-size: 13.5px;
+ }
+
+.badge {
+ display: inline-block;
+ font-size: 11px;
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ padding: 2px 7px;
+ border-radius: 6px;
+ vertical-align: middle;
+ }
+
+.b-must { background: #dcefe8; color: #0d4f41; }
+.b-should { background: #f3e7c8; color: #6b4700; }
+.b-could { background: #ebe7e1; color: #5a5348; }
+.b-p { background: #e6f0e9; color: #245238; }
+.b-m { background: #e8eef5; color: #2a4a6b; }
+.b-g { background: #f3e7c8; color: #6b4700; }
+.b-gg { background: #f0ddd9; color: #7a322b; }
+.b-a { background: #dcefe8; color: #0d4f41; }
+.b-b { background: #e8eef5; color: #2a4a6b; }
+.b-c { background: #efe6f3; color: #5a3a68; }
+.b-opt { background: #ebe7e1; color: #5a5348; }
+
+.toolbar {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ align-items: center;
+ margin: 0 0 12px;
+ }
+
+.toolbar label {
+ font-size: 12.5px;
+ color: var(--muted);
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ background: var(--paper);
+ border: 1px solid var(--line);
+ border-radius: 8px;
+ padding: 6px 10px;
+ cursor: pointer;
+ user-select: none;
+ }
+
+.toolbar input { accent-color: var(--accent); }
+
+.table-wrap {
+ overflow: auto;
+ border: 1px solid var(--line);
+ border-radius: var(--radius);
+ background: var(--paper);
+ box-shadow: var(--shadow);
+ }
+
+ table {
+ width: 100%;
+ border-collapse: collapse;
+ min-width: 720px;
+ font-size: 13.5px;
+ }
+
+ th, td {
+ padding: 9px 11px;
+ text-align: left;
+ border-bottom: 1px solid var(--line);
+ vertical-align: top;
+ }
+
+ th {
+ background: #1f2a24;
+ color: #f4f7f5;
+ font-size: 11.5px;
+ letter-spacing: 0.04em;
+ text-transform: uppercase;
+ font-weight: 650;
+ position: sticky;
+ top: 0;
+ z-index: 1;
+ }
+
+ tbody tr:nth-child(even) { background: var(--zebra); }
+ tbody tr:hover { background: #f0eee6; }
+ tbody tr.hidden { display: none; }
+
+ td.code {
+ font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+ font-size: 12px;
+ white-space: nowrap;
+ color: var(--accent);
+ font-weight: 650;
+ }
+
+ td.ids {
+ font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+ font-size: 11.5px;
+ color: var(--muted);
+ max-width: 220px;
+ }
+
+ ul.tight {
+ margin: 0;
+ padding-left: 1.15rem;
+ }
+
+ ul.tight li { margin: 4px 0; }
+
+.cols {
+ columns: 2;
+ column-gap: 24px;
+ }
+
+ @media (max-width: 700px) {
+.cols { columns: 1; }
+ }
+
+ footer {
+ margin-top: 48px;
+ padding-top: 16px;
+ border-top: 1px solid var(--line);
+ color: var(--muted);
+ font-size: 12.5px;
+ }
+
+.kpi-row {
+ display: grid;
+ grid-template-columns: repeat(4, minmax(0, 1fr));
+ gap: 10px;
+ margin: 14px 0 20px;
+ }
+
+ @media (max-width: 800px) {
+.kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ }
+
+.kpi {
+ background: var(--paper);
+ border: 1px solid var(--line);
+ border-radius: var(--radius);
+ padding: 12px 14px;
+ }
+
+.kpi.n {
+ font-family: var(--font);
+ font-size: 1.55rem;
+ font-weight: 700;
+ line-height: 1;
+ margin-bottom: 4px;
+ }
+
+.kpi.l {
+ font-size: 12px;
+ color: var(--muted);
+ }
+
+.estimate-cols {
+ display: grid;
+ grid-template-columns: 120px 1fr 100px 100px 90px 1.2fr;
+ gap: 8px;
+ font-size: 12px;
+ color: var(--muted);
+ margin-bottom: 8px;
+ padding: 0 2px;
+ }
+
+ @media (max-width: 900px) {
+.estimate-cols { display: none; }
+ }
+
+ input[type="search"] {
+ flex: 1;
+ min-width: 180px;
+ border: 1px solid var(--line);
+ border-radius: 8px;
+ padding: 8px 12px;
+ font: inherit;
+ background: var(--paper);
+ color: var(--ink);
+ }
+
+ input[type="search"]:focus {
+ outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+ border-color: var(--accent);
+ }
+ </style>
+</head>
+<body>
+ <div class="wrap">
+ <header class="hero">
+ <p class="eyebrow">AECUS · Escola de Inglês · PE</p>
+ <h1>Estrutura para orçamento</h1>
+ <p class="lede">
+ Decomposição da especificação técnica em cenários comerciais, épicos estimáveis,
+ prioridades Must/Should e exclusões, pronta para planilha e proposta.
+ </p>
+ <div class="meta">
+ <span class="chip"><strong>Base</strong> Spec 1.0 · 14/07/2026</span>
+ <span class="chip"><strong>MVP</strong> Web responsiva · 3 perfis</span>
+ <span class="chip"><strong>Depois</strong> EAD → Mobile → Expansão</span>
+ <span class="chip"><strong>Arquitetura</strong> Monólito modular · API-first</span>
+ </div>
+ </header>
+
+ <nav class="toc" aria-label="Seções">
+ <a href="#cenarios">Cenários</a>
+ <a href="#mvp">WBS MVP (A)</a>
+ <a href="#should">Should do A</a>
+ <a href="#ead">EAD (B)</a>
+ <a href="#mobile">Mobile (C)</a>
+ <a href="#opcionais">Opcionais</a>
+ <a href="#aceite">Aceite</a>
+ <a href="#exclusoes">Exclusões</a>
+ <a href="#pendencias">Pendências</a>
+ <a href="#planilha">Planilha</a>
+ <a href="#reqs">IDs Must MVP</a>
+ </nav>
+
+ <div class="kpi-row">
+ <div class="kpi"><div class="n">3</div><div class="l">Cenários comerciais</div></div>
+ <div class="kpi"><div class="n">14</div><div class="l">Épicos no MVP (A)</div></div>
+ <div class="kpi"><div class="n">~55</div><div class="l">Requisitos Must no MVP</div></div>
+ <div class="kpi"><div class="n">4</div><div class="l">Fluxos de aceite críticos</div></div>
+ </div>
+
+ <section id="cenarios">
+ <h2>1. Pacotes comerciais</h2>
+ <p class="section-lead">Cotar o Cenário A como baseline fechável. B, C e opcionais entram como aditivos.</p>
+
+ <div class="grid-2">
+ <div class="card">
+ <h4><span class="badge b-a">A</span> MVP Web (F0 + F1)</h4>
+ <p>Discovery/UX + LMS web para aluno, professor e admin. Integração simples Vimeo + Zoom. Sem app, checkout, ERP, chat ou IA.</p>
+ </div>
+ <div class="card">
+ <h4><span class="badge b-b">B</span> A + EAD (F2)</h4>
+ <p>Ofertas assíncronas, liberação por trilha, biblioteca, encontros opcionais. Venda pode permanecer Hotmart/manual, sem checkout próprio.</p>
+ </div>
+ <div class="card">
+ <h4><span class="badge b-c">C</span> B + Mobile (F3)</h4>
+ <p>Apps Android/iOS focados no aluno + push. Professor reduzido. Admin permanece só no web. Offline: definir antes de cotar.</p>
+ </div>
+ <div class="card">
+ <h4><span class="badge b-opt">+</span> Opcionais (F4 / avulsos)</h4>
+ <p>Migração de dados, checkout, ERP, certificados, chat, IA, gamificação avançada, suporte gerenciado, um a um, com business case.</p>
+ </div>
+ </div>
+
+ <div class="callout info" style="margin-top:16px">
+ <strong>Diretriz:</strong> web responsiva primeiro, backend único e APIs reutilizáveis. Mobile entra depois, sem reconstruir a camada acadêmica.
+ </div>
+ </section>
+
+ <section id="mvp">
+ <h2>2. WBS estimável: Cenário A (Must)</h2>
+ <p class="section-lead">
+ Cada linha é um pacote cotável (front + API + dados + testes do domínio).
+ Complexidade relativa: <span class="badge b-p">P</span>
+ <span class="badge b-m">M</span>
+ <span class="badge b-g">G</span>
+ <span class="badge b-gg">GG</span>
+, calibração, não horas.
+ </p>
+
+ <div class="callout warn">
+ <strong>Maior risco de estouro:</strong> A5+A6 (avaliações) · A12 (3 portais) · A3 (acadêmico/trilhas).
+ Para enxugar o A: reduzir tipos de questão no dia 1 (MC + escrita + 1–2 tipos) e mover o resto para B.
+ </div>
+
+ <div class="toolbar">
+ <input type="search" id="filter-mvp" placeholder="Filtrar épicos, IDs ou entrega…" aria-label="Filtrar WBS MVP" />
+ </div>
+
+ <div class="table-wrap">
+ <table id="table-mvp">
+ <thead>
+ <tr>
+ <th style="width:64px">Épico</th>
+ <th>Entrega</th>
+ <th>IDs âncora</th>
+ <th style="width:72px">Rel.</th>
+ <th>Notas para orçar</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td class="code">A0</td>
+ <td><strong>Discovery + UX + arquitetura</strong><br>Workshops, jornadas, protótipo, backlog, plano de conteúdo/dados</td>
+ <td class="ids">Fase 0</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Pré-requisito de escopo fechado e aceite</td>
+ </tr>
+ <tr>
+ <td class="code">A1</td>
+ <td><strong>Fundação técnica</strong><br>Monólito modular API, ambientes, CI, logs, storage, base de auth</td>
+ <td class="ids">: </td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Postgres + object storage + fila</td>
+ </tr>
+ <tr>
+ <td class="code">A2</td>
+ <td><strong>Identidade e acesso</strong><br>Login, reset senha, RBAC, ativar/bloquear, sessões, termos</td>
+ <td class="ids">AUT-01…05, 07</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>3 papéis + permissões granulares</td>
+ </tr>
+ <tr>
+ <td class="code">A3</td>
+ <td><strong>Gestão acadêmica</strong><br>Cursos, níveis, turmas, módulos/aulas, trilha + pré-reqs, matrícula, vínculo docente, arquivar, públicos</td>
+ <td class="ids">ACA-01…06, 08, 10</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Coração do LMS; inclui infantil/teen/adulto/empresas</td>
+ </tr>
+ <tr>
+ <td class="code">A4</td>
+ <td><strong>Conteúdo e mídia</strong><br>CRUD aula, anexos, status publicação, escopos, URLs temporárias, embed Vimeo</td>
+ <td class="ids">CON-01…04, 06, 08</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Vídeo/PDF/áudio/link/arquivo</td>
+ </tr>
+ <tr>
+ <td class="code">A5</td>
+ <td><strong>Banco de questões + tipos</strong><br>Banco categorizado; MC/MS; lacunas; ordenação; associação; listening; leitura; escrita</td>
+ <td class="ids">ATV-01…06</td>
+ <td><span class="badge b-gg">GG</span></td>
+ <td>Principal motor de custo, negociar subset Must</td>
+ </tr>
+ <tr>
+ <td class="code">A6</td>
+ <td><strong>Avaliações e execução</strong><br>Tipos de atividade, tentativas, tempo, peso, autosave, liberação de resultado, histórico</td>
+ <td class="ids">ATV-08…11, 13</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Prática / homework / prova / diagnóstica</td>
+ </tr>
+ <tr>
+ <td class="code">A7</td>
+ <td><strong>Correção e notas</strong><br>Fila manual, feedback, consolidação objetiva + manual</td>
+ <td class="ids">ATV-06, PRO-06</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Sem IA no MVP</td>
+ </tr>
+ <tr>
+ <td class="code">A8</td>
+ <td><strong>Progresso</strong><br>Conclusão configurável; agregados; home aluno; painel turma/aluno</td>
+ <td class="ids">PRO-01…04, 07</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Depende de eventos de conteúdo e ATV</td>
+ </tr>
+ <tr>
+ <td class="code">A9</td>
+ <td><strong>Comunicação + agenda</strong><br>Avisos segmentados, mensagens assíncronas, central in-app, calendário</td>
+ <td class="ids">COM-01…03, 05</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Sem chat em tempo real</td>
+ </tr>
+ <tr>
+ <td class="code">A10</td>
+ <td><strong>Lives Zoom</strong><br>Cadastro + link; calendário/aula; gravação associada (simples)</td>
+ <td class="ids">LIVE-01, 02, 04</td>
+ <td><span class="badge b-p">P</span></td>
+ <td>Link, não API avançada</td>
+ </tr>
+ <tr>
+ <td class="code">A11</td>
+ <td><strong>Admin + dashboards</strong><br>Pessoas, parâmetros, dashboard, auditoria crítica</td>
+ <td class="ids">ADM-01, 03…05</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Financeiro só status informativo (Should)</td>
+ </tr>
+ <tr>
+ <td class="code">A12</td>
+ <td><strong>Portais UI (3 perfis)</strong><br>Shells + navegação Aluno (10) · Professor (9) · Admin (9)</td>
+ <td class="ids">§3.1</td>
+ <td><span class="badge b-g">G</span></td>
+ <td>Web responsiva; PWA opcional sem offline/push</td>
+ </tr>
+ <tr>
+ <td class="code">A13</td>
+ <td><strong>Gamificação mínima</strong><br>Barra de progresso / marcos</td>
+ <td class="ids">GAM-02</td>
+ <td><span class="badge b-p">P</span></td>
+ <td>Sem ranking no MVP</td>
+ </tr>
+ <tr>
+ <td class="code">A14</td>
+ <td><strong>Hardening + aceite</strong><br>NFRs, segurança, backup, monitoramento, E2E dos fluxos críticos</td>
+ <td class="ids">§12, §15</td>
+ <td><span class="badge b-m">M</span></td>
+ <td>Incluir na proposta, não como “extra”</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <section id="should">
+ <h2>3. Should do MVP (opcional no pacote A)</h2>
+ <p class="section-lead">Cotar como linhas opcionais ou buffer, importantes, mas não bloqueiam o Must.</p>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th>Item</th>
+ <th style="width:100px">ID</th>
+ <th>Nota</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td>Duplicar curso / módulo / aula</td><td class="code">ACA-07</td><td>Acelera operação editorial</td></tr>
+ <tr><td>Homework com upload de arquivo</td><td class="code">ATV-07</td><td>Amplia tipos de entrega</td></tr>
+ <tr><td>E-mail transacional crítico</td><td class="code">COM-04</td><td>Convite, reset, avisos</td></tr>
+ <tr><td>Import usuários / matrículas CSV</td><td class="code">ADM-02</td><td>Reduz operação manual</td></tr>
+ <tr><td>Pontos por conclusão</td><td class="code">GAM-01</td><td>Só se não puxar ranking</td></tr>
+ <tr><td>Status financeiro informativo</td><td class="code">ADM-07</td><td>Sem cobrança / ERP</td></tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <section id="ead">
+ <h2>4. Aditivo: Cenário B (EAD)</h2>
+ <p class="section-lead">Premissa: matrícula manual ou Hotmart externa. Sem checkout/ERP neste pacote.</p>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th style="width:64px">Épico</th>
+ <th>Entrega</th>
+ <th>IDs</th>
+ <th style="width:72px">Rel.</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td class="code">B1</td><td>Oferta assíncrona sem turma presencial obrigatória</td><td class="ids">EAD-01</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">B2</td><td>Liberação por pré-requisito / data / conclusão</td><td class="ids">EAD-02</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">B3</td><td>Biblioteca por oferta + encontros opcionais</td><td class="ids">EAD-03, 04</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">B4</td><td>Relatórios e automações EAD</td><td class="ids">: </td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">B5</td><td>Shoulds de F2 (MFA, versionamento, busca, alertas, rubrica, exports…)</td><td class="ids">AUT-06, ACA-09, CON-05/07, PRO-05/08, ATV-12, ADM-06</td><td><span class="badge b-g">G</span></td></tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <section id="mobile">
+ <h2>5. Aditivo: Cenário C (Mobile)</h2>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th style="width:64px">Épico</th>
+ <th>Entrega</th>
+ <th>IDs</th>
+ <th style="width:72px">Rel.</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td class="code">C1</td><td>App aluno: login, trilha, mídia, atividades, progresso</td><td class="ids">MOB-01…04</td><td><span class="badge b-gg">GG</span></td></tr>
+ <tr><td class="code">C2</td><td>Push (FCM / APNs)</td><td class="ids">MOB-03</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">C3</td><td>Política offline, definir antes de implementar</td><td class="ids">MOB-05</td><td><span class="badge b-could">?</span></td></tr>
+ <tr><td class="code">C4</td><td>App professor reduzido (avisos, mensagens, acompanhamento)</td><td class="ids">MOB-07</td><td><span class="badge b-m">M</span></td></tr>
+ <tr><td class="code">C5</td><td>Garantia: admin completo só no web</td><td class="ids">MOB-06</td><td><span class="badge b-p">: </span></td></tr>
+ </tbody>
+ </table>
+ </div>
+ <div class="callout" style="margin-top:12px">
+ <strong>Nav mobile aluno:</strong> Início · Trilha · Atividades · Agenda · Perfil
+ </div>
+ </section>
+
+ <section id="opcionais">
+ <h2>6. Opcionais avulsos</h2>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th>Opcional</th>
+ <th>Referência</th>
+ <th>Fase</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td>Checkout + pagamento + matrícula automática</td><td class="ids">EAD-06, 07</td><td>Futuro</td></tr>
+ <tr><td>Certificados</td><td class="ids">EAD-05</td><td>Futuro</td></tr>
+ <tr><td>ERP / conciliação</td><td class="ids">ADM-08</td><td>Futuro</td></tr>
+ <tr><td>Chat em tempo real</td><td class="ids">COM-07</td><td>Futuro</td></tr>
+ <tr><td>Ranking / conquistas avançadas</td><td class="ids">GAM-03…05</td><td>F2 / Futuro</td></tr>
+ <tr><td>IA tutoria / correção</td><td class="ids">Fora</td><td>Futuro</td></tr>
+ <tr><td>Migração Cambridge / Cengage / Vimeo / Hotmart</td><td class="ids">Depende de licença</td><td>Avulso</td></tr>
+ <tr><td>Videoconferência própria</td><td class="ids">Fora</td><td>: </td></tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <section id="aceite">
+ <h2>7. Fluxos de aceite do MVP</h2>
+ <p class="section-lead">Se estes 4 fluxos passam nos 3 perfis, o pacote A está aceitável comercialmente.</p>
+ <div class="grid-2">
+ <div class="card">
+ <h4>1. Entrada aluno presencial</h4>
+ <p>Cadastro/import → matrícula → convite/senha → dashboard com agenda e pendências.</p>
+ </div>
+ <div class="card">
+ <h4>2. Publicação de aula</h4>
+ <p>Curso/módulo/aula → mídia + atividades → pré-reqs → publish → consumo e progresso.</p>
+ </div>
+ <div class="card">
+ <h4>3. Avaliação e correção</h4>
+ <p>Banco → tentativa → auto/manual → nota e feedback liberados.</p>
+ </div>
+ <div class="card">
+ <h4>4. Comunicação + live</h4>
+ <p>Aviso segmentado, mensagem, calendário; Vimeo e Zoom no contexto certo.</p>
+ </div>
+ </div>
+ </section>
+
+ <section id="exclusoes">
+ <h2>8. Exclusões explícitas (escrever na proposta)</h2>
+ <div class="callout danger">
+ Apps nas lojas, push e offline · chat/fórum · IA · checkout/gateway/ERP · certificados/marketplace ·
+ vídeo/streaming próprio · cópia Cambridge/Cengage sem licença.
+ </div>
+ </section>
+
+ <section id="pendencias">
+ <h2>9. Decisões que mudam o preço</h2>
+ <p class="section-lead">Fechar antes de travar o valor do Cenário A.</p>
+ <div class="cols">
+ <ul class="tight">
+ <li>Tipos de exercício <strong>obrigatórios</strong> no dia 1 (ATV Must é largo)</li>
+ <li>O que migrar de Vimeo / Hotmart / Cambridge / Cengage</li>
+ <li>Responsáveis de menores: conta própria ou só consentimento?</li>
+ <li>Status financeiro no MVP: sim/não</li>
+ <li>Hotmart permanece na fase EAD?</li>
+ <li>Offline no app: sim/não e quais conteúdos</li>
+ <li>Volume 24 meses (usuários, vídeo, storage)</li>
+ <li>Design system / identidade existentes?</li>
+ <li>Regras de nota, recuperação e aprovação por público</li>
+ <li>SLA, suporte e horários críticos pós-lançamento</li>
+ <li>Nuvem, região de dados, domínio e ambientes</li>
+ <li>Mensagens só assíncronas ou há pressão por chat?</li>
+ </ul>
+ </div>
+ </section>
+
+ <section id="planilha">
+ <h2>10. Colunas sugeridas para a planilha</h2>
+ <div class="card" style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; overflow:auto;">
+ Cenário | Épico | Prioridade | Fase | IDs | Complexidade | Horas eng | Horas design | Contingência % | Premissas | Exclusões
+ </div>
+ <h3>Ordem de cotação</h3>
+ <ol>
+ <li>Fechar <strong>A Must</strong> (A0–A14)</li>
+ <li>Somar <strong>Should do A</strong> como linha opcional</li>
+ <li>Cotar <strong>B</strong> e <strong>C</strong> separados</li>
+ <li>Cotar opcionais F4 um a um</li>
+ </ol>
+ </section>
+
+ <section id="reqs">
+ <h2>11. IDs Must do MVP (checklist de rastreio)</h2>
+ <p class="section-lead">Use como checklist de backlog / aceite. Filtro por módulo.</p>
+
+ <div class="toolbar">
+ <input type="search" id="filter-req" placeholder="Buscar ID ou texto…" aria-label="Filtrar requisitos" />
+ <label><input type="checkbox" class="mod-filter" value="AUT" checked /> AUT</label>
+ <label><input type="checkbox" class="mod-filter" value="ACA" checked /> ACA</label>
+ <label><input type="checkbox" class="mod-filter" value="CON" checked /> CON</label>
+ <label><input type="checkbox" class="mod-filter" value="ATV" checked /> ATV</label>
+ <label><input type="checkbox" class="mod-filter" value="PRO" checked /> PRO</label>
+ <label><input type="checkbox" class="mod-filter" value="COM" checked /> COM</label>
+ <label><input type="checkbox" class="mod-filter" value="LIVE" checked /> LIVE</label>
+ <label><input type="checkbox" class="mod-filter" value="GAM" checked /> GAM</label>
+ <label><input type="checkbox" class="mod-filter" value="ADM" checked /> ADM</label>
+ </div>
+
+ <div class="table-wrap">
+ <table id="table-req">
+ <thead>
+ <tr>
+ <th style="width:90px">ID</th>
+ <th>Requisito Must · MVP</th>
+ <th style="width:80px">Épico</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr data-mod="AUT"><td class="code">AUT-01</td><td>Login e-mail/senha (aluno, professor, admin)</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-02</td><td>Recuperação/redefinição de senha</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-03</td><td>RBAC por perfil e permissão</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-04</td><td>Ativar / bloquear / desativar contas</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-05</td><td>Sessões seguras, expiração, encerramento remoto</td><td class="ids">A2</td></tr>
+ <tr data-mod="AUT"><td class="code">AUT-07</td><td>Aceite de termos, privacidade e consentimentos</td><td class="ids">A2</td></tr>
+
+ <tr data-mod="ACA"><td class="code">ACA-01</td><td>Programas, cursos, níveis, turmas, períodos</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-02</td><td>Módulos, unidades, aulas, itens de aprendizagem</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-03</td><td>Ordem, pré-requisitos e desbloqueio da trilha</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-04</td><td>Matrícula individual ou em lote</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-05</td><td>Vínculo de professores a turmas/componentes</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-06</td><td>Datas, disponibilidade e prazos</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-08</td><td>Trilhas por público (infantil, teen, adulto, empresas)</td><td class="ids">A3</td></tr>
+ <tr data-mod="ACA"><td class="code">ACA-10</td><td>Arquivar turmas com histórico</td><td class="ids">A3</td></tr>
+
+ <tr data-mod="CON"><td class="code">CON-01</td><td>Cadastro de aula (título, objetivos, duração)</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-02</td><td>Anexar vídeo, PDF, áudio, links, arquivos</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-03</td><td>Embed Vimeo com domínio/privacidade</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-04</td><td>Materiais por curso/módulo/aula/turma</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-06</td><td>Status rascunho / agendado / publicado / arquivado</td><td class="ids">A4</td></tr>
+ <tr data-mod="CON"><td class="code">CON-08</td><td>URLs privadas / links temporários</td><td class="ids">A4</td></tr>
+
+ <tr data-mod="ATV"><td class="code">ATV-01</td><td>Banco de questões reutilizável e categorizado</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-02</td><td>Múltipla escolha e seleção múltipla (auto)</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-03</td><td>Lacunas, ordenação e associação</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-04</td><td>Listening (áudio + objetiva/textual)</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-05</td><td>Leitura com texto-base + questões</td><td class="ids">A5</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-06</td><td>Produção escrita com correção manual</td><td class="ids">A5 / A7</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-08</td><td>Tentativas, tempo, nota mínima, peso, embaralhamento</td><td class="ids">A6</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-09</td><td>Prática / homework / prova / diagnóstica</td><td class="ids">A6</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-10</td><td>Autosave e retomada</td><td class="ids">A6</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-11</td><td>Resultado imediato ou após liberação</td><td class="ids">A6</td></tr>
+ <tr data-mod="ATV"><td class="code">ATV-13</td><td>Histórico de tentativas, notas e correções</td><td class="ids">A6</td></tr>
+
+ <tr data-mod="PRO"><td class="code">PRO-01</td><td>Progresso por aula / módulo / curso / trilha</td><td class="ids">A8</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-02</td><td>Conclusão configurável</td><td class="ids">A8</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-03</td><td>Próximos passos, pendências, prazos (aluno)</td><td class="ids">A8</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-04</td><td>Visão por turma e detalhe do aluno (professor)</td><td class="ids">A8</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-06</td><td>Consolidar notas objetivas e manuais</td><td class="ids">A7</td></tr>
+ <tr data-mod="PRO"><td class="code">PRO-07</td><td>Histórico acadêmico</td><td class="ids">A8</td></tr>
+
+ <tr data-mod="COM"><td class="code">COM-01</td><td>Avisos segmentados</td><td class="ids">A9</td></tr>
+ <tr data-mod="COM"><td class="code">COM-02</td><td>Mensagens assíncronas professor ↔ aluno</td><td class="ids">A9</td></tr>
+ <tr data-mod="COM"><td class="code">COM-03</td><td>Central de notificações in-app</td><td class="ids">A9</td></tr>
+ <tr data-mod="COM"><td class="code">COM-05</td><td>Calendário (aulas, prazos, provas, lives)</td><td class="ids">A9</td></tr>
+
+ <tr data-mod="LIVE"><td class="code">LIVE-01</td><td>Encontro ao vivo com link Zoom</td><td class="ids">A10</td></tr>
+ <tr data-mod="LIVE"><td class="code">LIVE-02</td><td>Exibir no calendário e na aula</td><td class="ids">A10</td></tr>
+
+ <tr data-mod="GAM"><td class="code">GAM-02</td><td>Barra de progresso e marcos</td><td class="ids">A13</td></tr>
+
+ <tr data-mod="ADM"><td class="code">ADM-01</td><td>CRUD alunos, professores, administradores</td><td class="ids">A11</td></tr>
+ <tr data-mod="ADM"><td class="code">ADM-03</td><td>Gerir cursos, turmas, calendários, permissões</td><td class="ids">A11</td></tr>
+ <tr data-mod="ADM"><td class="code">ADM-04</td><td>Dashboard (ativos, progresso, pendências, uso)</td><td class="ids">A11</td></tr>
+ <tr data-mod="ADM"><td class="code">ADM-05</td><td>Auditoria de ações administrativas críticas</td><td class="ids">A11</td></tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <footer>
+ Gerado a partir de <em>AECUS_Especificacao_Tecnica_Plataforma_Educacional</em> · Documento de trabalho para estimativa ·
+ Abrir este arquivo no browser: <code>aecus-estrutura-orcamento.html</code>
+ </footer>
+ </div>
+
+ <script>
+ const filterMvp = document.getElementById("filter-mvp");
+ const tableMvp = document.getElementById("table-mvp");
+ filterMvp.addEventListener("input", () => {
+ const q = filterMvp.value.trim().toLowerCase();
+ for (const row of tableMvp.tBodies[0].rows) {
+ const text = row.textContent.toLowerCase();
+ row.classList.toggle("hidden", q!== "" &&!text.includes(q));
+ }
+ });
+
+ const filterReq = document.getElementById("filter-req");
+ const tableReq = document.getElementById("table-req");
+ const modFilters = [...document.querySelectorAll(".mod-filter")];
+
+ function applyReqFilter() {
+ const q = filterReq.value.trim().toLowerCase();
+ const enabled = new Set(modFilters.filter((c) => c.checked).map((c) => c.value));
+ for (const row of tableReq.tBodies[0].rows) {
+ const mod = row.dataset.mod;
+ const text = row.textContent.toLowerCase();
+ const okMod = enabled.has(mod);
+ const okText = q === "" || text.includes(q);
+ row.classList.toggle("hidden",!(okMod && okText));
+ }
+ }
+
+ filterReq.addEventListener("input", applyReqFilter);
+ modFilters.forEach((c) => c.addEventListener("change", applyReqFilter));
+ </script>
+</body>
+</html>

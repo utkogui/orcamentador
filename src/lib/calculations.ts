@@ -58,6 +58,7 @@ export type MultiplierInput = {
 
 export type EstimateLineItem = {
   id: string;
+  moduleId: string;
   moduleName: string;
   instanceLabel: string | null;
   layer: ModuleLayer;
@@ -194,6 +195,7 @@ export function calculateEstimate(params: {
 
     lineItems.push({
       id: estimateModule.id,
+      moduleId: estimateModule.moduleId,
       moduleName: estimateModule.moduleName,
       instanceLabel: estimateModule.instanceLabel,
       layer: estimateModule.layer,
