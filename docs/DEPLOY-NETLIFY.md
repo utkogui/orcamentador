@@ -209,6 +209,8 @@ Assim o desenvolvimento local não muda.
 - [ ] Briefing IA funciona (se `OPENAI_API_KEY` estiver setada)
 - [ ] Knowledge (`/knowledge`) carrega (JSON no repo, não depende do SQLite)
 
+> Se o build falhar com `table ... does not exist`, o Turso ainda está **sem schema/dados**. Rode o import do dump (passo 3) e garanta que `TURSO_*` no Netlify não estão vazios.
+
 ---
 
 ## 8. Atualizar dados depois do go-live
