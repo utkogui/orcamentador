@@ -24,6 +24,7 @@ import {
   removeEstimateModule,
   updateEstimate,
 } from "@/app/actions";
+import { ShareEstimateButton } from "@/components/share-estimate-button";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -75,6 +76,10 @@ export default async function EstimateDetailPage({ params }: Props) {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          <ShareEstimateButton estimateId={id} />
+          <Button variant="outline" asChild>
+            <Link href={`/p/${id}`}>Abrir link do comercial</Link>
+          </Button>
           {estimate.clientProposalPrice != null && (
             <Button variant="outline" asChild>
               <Link href={`/estimates/${id}/result`}>Ver proposta salva</Link>

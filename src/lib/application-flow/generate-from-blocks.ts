@@ -9,6 +9,7 @@ type BlockRole =
   | "auth_signup"
   | "auth_recovery"
   | "hub"
+  | "cms"
   | "commerce"
   | "integration"
   | "ai"
@@ -16,8 +17,8 @@ type BlockRole =
 
 type ClassifiedBlock = BriefingBlockMatch & { role: BlockRole };
 
-const X = { start: 0, entry: 240, auth: 480, hub: 720, features: 980, commerce: 980 };
-const Y = { authRow: 0, featureRow: 220, commerceRow: 420 };
+const X = { start: 0, entry: 240, auth: 480, hub: 720, features: 980, commerce: 980, admin: 480 };
+const Y = { authRow: 0, featureRow: 220, commerceRow: 420, adminRow: 520 };
 
 function classifyBlock(match: BriefingBlockMatch): BlockRole {
   const id = match.blockId.toLowerCase();
@@ -26,6 +27,12 @@ function classifyBlock(match: BriefingBlockMatch): BlockRole {
 
   if (/site_home|landing|institutional|portal|home/.test(id) || /home|portal|institucional/.test(name)) {
     return "entry";
+  }
+  if (/^cms_|_cms|wordpress|wp_admin/.test(id) || /cms|wordpress|painel editorial|editor de conteúdo/.test(name)) {
+    return "cms";
+  }
+  if (category === "landing_institutional" && !/home|portal/.test(id)) {
+    return "feature";
   }
   if (/auth_basic_login|basic_login/.test(id) || (category === "authentication" && /login|entrar/.test(name))) {
     return "auth_login";
@@ -51,31 +58,54 @@ function classifyBlock(match: BriefingBlockMatch): BlockRole {
   return "feature";
 }
 
+/**
+ * Site institucional / marketing / WordPress: páginas públicas primeiro;
+ * login só para editar no CMS (admin), não como portão do conteúdo.
+ */
+export function isPublicMarketingSite(
+  classified: ClassifiedBlock[],
+  result: BriefingInterpretationResult
+): boolean {
+  const corpus = [
+    result.summary,
+    ...classified.map((c) => `${c.blockId} ${c.blockName} ${c.categoryId ?? ""}`),
+    ...result.notesForSalesTeam,
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  const publicSignals =
+    /site_home|landing_institutional|institutional|cms_|lp_|blog_|wordpress|institucional|site institucional|portal institucional|vitrine/.test(
+      corpus
+    );
+
+  if (!publicSignals) return false;
+
+  const hasAuthenticatedAppHub = classified.some(
+    (c) =>
+      c.role === "hub" ||
+      /dashboard_charts|dashboard_bi|dashboard_executive|pipeline_leads|billing_subscription/.test(
+        c.blockId
+      )
+  );
+
+  const hasPublicContentBlocks = classified.some((c) =>
+    /site_home|cms_|lp_|blog_|institutional|landing/.test(c.blockId) ||
+    c.categoryId === "landing_institutional"
+  );
+
+  // SaaS com dashboard autenticado e sem conteúdo público → não é marketing site
+  if (hasAuthenticatedAppHub && !hasPublicContentBlocks) return false;
+
+  return true;
+}
+
 function dedupeMatches(matches: BriefingBlockMatch[]): BriefingBlockMatch[] {
   const map = new Map<string, BriefingBlockMatch>();
   for (const match of matches) {
     map.set(match.blockId, match);
   }
   return Array.from(map.values());
-}
-
-function zoneForRole(role: BlockRole): ApplicationFlowNodeData["zone"] {
-  switch (role) {
-    case "entry":
-      return "entry";
-    case "auth_login":
-    case "auth_signup":
-    case "auth_recovery":
-      return "auth";
-    case "hub":
-      return "hub";
-    case "commerce":
-      return "commerce";
-    case "integration":
-      return "integration";
-    default:
-      return "feature";
-  }
 }
 
 function makeNode(
@@ -102,18 +132,196 @@ function makeEdge(id: string, source: string, target: string, label?: string): E
     label,
     type: "smoothstep",
     style: { stroke: "#64748b", strokeWidth: 2 },
-    animated: label === "acesso",
+    animated: label === "acesso" || label === "admin",
   };
 }
 
-export function generateApplicationFlowFromBlocks(
+function connectLeavesToEnd(
+  nodes: Node<ApplicationFlowNodeData>[],
+  edges: Edge[]
+) {
+  nodes.push(
+    makeNode(
+      "end",
+      "Fim da jornada",
+      { x: X.features + 400, y: Y.authRow + 40 },
+      "end",
+      "Conclusão de fluxo principal"
+    )
+  );
+
+  const leafCandidates = nodes.filter(
+    (node) =>
+      node.id !== "start" &&
+      node.id !== "end" &&
+      !edges.some((edge) => edge.source === node.id)
+  );
+  const branchSources = nodes.filter(
+    (node) =>
+      node.id !== "start" &&
+      node.id !== "end" &&
+      edges.some((edge) => edge.source === node.id)
+  );
+
+  for (const leaf of leafCandidates.length > 0 ? leafCandidates : branchSources.slice(-3)) {
+    if (leaf.id === "end") continue;
+    if (!edges.some((edge) => edge.source === leaf.id && edge.target === "end")) {
+      edges.push(makeEdge(`e_${leaf.id}_end`, leaf.id, "end"));
+    }
+  }
+}
+
+/**
+ * Topologia de site público: Home/nav → páginas sem login;
+ * ramo admin opcional (login → CMS) separado.
+ */
+function buildPublicMarketingFlow(
+  classified: ClassifiedBlock[],
   result: BriefingInterpretationResult,
   projectTitle?: string
 ): ApplicationFlowGraph {
-  const classified = dedupeMatches([...result.explicitlyRequested, ...result.likelyNeeded]).map(
-    (match) => ({ ...match, role: classifyBlock(match) })
+  const nodes: Node<ApplicationFlowNodeData>[] = [];
+  const edges: Edge[] = [];
+
+  nodes.push(
+    makeNode("start", "Início", { x: X.start, y: Y.authRow + 40 }, "start", "Visitante no site")
   );
 
+  const byRole = (role: BlockRole) => classified.filter((block) => block.role === role);
+  const entryBlocks = byRole("entry");
+  const loginBlocks = byRole("auth_login");
+  const cmsBlocks = byRole("cms");
+  const featureLike = [
+    ...byRole("feature"),
+    ...byRole("hub"),
+    ...byRole("commerce"),
+    ...byRole("ai"),
+    ...byRole("integration"),
+  ];
+
+  let publicAnchor = "start";
+
+  if (entryBlocks.length > 0) {
+    entryBlocks.forEach((block, index) => {
+      const id = `entry_${block.blockId}`;
+      nodes.push(
+        makeNode(
+          id,
+          block.blockName,
+          { x: X.entry, y: Y.authRow + index * 90 },
+          "entry",
+          "Página pública",
+          block.blockId
+        )
+      );
+      edges.push(makeEdge(`e_start_${id}`, publicAnchor, id, index === 0 ? undefined : "navegar"));
+      publicAnchor = id;
+    });
+  }
+
+  // Páginas/conteúdo públicos saem da home — sem passar por login
+  featureLike.forEach((block, index) => {
+    const col = index % 2;
+    const row = Math.floor(index / 2);
+    const id = `feature_${block.blockId}`;
+    nodes.push(
+      makeNode(
+        id,
+        block.blockName,
+        { x: X.features + col * 220, y: Y.featureRow + row * 100 },
+        "feature",
+        "Página / seção pública",
+        block.blockId
+      )
+    );
+    edges.push(makeEdge(`e_public_${id}`, publicAnchor, id, "navegar"));
+  });
+
+  // Admin: login só para editar (CMS). Só cria login se houver CMS ou auth explícito.
+  const needsAdminBranch = cmsBlocks.length > 0 || loginBlocks.length > 0;
+  if (needsAdminBranch) {
+    let adminLoginId: string | null = null;
+
+    if (loginBlocks.length > 0) {
+      const block = loginBlocks[0];
+      adminLoginId = `auth_${block.blockId}`;
+      nodes.push(
+        makeNode(
+          adminLoginId,
+          block.blockName,
+          { x: X.admin, y: Y.adminRow },
+          "auth",
+          "Login admin / CMS",
+          block.blockId
+        )
+      );
+    } else if (cmsBlocks.length > 0) {
+      adminLoginId = "auth_cms_admin_login";
+      nodes.push(
+        makeNode(
+          adminLoginId,
+          "Login admin (CMS)",
+          { x: X.admin, y: Y.adminRow },
+          "auth",
+          "Acesso para editar conteúdo"
+        )
+      );
+    }
+
+    if (adminLoginId) {
+      edges.push(makeEdge(`e_public_admin`, publicAnchor, adminLoginId, "admin"));
+    }
+
+    cmsBlocks.forEach((block, index) => {
+      const id = `cms_${block.blockId}`;
+      nodes.push(
+        makeNode(
+          id,
+          block.blockName,
+          { x: X.hub, y: Y.adminRow + index * 90 },
+          "feature",
+          "Editar conteúdo no CMS",
+          block.blockId
+        )
+      );
+      const source = adminLoginId ?? publicAnchor;
+      edges.push(makeEdge(`e_admin_${id}`, source, id, adminLoginId ? "editar" : "cms"));
+    });
+  }
+
+  if (nodes.length <= 1) {
+    nodes.push(
+      makeNode(
+        "feature_placeholder",
+        "Páginas do site",
+        { x: X.hub, y: Y.featureRow },
+        "feature",
+        "Adicione blocos na interpretação"
+      )
+    );
+    edges.push(makeEdge("e_start_placeholder", "start", "feature_placeholder"));
+  }
+
+  connectLeavesToEnd(nodes, edges);
+
+  return {
+    engine: APPLICATION_FLOW_ENGINE,
+    version: 1,
+    title: projectTitle ?? "Estrutura do site (público + CMS)",
+    summary: result.summary,
+    nodes,
+    edges,
+  };
+}
+
+/**
+ * Topologia SaaS: entrada → login → hub/features autenticadas.
+ */
+function buildAuthenticatedAppFlow(
+  classified: ClassifiedBlock[],
+  result: BriefingInterpretationResult,
+  projectTitle?: string
+): ApplicationFlowGraph {
   const nodes: Node<ApplicationFlowNodeData>[] = [];
   const edges: Edge[] = [];
 
@@ -131,7 +339,7 @@ export function generateApplicationFlowFromBlocks(
   const commerceBlocks = byRole("commerce");
   const integrationBlocks = byRole("integration");
   const aiBlocks = byRole("ai");
-  const featureBlocks = byRole("feature");
+  const featureBlocks = [...byRole("feature"), ...byRole("cms")];
 
   let anchorAfterStart = "start";
 
@@ -184,6 +392,7 @@ export function generateApplicationFlowFromBlocks(
     authNodeIds.push(loginNodeId);
     authY += 80;
   } else if (classified.length > 0) {
+    // Só infere login em apps autenticados (não em site público)
     loginNodeId = "auth_synthetic_login";
     nodes.push(
       makeNode(loginNodeId, "Login", { x: X.auth, y: authY }, "auth", "Acesso inferido pelo escopo")
@@ -213,7 +422,9 @@ export function generateApplicationFlowFromBlocks(
     edges.push(makeEdge(`e_logout_${loginNodeId}`, "auth_logout", loginNodeId));
   }
 
-  for (const signupId of authNodeIds.filter((id) => id.includes("signup") || signupBlocks.some((b) => id.includes(b.blockId)))) {
+  for (const signupId of authNodeIds.filter(
+    (id) => id.includes("signup") || signupBlocks.some((b) => id.includes(b.blockId))
+  )) {
     if (loginNodeId) {
       edges.push(makeEdge(`e_${signupId}_${loginNodeId}`, signupId, loginNodeId, "após cadastro"));
     }
@@ -223,10 +434,6 @@ export function generateApplicationFlowFromBlocks(
     edges.push(makeEdge(`e_entry_login`, anchorAfterStart, loginNodeId, "acesso"));
   } else if (loginNodeId && anchorAfterStart === "start") {
     edges.push(makeEdge(`e_start_login`, "start", loginNodeId, "acesso"));
-  } else if (anchorAfterStart !== "start") {
-    // sem login explícito — portal leva ao hub/features
-  } else if (classified.length > 0 && !loginNodeId) {
-    edges.push(makeEdge("e_start_features", "start", "end", "explorar"));
   }
 
   let hubNodeId: string | null = null;
@@ -306,37 +513,20 @@ export function generateApplicationFlowFromBlocks(
     edges.push(makeEdge(`e_integration_${id}`, source, id, "integra"));
   });
 
-  nodes.push(
-    makeNode(
-      "end",
-      "Fim da jornada",
-      { x: X.features + 400, y: Y.authRow + 40 },
-      "end",
-      "Conclusão de fluxo principal"
-    )
-  );
-
-  const leafCandidates = nodes.filter(
-    (node) => node.id !== "start" && node.id !== "end" && !edges.some((edge) => edge.source === node.id)
-  );
-  const branchSources = nodes.filter(
-    (node) => node.id !== "start" && node.id !== "end" && edges.some((edge) => edge.source === node.id)
-  );
-
-  for (const leaf of leafCandidates.length > 0 ? leafCandidates : branchSources.slice(-3)) {
-    if (leaf.id === "end") continue;
-    if (!edges.some((edge) => edge.source === leaf.id && edge.target === "end")) {
-      edges.push(makeEdge(`e_${leaf.id}_end`, leaf.id, "end"));
-    }
-  }
-
-  if (nodes.length <= 2) {
+  if (nodes.length <= 1) {
     nodes.push(
-      makeNode("feature_placeholder", "Módulos do escopo", { x: X.hub, y: Y.featureRow }, "feature", "Adicione blocos na interpretação")
+      makeNode(
+        "feature_placeholder",
+        "Módulos do escopo",
+        { x: X.hub, y: Y.featureRow },
+        "feature",
+        "Adicione blocos na interpretação"
+      )
     );
     edges.push(makeEdge("e_start_placeholder", "start", "feature_placeholder"));
-    edges.push(makeEdge("e_placeholder_end", "feature_placeholder", "end"));
   }
+
+  connectLeavesToEnd(nodes, edges);
 
   return {
     engine: APPLICATION_FLOW_ENGINE,
@@ -346,4 +536,19 @@ export function generateApplicationFlowFromBlocks(
     nodes,
     edges,
   };
+}
+
+export function generateApplicationFlowFromBlocks(
+  result: BriefingInterpretationResult,
+  projectTitle?: string
+): ApplicationFlowGraph {
+  const classified = dedupeMatches([...result.explicitlyRequested, ...result.likelyNeeded]).map(
+    (match) => ({ ...match, role: classifyBlock(match) })
+  );
+
+  if (isPublicMarketingSite(classified, result)) {
+    return buildPublicMarketingFlow(classified, result, projectTitle);
+  }
+
+  return buildAuthenticatedAppFlow(classified, result, projectTitle);
 }

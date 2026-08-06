@@ -32,11 +32,9 @@ data/
   landing_institutional.json
   saas_essentials.json
   finance_payments.json
-
-docs/
-  prompt-base-interpretacao-briefing.md
-  *.md por categoria
 ```
+
+A fonte de verdade é o JSON em `data/`. O app carrega `all-building-blocks.json`.
 
 ## Total da v0.1
 

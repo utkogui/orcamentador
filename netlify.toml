@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Runtime Next.js (OpenNext) é aplicado automaticamente pelo Netlify
+# para Next.js >= 13.5. Não é obrigatório pinar @netlify/plugin-nextjs.
+
+[dev]
+  command = "npm run dev -- -p 3005"
+  port = 3005
+  targetPort = 3005

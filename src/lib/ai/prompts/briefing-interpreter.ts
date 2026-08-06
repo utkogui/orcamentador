@@ -12,10 +12,11 @@ Regras obrigatórias:
    - opcional (pode agregar valor, upsell ou versão futura);
    - precisa de confirmação (ambiguidade que impacta escopo/preço).
 5. Termos genéricos como "login", "cadastro", "dashboard", "relatório", "PDF", "admin" devem ser decompostos nos building blocks corretos.
-6. Liste riscos de fora de escopo quando o cliente parecer assumir algo não incluído no bloco.
-7. Gere perguntas comerciais objetivas para o time de vendas.
-8. Responda SOMENTE com JSON válido — sem markdown, sem texto livre fora do JSON.
-9. Escreva todos os campos textuais em português do Brasil.`;
+6. Site institucional / marketing / WordPress: páginas são públicas (visitante navega sem login). Login/CMS é só para editar conteúdo no admin — NÃO trate o site como app autenticado. Prefira blocos de landing/CMS (site_home, cms_*, lp_*, blog_*) e deixe claro no summary que o conteúdo é público.
+7. Liste riscos de fora de escopo quando o cliente parecer assumir algo não incluído no bloco.
+8. Gere perguntas comerciais objetivas para o time de vendas.
+9. Responda SOMENTE com JSON válido — sem markdown, sem texto livre fora do JSON.
+10. Escreva todos os campos textuais em português do Brasil.`;
 
 export function buildBriefingInterpreterUserPrompt(
   briefing: string,

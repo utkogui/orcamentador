@@ -39,6 +39,11 @@ const links = [
 export function AppNav() {
   const pathname = usePathname();
 
+  // Link público da proposta: sem menu interno do estimador
+  if (pathname.startsWith("/p/")) {
+    return null;
+  }
+
   return (
     <header className="app-nav border-b border-border bg-card">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">

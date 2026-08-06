@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MatilhaLogo } from "@/components/matilha-logo";
+import { ShareEstimateButton } from "@/components/share-estimate-button";
 import {
   ApplicationStructureFlow,
   type ApplicationStructureFlowHandle,
@@ -28,6 +29,8 @@ type Props = {
   scopeItems: ClientScopeItem[];
   applicationFlow: ApplicationFlowGraph | null;
   journeySteps: string[];
+  /** shared = link do comercial (sem voltar para edição) */
+  variant?: "internal" | "shared";
 };
 
 function ProposalSection({
@@ -63,11 +66,13 @@ export function EstimateClientProposal({
   scopeItems,
   applicationFlow,
   journeySteps,
+  variant = "internal",
 }: Props) {
   const proposalRef = useRef<HTMLElement>(null);
   const flowRef = useRef<ApplicationStructureFlowHandle>(null);
   const [isExporting, setIsExporting] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
+  const isShared = variant === "shared";
 
   async function handleSavePdf() {
     if (!proposalRef.current || isExporting) return;
@@ -97,12 +102,17 @@ export function EstimateClientProposal({
     <>
       <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-muted/40 px-4 py-3">
         <p className="text-sm text-muted-foreground">
-          Visualização para envio ao cliente · PDF contínuo em página única
+          {isShared
+            ? "Link compartilhado · proposta comercial Matilha"
+            : "Visualização para envio ao cliente · PDF contínuo em página única"}
         </p>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" size="sm" asChild>
-            <Link href={`/estimates/${estimateId}`}>Voltar para edição interna</Link>
-          </Button>
+          {!isShared && (
+            <Button variant="outline" size="sm" asChild>
+              <Link href={`/estimates/${estimateId}`}>Voltar para edição interna</Link>
+            </Button>
+          )}
+          <ShareEstimateButton estimateId={estimateId} label="Copiar link" />
           <Button size="sm" onClick={() => void handleSavePdf()} disabled={isExporting}>
             {isExporting ? "Gerando PDF..." : "Salvar PDF"}
           </Button>
